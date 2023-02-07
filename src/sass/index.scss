@@ -1,1 +1,13 @@
 @import './common';
+@import './utils/variables';
+@import './utils/visually-hidden';
+@import './base/base';
+@import './base/main_container';
+@import './base/library_container';
+@import './components/main_header';
+@import './components/library_header';
+@import './components/movie_card';
+@import './components/buttons';
+@import './components/footer';
+@import './components/footer_modal';
+@import './components/movie_modal';
