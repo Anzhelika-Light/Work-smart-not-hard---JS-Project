@@ -12,7 +12,9 @@ export default function makeHMTLString({ results }) {
         } film" class="trending-films-gallery-image" />
     <div class="gallery-info-wrapper">
     	<h3>${result.title}</h3>
-    	<p>${1} | <span>${result.release_date.slice(0, 4)}</span></p>
+    	<p>${TmdbAPI.getGenresString(
+        result.genre_ids
+      )} | <span>${result.release_date.slice(0, 4)}</span></p>
     </div>
   </li>
 	`
