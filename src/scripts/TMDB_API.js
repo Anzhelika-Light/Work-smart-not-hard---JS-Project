@@ -23,15 +23,7 @@ export default class TmdbAPI {
 
   constructor(page = 1) {
     this.page = page;
-    //creating the genres obj: id: name
-    this.#fetchGenreMoviesList().then(response => {
-      const genrArr = response.data.genres;
-      console.log(genrArr);
-      genrArr.forEach(el => {
-        TmdbAPI.genres[el.id] = el.name;
-      });
-      console.log(TmdbAPI.genres);
-    });
+    this.#createGenresObj();
   }
 
   fetchFilmsByQuery(query) {
@@ -77,7 +69,44 @@ export default class TmdbAPI {
     );
   }
 
-  getGenresString() {}
+  #createGenresObj() {
+    //if TmdbAPI.genres already has data - do not fetch again
+    if (Object.keys(TmdbAPI.genres).length !== 0) return;
+    console.log('after return');
+    //creating the genres obj: id: name
+    this.#fetchGenreMoviesList().then(response => {
+      const genrArr = response.data.genres;
+      console.log(genrArr);
+      genrArr.forEach(el => {
+        TmdbAPI.genres[el.id] = el.name;
+      });
+      console.log(TmdbAPI.genres);
+    });
+  }
+
+  static getGenresString(genre_ids) {
+    switch (genre_ids.length) {
+      case 0:
+        return '';
+        break;
+      case 1:
+        return `${TmdbAPI.genres[genre_ids[0]]}`;
+        break;
+      case 2:
+        return `${TmdbAPI.genres[genre_ids[0]]}, ${
+          TmdbAPI.genres[genre_ids[1]]
+        }`;
+        break;
+      default:
+        return `${TmdbAPI.genres[genre_ids[0]]}, ${
+          TmdbAPI.genres[genre_ids[1]]
+        }, Other`;
+        break;
+    }
+    if (genre_ids.length > 2) {
+      return `${TmdbAPI.genres[genre_ids[0]]}, `;
+    }
+  }
   // getGenreList() {
   //   try {
   //     return this.fetchGenreMoviesList();
