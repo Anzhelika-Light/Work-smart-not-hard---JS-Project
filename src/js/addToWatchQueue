@@ -1,0 +1,56 @@
+const queueJSON = localStorage.getItem('queue');
+const watchedJSON = localStorage.getItem('watched');
+let queue = JSON.parse(queueJSON) || [];
+let watched = JSON.parse(watchedJSON) || [];
+
+allCardsSection.addEventListener('click', showModal);
+
+function updateMoviesList() {
+  const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
+  const allMoviesList = JSON.parse(allMoviesListFromStorage);
+  return allMoviesList;
+}
+
+function addToWatched(e) {
+  e.target.innerText = 'remove from watched';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  watched.push(clickedFilm);
+  localStorage.setItem('watched', JSON.stringify(watched));
+  e.target.addEventListener('click', removeFromWatched);
+  e.target.removeEventListener('click', addToWatched);
+  Notiflix.Notify.success('Added to watched!');
+}
+
+function removeFromWatched(e) {
+  e.target.innerText = 'add to watched';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  watched = watched.filter(film => film.id !== clickedFilm.id);
+  localStorage.setItem('watched', JSON.stringify(watched));
+  e.target.removeEventListener('click', removeFromWatched);
+  e.target.addEventListener('click', addToWatched);
+  Notiflix.Notify.success('Removed from watched!');
+}
+
+function addToQueue(e) {
+  e.target.innerText = 'remove from queue';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  queue.push(clickedFilm);
+  localStorage.setItem('queue', JSON.stringify(queue));
+  e.target.addEventListener('click', removeFromQueue);
+  e.target.removeEventListener('click', addToQueue);
+  Notiflix.Notify.success('Added to queue!');
+}
+
+function removeFromQueue(e) {
+  e.target.innerText = 'add to queue';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  queue = queue.filter(film => film.id !== clickedFilm.id);
+  localStorage.setItem('queue', JSON.stringify(queue));
+  e.target.removeEventListener('click', removeFromQueue);
+  e.target.addEventListener('click', addToQueue);
+  Notiflix.Notify.success('Removed from queue!');
+}
