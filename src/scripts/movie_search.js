@@ -36,4 +36,7 @@ async function onSearchInputElChange() {
 
 // }
 
-tmdbAPI.fetchFilmsByID('10992').then(console.log);
+tmdbAPI.fetchFilmByID('10992').then(console.log);
+tmdbAPI.fetchTrailersByID('10992').then(console.log);
+
+// tmdbAPI.fetchGenreMoviesList();
