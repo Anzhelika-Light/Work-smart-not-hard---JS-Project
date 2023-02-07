@@ -65,7 +65,7 @@
     @media screen and (min-width: 1280px) {
       font-style: normal;
       font-weight: 500;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.2;
       color: rgba(0, 0, 0, 1);
     }
@@ -86,9 +86,19 @@
 
     @media screen and (min-width: 1280px) {
       font-weight: 500;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.2;
     }
+  }
+}
+
+.trending-gallery__item {
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-basis: calc((100% - 2 * 16px) / 3);
   }
 }
 

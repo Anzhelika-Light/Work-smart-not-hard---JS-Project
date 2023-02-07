@@ -20,16 +20,14 @@ async function createMarkup(data) {
     .map(item => {
       let genres = '';
       const genresNamesToRender = getGenreDeciphered(item, genreNames);
-      if (genresNamesToRender.includes('Science Fiction')) {
-        genres = `${genresNamesToRender[0]}, Other`;
-      } else if (genresNamesToRender.length > 2) {
+      if (genresNamesToRender.length > 2) {
         genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}, Other`;
       } else {
         genres = genresNamesToRender;
       }
 
       console.log('item', item);
-      return `<li>
+      return `<li class="trending-gallery__item">
       <img src="${imageBaseURL}${item.poster_path}" 
             alt="The poster of ${item.title} film" 
             class="trending-gallery__image" />
