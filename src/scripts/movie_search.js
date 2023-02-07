@@ -1,20 +1,21 @@
 import { Notify } from 'notiflix';
 import TmdbAPI from './TMDB_API';
+import makeHMTLString from './templates/film_gallery_template';
 
 const emptyStingRegEx = /^\s*$/; // regular expression of an empty string
 const tmdbAPI = new TmdbAPI();
 
-const searchInputEl = document.querySelector('#movie-search');
-searchInputEl.addEventListener('change', onSearchInputElChange);
+const refs = {
+  galleryEl: document.querySelector('.gallery'),
+  searchInputEl: document.querySelector('#movie-search'),
+};
+refs.searchInputEl.addEventListener('change', onSearchInputElChange);
 
-function onSearchInputElChange() {
-  const query = searchInputEl.value;
+async function onSearchInputElChange() {
+  const query = refs.searchInputEl.value;
   //if input is an empty string - return
   if (emptyStingRegEx.test(query)) return;
-  getFilmsByQuery(query);
-}
 
-async function getFilmsByQuery(query) {
   try {
     const response = await tmdbAPI.fetchFilmsByQuery(query);
     const { data } = response;
@@ -24,8 +25,15 @@ async function getFilmsByQuery(query) {
         'Search result not successful. Enter the correct movie name and try again!'
       );
     }
-    return data;
+    //inserting images into gallery
+    refs.galleryEl.insertAdjacentHTML('beforeend', makeHMTLString(data));
   } catch (error) {
     console.error(error);
   }
 }
+
+// async function getFilmsByQuery(query) {
+
+// }
+
+tmdbAPI.fetchFilmsByID('10992').then(console.log);
