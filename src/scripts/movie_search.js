@@ -13,6 +13,7 @@ refs.searchInputEl.addEventListener('change', onSearchInputElChange);
 
 async function onSearchInputElChange() {
   const query = refs.searchInputEl.value;
+  refs.searchInputEl.value = '';
   //if input is an empty string - return
   if (emptyStingRegEx.test(query)) return;
 
@@ -40,8 +41,61 @@ tmdbAPI.fetchFilmByID('10992').then(data => console.log('findFilmByID', data));
 tmdbAPI
   .fetchTrailersByID('10992')
   .then(data => console.log('findTrailersByID', data));
-tmdbAPI
-  .fetchMoviesByGenre('action')
-  .then(data => console.log('findByGenre', data));
+tmdbAPI.fetchMoviesByGenre('28').then(data => console.log('findByGenre', data));
+tmdbAPI.fetchMoviesByGenre('12').then(data => console.log('findByGenre', data));
 
 // tmdbAPI.fetchGenreMoviesList();
+
+//find movies by genre
+refs.galleryEl.addEventListener('click', findMoviesByGenre);
+
+function findMoviesByGenre(event) {
+  //if not find-by-genre-js link - return
+  if (![...event.target.classList].includes('find-by-genre-js')) return;
+  let genre = event.target.innerText.trim();
+  if (genre[genre.length - 1] === ',') {
+    genre = genre.slice(0, -1);
+  }
+
+  tmdbAPI
+    .fetchMoviesByGenre(`${TmdbAPI.genreIDs[genre]}`)
+    .then(response => {
+      const { data } = response;
+      if (data.total_results === 0) {
+        Notify.failure('Search result not successful.');
+      }
+      //inserting images into gallery
+      refs.galleryEl.innerHTML = makeHMTLString(data);
+      console.log('findByGenre', data);
+    })
+    .catch(error => {
+      console.error(error);
+      Notify.failure('No films with such genre found!');
+    });
+}
+
+//find movies by year
+refs.galleryEl.addEventListener('click', findMoviesByYear);
+
+function findMoviesByYear(event) {
+  //if not find-by-genre-js link - return
+  if (![...event.target.classList].includes('find-by-year-js')) return;
+
+  let year = Number(event.target.innerText);
+
+  tmdbAPI
+    .fetchMoviesByYear(year)
+    .then(response => {
+      const { data } = response;
+      if (data.total_results === 0) {
+        Notify.failure('Search result not successful.');
+      }
+      //inserting images into gallery
+      refs.galleryEl.innerHTML = makeHMTLString(data);
+      console.log('findByYear', data);
+    })
+    .catch(error => {
+      console.error(error);
+      Notify.failure('No films with such year found!');
+    });
+}
