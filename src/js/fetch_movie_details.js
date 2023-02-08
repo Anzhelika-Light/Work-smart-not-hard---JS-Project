@@ -11,14 +11,9 @@ export function fetchMovie(movie_id) {
       return response.json();
     })
     .then(data => {
-      console.log(data);
       return data;
     })
     .catch(err => {
       console.log(err);
-      // if (err.message === '404') {
-      //   countryList.innerHTML = '';
-      //   Notiflix.Notify.failure('Oops, there is no movie with that name');
-      // }
     });
 }

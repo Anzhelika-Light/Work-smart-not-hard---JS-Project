@@ -4,7 +4,6 @@ import getGenres from './trending-search-main/fetch-genres';
 
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
-  console.log('movieDetails', movieDetails);
 
   const {
     poster_path,
@@ -18,12 +17,12 @@ export async function renderModal(list, id, watched, queue) {
     id: film_id,
   } = movieDetails;
   const genreList = await getGenres();
-  console.log(' genreList', genreList);
+
   const finalGenres = [];
   genres.forEach(genre => {
     finalGenres.push(genreList[genre.id]);
   });
-  // console.log('watched', watched);
+
   // const foundInWatched = watched.find(film => film[id] === film_id);
   // const foundInQueue = queue.find(film => film.id === film_id);
 
@@ -45,7 +44,7 @@ export async function renderModal(list, id, watched, queue) {
   const voteCount =
     vote_count && vote_average
       ? `<li class="modal__item">
-          <div class="modal__item-first">Vote / Votes</div>
+          <div class="modal__item-first">Vote/Votes</div>
           <div class="modal__item-votes">
             <span class="modal__item-bg modal__item--accent">${vote_average.toFixed(
               1

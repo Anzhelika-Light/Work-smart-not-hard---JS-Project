@@ -11,7 +11,6 @@ let queue = JSON.parse(queueJSON) || [];
 let watched = JSON.parse(watchedJSON) || [];
 
 allCardsSection.addEventListener('click', showModal);
-console.log('allcards', allCardsSection);
 
 function updateMoviesList() {
   const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
@@ -113,7 +112,6 @@ function closeModal() {
 async function createModal(id) {
   const currentList = updateMoviesList();
   const rendered = await renderModal(currentList, id, watched, queue);
-  console.log('rendered', rendered);
   innerModal.innerHTML = rendered[0];
   addListeners(rendered[1], rendered[2]);
 }

@@ -495,6 +495,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-size: 12px;
 }
 .modal__list {
   display: flex;
@@ -591,6 +592,18 @@ button {
   .modal__btn-watch-trailer {
     height: 44px;
   }
+}
+
+.interactive-button {
+  padding: 13px 8px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.3333333333;
+  border: 1px solid;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overflow {
