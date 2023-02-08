@@ -1,20 +1,19 @@
 import TmdbAPI from '../scripts/TMDB_API';
-
+import renderModal from './render_modal';
 const tmdbAPI = new TmdbAPI();
 
 const movieModalEl = document.querySelector('.modal');
-const galleryEl = document.querySelector('.gallery');
+const galleryEl = document.querySelector('.trending-gallery__item');
 
 function fetchFilmsByID(id) {
-  tmdbAPI.fetchFilmsByID(id)
-  .then(console.log);
+  tmdbAPI.fetchFilmsByID(id).then(console.log);
 }
 
 function createMovieDetails(movieInfo) {
   const movieDetails = movieInfo.map(el => {
     return `
     <div>
-      <img> 
+      <img>
     <div/>
     <div>
       <h2>Hello<h2/>
@@ -52,5 +51,4 @@ async function onMovieClick(e) {
   //   }
 }
 
-
-galleryEl.addEventListener('click', onMovieClick);
+galleryEl.addEventListener('click', renderModal);
