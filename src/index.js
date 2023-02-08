@@ -1,1 +1,1 @@
-import { instance } from './js/footer-modal';
+import { studentCards } from './js/footer-modal';
