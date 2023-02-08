@@ -36,7 +36,12 @@ async function onSearchInputElChange() {
 
 // }
 
-tmdbAPI.fetchFilmByID('10992').then(console.log);
-tmdbAPI.fetchTrailersByID('10992').then(console.log);
+tmdbAPI.fetchFilmByID('10992').then(data => console.log('findFilmByID', data));
+tmdbAPI
+  .fetchTrailersByID('10992')
+  .then(data => console.log('findTrailersByID', data));
+tmdbAPI
+  .fetchMoviesByGenre('action')
+  .then(data => console.log('findByGenre', data));
 
 // tmdbAPI.fetchGenreMoviesList();
