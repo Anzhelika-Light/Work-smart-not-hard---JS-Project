@@ -91,17 +91,16 @@ export default class TmdbAPI {
   #createGenresObj() {
     //if TmdbAPI.genres already has data - do not fetch again
     if (Object.keys(TmdbAPI.genres).length !== 0) return;
-    console.log('after return');
     //creating the genres obj: id: name
     this.#fetchGenreMoviesList().then(response => {
       const genrArr = response.data.genres;
-      console.log(genrArr);
+      // console.log(genrArr);
       genrArr.forEach(el => {
-        TmdbAPI.genres[el.id] = el.name;
-        TmdbAPI.genreIDs[el.name] = el.id;
+        TmdbAPI.genres[el.id] = el.name.toLowerCase();
+        TmdbAPI.genreIDs[el.name.toLowerCase()] = el.id;
       });
-      console.log(TmdbAPI.genres);
-      console.log('genreIDs', TmdbAPI.genreIDs);
+      // console.log(TmdbAPI.genres);
+      // console.log('genreIDs', TmdbAPI.genreIDs);
     });
   }
 

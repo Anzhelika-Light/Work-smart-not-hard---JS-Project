@@ -6,12 +6,15 @@ const emptyStingRegEx = /^\s*$/; // regular expression of an empty string
 const tmdbAPI = new TmdbAPI();
 
 const refs = {
-  galleryEl: document.querySelector('.gallery'),
-  searchInputEl: document.querySelector('#movie-search'),
+  galleryEl: document.querySelector('.trending-gallery'),
+  searchInputEl: document.querySelector('.search__input'),
+  searchForm: document.querySelector('.search'),
 };
-refs.searchInputEl.addEventListener('change', onSearchInputElChange);
 
-async function onSearchInputElChange() {
+refs.searchForm.addEventListener('submit', onSearchInputElChange);
+
+async function onSearchInputElChange(event) {
+  event.preventDefault();
   const query = refs.searchInputEl.value;
   refs.searchInputEl.value = '';
   //if input is an empty string - return
@@ -20,31 +23,31 @@ async function onSearchInputElChange() {
   try {
     const response = await tmdbAPI.fetchFilmsByQuery(query);
     const { data } = response;
-    console.log('data', data);
+    //console.log('data', data);
     if (data.total_results === 0) {
       Notify.failure(
         'Search result not successful. Enter the correct movie name and try again!'
       );
+      // const trending = await tmdbAPI.fetchTrending(
+      //   TmdbAPI.media_type.MOVIE,
+      //   TmdbAPI.time_window.WEEK
+      // );
+      // refs.galleryEl.innerHTML = makeHMTLString(trending.data);
+      // return;
     }
     //inserting images into gallery
-    refs.galleryEl.insertAdjacentHTML('beforeend', makeHMTLString(data));
+    refs.galleryEl.innerHTML = makeHMTLString(data);
   } catch (error) {
     console.error(error);
   }
 }
 
-// async function getFilmsByQuery(query) {
-
-// }
-
-tmdbAPI.fetchFilmByID('10992').then(data => console.log('findFilmByID', data));
-tmdbAPI
-  .fetchTrailersByID('10992')
-  .then(data => console.log('findTrailersByID', data));
-tmdbAPI.fetchMoviesByGenre('28').then(data => console.log('findByGenre', data));
-tmdbAPI.fetchMoviesByGenre('12').then(data => console.log('findByGenre', data));
-
-// tmdbAPI.fetchGenreMoviesList();
+// tmdbAPI.fetchFilmByID('10992').then(data => console.log('findFilmByID', data));
+// tmdbAPI
+//   .fetchTrailersByID('10992')
+//   .then(data => console.log('findTrailersByID', data));
+// tmdbAPI.fetchMoviesByGenre('28').then(data => console.log('findByGenre', data));
+// tmdbAPI.fetchMoviesByGenre('12').then(data => console.log('findByGenre', data));
 
 //find movies by genre
 refs.galleryEl.addEventListener('click', findMoviesByGenre);
@@ -58,15 +61,15 @@ function findMoviesByGenre(event) {
   }
   scrollToTop();
   tmdbAPI
-    .fetchMoviesByGenre(`${TmdbAPI.genreIDs[genre]}`)
+    .fetchMoviesByGenre(`${TmdbAPI.genreIDs[genre.toLowerCase()]}`)
     .then(response => {
       const { data } = response;
+      //console.log('search-by-genre', data);
       if (data.total_results === 0) {
         Notify.failure('Search result not successful.');
       }
       //inserting images into gallery
       refs.galleryEl.innerHTML = makeHMTLString(data);
-      console.log('findByGenre', data);
     })
     .catch(error => {
       console.error(error);

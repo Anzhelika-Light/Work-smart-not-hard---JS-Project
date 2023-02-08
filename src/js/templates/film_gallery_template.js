@@ -14,15 +14,15 @@ export default function makeHMTLString({ results }) {
     .map(
       result =>
         `
-	<li>
+	<li class='trending-gallery__item'>
     <img src="${TmdbAPI.IMG_BASE_URL}${
           result.poster_path
         }" alt="The poster of ${
           result.title
-        } film" class="trending-films-gallery-image" />
-    <div class="gallery-info-wrapper">
-    	<h3>${result.title}</h3>
-    	<p>${getGenresHTMLString(
+        } film" class="trending-gallery__image" />
+    <div class="trending-gallery__wrapper">
+    	<h3 class='trending-gallery__title'>${result.title}</h3>
+    	<p class='trending-gallery__info'>${getGenresHTMLString(
         TmdbAPI.getGenresString(result.genre_ids)
       )} | <span class='find-by-year-js'>${result.release_date.slice(
           0,
