@@ -13,7 +13,8 @@ export default class TmdbAPI {
   };
   static BASE_URL = 'https://api.themoviedb.org/3';
   static IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
-  static genres = {};
+  static genres = {}; //obj {genre_id: genre_name}
+  static genreIDs = {}; //obj {genre_name: genre_id}
   #API_KEY = '60bdd84997c9f2a4c6cd2341c547ed98';
   #searchResource = '/search/movie';
   #trendingResource = '/trending';
@@ -67,7 +68,15 @@ export default class TmdbAPI {
     return axios.get(
       `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
         this.#API_KEY
-      }&page=1&with_genres=${genre}`
+      }&page=1&sort_by=popularity.desc&with_genres=${genre}`
+    );
+  }
+
+  fetchMoviesByYear(year) {
+    return axios.get(
+      `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
+        this.#API_KEY
+      }&page=1&sort_by=popularity.desc&primary_release_year=${year}`
     );
   }
 
@@ -89,8 +98,10 @@ export default class TmdbAPI {
       console.log(genrArr);
       genrArr.forEach(el => {
         TmdbAPI.genres[el.id] = el.name;
+        TmdbAPI.genreIDs[el.name] = el.id;
       });
       console.log(TmdbAPI.genres);
+      console.log('genreIDs', TmdbAPI.genreIDs);
     });
   }
 
