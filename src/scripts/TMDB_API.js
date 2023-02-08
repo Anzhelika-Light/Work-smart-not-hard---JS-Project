@@ -18,6 +18,7 @@ export default class TmdbAPI {
   #searchResource = '/search/movie';
   #trendingResource = '/trending';
   #findByIdResource = '/movie';
+  #findByMovieResource = '/discover/movie';
   #genreMovieListResource = '/genre/movie/list';
   #findTrailersByIdResource = '/videos';
 
@@ -53,11 +54,20 @@ export default class TmdbAPI {
       }`
     );
   }
+
   fetchTrailersByID(id) {
     return axios.get(
       `${TmdbAPI.BASE_URL}${this.#findByIdResource}/${id}${
         this.#findTrailersByIdResource
       }?api_key=${this.#API_KEY}`
+    );
+  }
+
+  fetchMoviesByGenre(genre) {
+    return axios.get(
+      `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
+        this.#API_KEY
+      }&page=1&with_genres=${genre}`
     );
   }
 
@@ -107,16 +117,4 @@ export default class TmdbAPI {
       return `${TmdbAPI.genres[genre_ids[0]]}, `;
     }
   }
-  // getGenreList() {
-  //   try {
-  //     return this.fetchGenreMoviesList();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  // getGenreListHTMLStr() {
-  //   const genreList = this.getGenreList();
-  //   return genreList();
-  // }
 }
