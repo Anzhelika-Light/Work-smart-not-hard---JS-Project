@@ -16,7 +16,7 @@ async function createMarkup(data) {
       .map(item => {
         let genres = '';
         const genresNamesToRender = getGenreDeciphered(item, genreNames);
-        console.log(genresNamesToRender);
+        // console.log(genresNamesToRender);
         if (genresNamesToRender.length > 2) {
           genres = `<a class='find-by-genre-js'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js'>${genresNamesToRender[1]}</a>, Other | `;
         } else if (genresNamesToRender.length === 2) {
@@ -58,13 +58,14 @@ async function renderPopularFilms(page) {
   try {
     cardList.innerHTML = '';
     const films = await fetchPopularFilms(page);
-    console.log('films', films);
+    // console.log('films', films);
+
     const markup = await createMarkup(films.results);
     cardList.innerHTML = markup;
-    paginationSettings.totalPages = films.total_pages;
-    console.log(typeof page);
 
-    if (films) renderPaginationInterface(page, films.total_pages);
+    paginationSettings.totalPages = films.total_pages;
+
+    if (films) renderPaginationInterface(page, paginationSettings.totalPages);
   } catch (error) {
     console.dir(error);
   }
