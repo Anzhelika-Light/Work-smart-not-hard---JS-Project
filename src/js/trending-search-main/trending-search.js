@@ -18,11 +18,11 @@ async function createMarkup(data) {
         const genresNamesToRender = getGenreDeciphered(item, genreNames);
         console.log(genresNamesToRender);
         if (genresNamesToRender.length > 2) {
-          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}, Other | `;
+          genres = `<a class='find-by-genre-js'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js'>${genresNamesToRender[1]}</a>, Other | `;
         } else if (genresNamesToRender.length === 2) {
-          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]} | `;
+          genres = `<a class='find-by-genre-js'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js'>${genresNamesToRender[1]}</a> | `;
         } else if (genresNamesToRender.length === 1) {
-          genres = `${genresNamesToRender} | `;
+          genres = `<a class='find-by-genre-js'>${genresNamesToRender}</a> | `;
         } else {
           genres = genresNamesToRender;
         }

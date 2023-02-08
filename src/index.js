@@ -27,5 +27,5 @@ export function onLoadAnotherPage(e) {
   renderPopularFilms(indexOfPageToLoad);
   renderPaginationInterface(indexOfPageToLoad, lastPage);
   console.log('Ви перейшли на сторінку', indexOfPageToLoad);
-  console.log('total pages', paginationSettings.totalPages);
+  console.log('total pages', indexOfPageToLoad, lastPage);
 }
