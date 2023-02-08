@@ -28,3 +28,10 @@ body {
   a {
     text-decoration: none;
   }
+
+  input, button {
+    padding: 0;
+  }
+  button {
+    cursor: pointer;
+  }
