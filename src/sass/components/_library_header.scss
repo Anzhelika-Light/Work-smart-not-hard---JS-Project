@@ -141,7 +141,7 @@
   line-height: 1.33;
   color: $primary-white-color;
   text-transform: uppercase;
-
+  transition: background-color $cubic, border-color $cubic;
   @media screen and (min-width: 768px) {
     width: 152px;
   }
@@ -152,13 +152,13 @@
   }
 
   &:hover {
-    background-color: $active-btn-color;
-    border: transparent;
+    background-color: $info-color;
+    border-color: transparent;
   }
 
   &:focus {
-    background-color: $info-color;
-    border: transparent;
+    background-color: $active-btn-color;
+    border-color: transparent;
   }
 }
 
