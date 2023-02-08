@@ -1,40 +1,46 @@
 import emptyPhoto from '../images/empty-photo/empty-poster.jpg';
+import { fetchMovie } from './fetch_movie_details';
+import getGenres from './trending-search-main/fetch-genres';
 
-export function renderModal(list, id, watched, queue) {
+export async function renderModal(list, id, watched, queue) {
+  const movieDetails = await fetchMovie(id);
+  console.log('movieDetails', movieDetails);
+
   const {
     poster_path,
     original_title,
     title,
-    genre_ids,
+    genres,
     vote_average,
     vote_count,
     popularity,
     overview,
     id: film_id,
-  } = list[id];
-  const genres = JSON.parse(localStorage.getItem('allGenres'));
+  } = movieDetails;
+  const genreList = await getGenres();
+  console.log(' genreList', genreList);
   const finalGenres = [];
-  genre_ids.forEach(idx => {
-    finalGenres.push(genres.find(genre => genre.id === idx).name);
+  genres.forEach(genre => {
+    finalGenres.push(genreList[genre.id]);
   });
+  // console.log('watched', watched);
+  // const foundInWatched = watched.find(film => film[id] === film_id);
+  // const foundInQueue = queue.find(film => film.id === film_id);
 
-  const foundInWatched = watched.find(film => film.id === film_id);
-  const foundInQueue = queue.find(film => film.id === film_id);
+  // const isInQueue = !!foundInQueue;
+  // const isInWatched = !!foundInWatched;
 
-  const isInQueue = !!foundInQueue;
-  const isInWatched = !!foundInWatched;
+  // const queueBtnMarkup = isInQueue
+  //   ? `<button class="modal__btn-queue interactive-button" data-id=${id}>remove from queue</button>`
+  //   : `<button class="modal__btn-queue interactive-button" data-id=${id}>add to queue</button>`;
 
-  const queueBtnMarkup = isInQueue
-    ? `<button class="modal__btn-queue interactive-button" data-id=${id}>remove from queue</button>`
-    : `<button class="modal__btn-queue interactive-button" data-id=${id}>add to queue</button>`;
-
-  const watchedBtnMarkup = isInWatched
-    ? `<button class="modal__btn-watched interactive-button" data-id=${id}>
-        remove from Watched
-      </button>`
-    : `<button class="modal__btn-watched interactive-button" data-id=${id}>
-        add to Watched
-      </button>`;
+  // const watchedBtnMarkup = isInWatched
+  //   ? `<button class="modal__btn-watched interactive-button" data-id=${id}>
+  //       remove from Watched
+  //     </button>`
+  //   : `<button class="modal__btn-watched interactive-button" data-id=${id}>
+  //       add to Watched
+  //     </button>`;
 
   const voteCount =
     vote_count && vote_average
@@ -91,18 +97,21 @@ export function renderModal(list, id, watched, queue) {
         ${popularityMarkup}
         ${originalTitleMarkup}
         ${genresMarkup}
-      </ul> 
+      </ul>
       ${overviewMarkup}
           <div class="modal__buttons">
-      <div class="modal__add-btns">
-        ${watchedBtnMarkup}
-        ${queueBtnMarkup}
-      </div>
+
       <button class='modal_btn-watched interactive-button modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
     </div>
     </div>
     `,
-    isInQueue,
-    isInWatched,
+    // ,
+    // isInQueue,
+    // isInWatched,
   ];
 }
+
+// <div class="modal__add-btns">
+//   ${watchedBtnMarkup}
+//   ${queueBtnMarkup}
+// </div>

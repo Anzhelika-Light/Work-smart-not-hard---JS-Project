@@ -1,54 +1,135 @@
-import TmdbAPI from '../scripts/TMDB_API';
-import renderModal from './render_modal';
-const tmdbAPI = new TmdbAPI();
+// import { watchTrailer } from '../trailer';
+import { refs } from './refs';
+import Notiflix from 'notiflix';
+import { renderModal } from './render_modal';
 
-const movieModalEl = document.querySelector('.modal');
-const galleryEl = document.querySelector('.trending-gallery__item');
+const { allCardsSection, modal, overflow, closeBtn, innerModal, body } = refs;
 
-function fetchFilmsByID(id) {
-  tmdbAPI.fetchFilmsByID(id).then(console.log);
+const queueJSON = localStorage.getItem('queue');
+const watchedJSON = localStorage.getItem('watched');
+let queue = JSON.parse(queueJSON) || [];
+let watched = JSON.parse(watchedJSON) || [];
+
+allCardsSection.addEventListener('click', showModal);
+console.log('allcards', allCardsSection);
+
+function updateMoviesList() {
+  const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
+  const allMoviesList = JSON.parse(allMoviesListFromStorage);
+  return allMoviesList;
 }
 
-function createMovieDetails(movieInfo) {
-  const movieDetails = movieInfo.map(el => {
-    return `
-    <div>
-      <img>
-    <div/>
-    <div>
-      <h2>Hello<h2/>
-      <p><p/>
-      <p><p/>
-      <p><p/>
-      <p><p/>
-      <h3><h3/>
-      <p><p/>
-      <div>
-        <button><button/>
-        <button><button/>
-      <div/>
-    <div/>
-    `;
-  });
-
-  return movieDetails.join('');
+function addToWatched(e) {
+  e.target.innerText = 'remove from watched';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  watched.push(clickedFilm);
+  localStorage.setItem('watched', JSON.stringify(watched));
+  e.target.addEventListener('click', removeFromWatched);
+  e.target.removeEventListener('click', addToWatched);
+  Notiflix.Notify.success('Added to watched!');
 }
 
-async function onMovieClick(e) {
-  e.preventDefault();
-  // TmdbAPI.query = e.target.elements.searchQuery.value.trim();
-  TmdbAPI.page = 1;
-  console.log(e.target);
-  fetchFilmsByID(e.target.dataset.id);
-  // if (e.target.nodeName !== '.link')
-  //   try {
-  //     const data = await TmdbAPI.fetchFilmsByQuery();
-  //     console.log(data);
-
-  //     // movieModalEl.innerHTML = createMovieDetails(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+function removeFromWatched(e) {
+  e.target.innerText = 'add to watched';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  watched = watched.filter(film => film.id !== clickedFilm.id);
+  localStorage.setItem('watched', JSON.stringify(watched));
+  e.target.removeEventListener('click', removeFromWatched);
+  e.target.addEventListener('click', addToWatched);
+  Notiflix.Notify.success('Removed from watched!');
 }
 
-galleryEl.addEventListener('click', renderModal);
+function addToQueue(e) {
+  e.target.innerText = 'remove from queue';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  queue.push(clickedFilm);
+  localStorage.setItem('queue', JSON.stringify(queue));
+  e.target.addEventListener('click', removeFromQueue);
+  e.target.removeEventListener('click', addToQueue);
+  Notiflix.Notify.success('Added to queue!');
+}
+
+function removeFromQueue(e) {
+  e.target.innerText = 'add to queue';
+  const currentList = updateMoviesList();
+  const clickedFilm = currentList[e.target.dataset.id];
+  queue = queue.filter(film => film.id !== clickedFilm.id);
+  localStorage.setItem('queue', JSON.stringify(queue));
+  e.target.removeEventListener('click', removeFromQueue);
+  e.target.addEventListener('click', addToQueue);
+  Notiflix.Notify.success('Removed from queue!');
+}
+
+export async function showModal(e) {
+  if (e.currentTarget !== e.target) {
+    modal.classList.remove('hidden-modal');
+    overflow.classList.remove('hidden-modal');
+
+    allCardsSection.removeEventListener('click', showModal);
+
+    document.addEventListener('keydown', closeModalOnEsc);
+    closeBtn.addEventListener('click', closeModal);
+    overflow.addEventListener('click', closeModalOverflow);
+
+    const id =
+      e.target.nodeName === 'LI'
+        ? e.target.dataset.id
+        : e.target.closest('li').dataset.id;
+    await createModal(id);
+
+    const top = window.scrollY;
+    body.style.position = 'fixed';
+    body.style.top = `-${top}px`;
+  }
+}
+
+function closeModalOverflow(e) {
+  if (e.currentTarget === e.target) closeModal();
+}
+
+function closeModalOnEsc(e) {
+  if (e.code === 'Escape') closeModal();
+}
+
+function closeModal() {
+  modal.classList.add('hidden-modal');
+  overflow.classList.add('hidden-modal');
+
+  allCardsSection.addEventListener('click', showModal);
+
+  document.removeEventListener('keydown', closeModal);
+  closeBtn.removeEventListener('click', closeModal);
+  overflow.removeEventListener('click', closeModalOverflow);
+
+  const top = body.style.top;
+  body.style.position = '';
+  body.style.top = '';
+  window.scrollTo(0, parseInt(top || '0') * -1);
+}
+
+async function createModal(id) {
+  const currentList = updateMoviesList();
+  const rendered = await renderModal(currentList, id, watched, queue);
+  console.log('rendered', rendered);
+  innerModal.innerHTML = rendered[0];
+  addListeners(rendered[1], rendered[2]);
+}
+
+function addListeners(isInQueue, isInWatched) {
+  const watchedBtn = document.querySelector('.modal__btn-watched');
+  const queueBtn = document.querySelector('.modal__btn-queue');
+  const watchTrailerBtn = document.querySelector('.modal__btn-watch-trailer');
+
+  isInQueue
+    ? queueBtn.addEventListener('click', removeFromQueue)
+    : queueBtn.addEventListener('click', addToQueue);
+
+  isInWatched
+    ? watchedBtn.addEventListener('click', removeFromWatched)
+    : watchedBtn.addEventListener('click', addToWatched);
+
+  // watchTrailerBtn.addEventListener('click', watchTrailer);
+}

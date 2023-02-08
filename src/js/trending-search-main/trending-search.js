@@ -18,9 +18,9 @@ async function createMarkup(data) {
         } else {
           genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}`;
         }
-        return `<li class="trending-gallery__item">
-      <img src="${imageBaseURL}${item.poster_path}" 
-            alt="The poster of ${item.title} film" 
+        return `<li class="trending-gallery__item" data-id="${item.id}">
+      <img src="${imageBaseURL}${item.poster_path}"
+            alt="The poster of ${item.title} film"
             class="trending-gallery__image" />
       <div class="trending-gallery__wrapper">
       <h3 class="trending-gallery__title">${item.title}</h3>

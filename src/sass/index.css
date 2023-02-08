@@ -1,5 +1,6 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 body {
+  font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -91,7 +92,7 @@ button {
   padding-top: 40px;
   padding-bottom: 92px;
   background-color: #0D1519;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/home-background/home-background.jpg");
+  background-image: url(../images/home-background/mobile-background-home.jpg);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -101,14 +102,29 @@ button {
     padding-bottom: 81px;
   }
 }
-@media screen and (min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+@media screen and (min-device-pixel-ratio: 2) and (max-width: 767px), screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 767px), screen and (min-resolution: 192dpi) and (max-width: 767px), screen and (min-resolution: 2dppx) and (max-width: 767px) {
   .header {
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../images/home-background/home-background@2x.jpg);
+    background-image: url(../images/home-background/mobile-background-home@2x.jpg);
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 768px) {
   .header {
-    background-size: 115% 100%;
+    background-image: url(../images/home-background/tablet-background-home.jpg);
+  }
+}
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 768px), screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 768px), screen and (min-resolution: 192dpi) and (min-width: 768px), screen and (min-resolution: 2dppx) and (min-width: 768px) {
+  .header {
+    background-image: url(../images/home-background/tablet-background-home@2x.jpg);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .header {
+    background-image: url(../images/home-background/desktop-background-home.jpg);
+  }
+}
+@media screen and (min-device-pixel-ratio: 2) and (min-width: 1280px), screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 1280px), screen and (min-resolution: 192dpi) and (min-width: 1280px), screen and (min-resolution: 2dppx) and (min-width: 1280px) {
+  .header {
+    background-image: url(../images/home-background/desktop-background-home@2x.jpg);
   }
 }
 
@@ -146,7 +162,7 @@ button {
   line-height: 1.17;
   color: #FFFFFF;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .nav__logo-text {
     display: none;
   }
@@ -257,20 +273,19 @@ button {
   padding-top: 40px;
   padding-bottom: 62px;
   background-color: #0D1519;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../images/library-background/mob-background-library.jpg);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../images/library-background/mob-background-library.jpg);
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   .library-header {
-    padding-top: 47px;
-    padding-bottom: 60px;
+    padding-bottom: 57px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1200px) {
   .library-header {
-    padding-top: 45px;
+    padding-bottom: 59px;
   }
 }
 @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px), screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 767px), screen and (min-resolution: 192dpi) and (max-width: 767px), screen and (min-resolution: 2dppx) and (max-width: 767px) {
@@ -300,7 +315,7 @@ button {
 }
 
 .library-nav {
-  margin-bottom: 54px;
+  margin-bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -333,7 +348,7 @@ button {
   line-height: 1.17;
   color: #FFFFFF;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .library-nav__logo-text {
     display: none;
   }
@@ -360,9 +375,8 @@ button {
 }
 
 .library-btn {
-  padding-top: 13px;
-  padding-bottom: 13px;
-  width: 127px;
+  height: 44px;
+  width: 130px;
   background: transparent;
   border: 1px solid #FFFFFF;
   border-radius: 5px;
@@ -372,10 +386,26 @@ button {
   line-height: 1.33;
   color: #FFFFFF;
   text-transform: uppercase;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.library-btn:hover, .library-btn:focus {
+@media screen and (min-width: 768px) {
+  .library-btn {
+    width: 152px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .library-btn {
+    width: 148px;
+    height: 42px;
+  }
+}
+.library-btn:hover {
+  background-color: #FF001B;
+  border-color: transparent;
+}
+.library-btn:focus {
   background-color: #ff6b08;
-  border: none;
+  border-color: transparent;
 }
 
 .library-btn:not(:last-child) {
@@ -573,6 +603,12 @@ button {
   position: fixed;
   top: 0;
   transition: transform 1000ms, opacity 500ms, scale 500ms;
+}
+
+.hidden-modal {
+  opacity: 0;
+  scale: 0.8;
+  pointer-events: none;
 }
 
 .films-pagination {
