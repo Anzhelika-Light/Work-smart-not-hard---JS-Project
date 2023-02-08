@@ -18,6 +18,5 @@ import Darkmode from 'darkmode-js';
 const options = {
   autoMatchOsTheme: false,
 };
-
 const darkmode = new Darkmode(options);
 darkmode.showWidget();
