@@ -2,7 +2,7 @@
   padding-top: 40px;
   padding-bottom: 62px;
   background-color: $header-background-color;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-image: linear-gradient(
@@ -12,9 +12,12 @@
     ),
     url(../images/library-background/mob-background-library.jpg);
 
-  @media screen and (min-width: 768px) {
-    padding-bottom: 60px;
-    background-size: 100% 100%;
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    padding-bottom: 57px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 59px;
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -148,9 +151,13 @@
     height: 42px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $active-btn-color;
+    border: transparent;
+  }
+
+  &:focus {
+    background-color: $info-color;
     border: transparent;
   }
 }
