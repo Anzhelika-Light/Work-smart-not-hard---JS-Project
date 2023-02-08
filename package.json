@@ -18,6 +18,7 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
+    "darkmode-js": "^1.5.7",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
