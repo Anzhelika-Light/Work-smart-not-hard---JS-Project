@@ -123,13 +123,13 @@ function addListeners(isInQueue, isInWatched) {
   const queueBtn = document.querySelector('.modal__btn-queue');
   const watchTrailerBtn = document.querySelector('.modal__btn-watch-trailer');
 
-  isInQueue
-    ? queueBtn.addEventListener('click', removeFromQueue)
-    : queueBtn.addEventListener('click', addToQueue);
+  // isInQueue
+  //   ? queueBtn.addEventListener('click', removeFromQueue)
+  //   : queueBtn.addEventListener('click', addToQueue);
 
-  isInWatched
-    ? watchedBtn.addEventListener('click', removeFromWatched)
-    : watchedBtn.addEventListener('click', addToWatched);
+  // isInWatched
+  //   ? watchedBtn.addEventListener('click', removeFromWatched)
+  //   : watchedBtn.addEventListener('click', addToWatched);
 
   // watchTrailerBtn.addEventListener('click', watchTrailer);
 }

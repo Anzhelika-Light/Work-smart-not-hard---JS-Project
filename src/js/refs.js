@@ -11,12 +11,5 @@ export const refs = {
   watchedBtn: document.querySelector('.watchedJS'),
   queueBtn: document.querySelector('.queueJS'),
   paginationContainer: document.querySelector('.tui-pagination'),
-  spinner: document.querySelector('.sk-chase'),
-  trailerOverflow: document.querySelector('#trailerOverflow'),
-  trailerModal: document.querySelector('#trailerModal'),
-  trailerDiv: document.querySelector('#trailerDiv'),
-  trailerCloseBtn: document.querySelector('#trailerClose'),
-  noResultsText: document.querySelector('.header__form-warning-text'),
-
   body: document.querySelector('body'),
 };
