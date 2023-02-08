@@ -1,4 +1,8 @@
-import { paginationSettings, setPaginationSettings, renderPaginationInterface } from './paginationInterface';
+import {
+  paginationSettings,
+  setPaginationSettings,
+  renderPaginationInterface,
+} from './paginationInterface';
 
 let screen = window.matchMedia('(max-width: 767px)');
 setPaginationSettings(screen.matches);

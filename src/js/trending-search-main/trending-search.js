@@ -13,10 +13,15 @@ async function createMarkup(data) {
       .map(item => {
         let genres = '';
         const genresNamesToRender = getGenreDeciphered(item, genreNames);
+        console.log(genresNamesToRender);
         if (genresNamesToRender.length > 2) {
-          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}, Other`;
+          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}, Other | `;
+        } else if (genresNamesToRender.length === 2) {
+          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]} | `;
+        } else if (genresNamesToRender.length === 1) {
+          genres = `${genresNamesToRender} | `;
         } else {
-          genres = `${genresNamesToRender[0]}, ${genresNamesToRender[1]}`;
+          genres = genresNamesToRender;
         }
         return `<li class="trending-gallery__item">
       <img src="${imageBaseURL}${item.poster_path}" 
@@ -24,7 +29,7 @@ async function createMarkup(data) {
             class="trending-gallery__image" />
       <div class="trending-gallery__wrapper">
       <h3 class="trending-gallery__title">${item.title}</h3>
-      <p class="trending-gallery__info">${genres} | <span>${item.release_date.slice(
+      <p class="trending-gallery__info">${genres}<span>${item.release_date.slice(
           0,
           4
         )}</span></p>
@@ -46,14 +51,17 @@ function getGenreDeciphered(filmObject, genresList) {
   return genreNamesToRender;
 }
 
-async function renderPopularFilms() {
+async function renderPopularFilms(page) {
   try {
-    const films = await fetchPopularFilms();
-    const markup = await createMarkup(films);
-    cardList.innerHTML = markup;
+    const films = await fetchPopularFilms(page);
+    console.log('films', films);
+    const markup = await createMarkup(films.results);
+    cardList.insertAdjacentHTML('beforeend', markup);
   } catch (error) {
     console.dir(error);
   }
 }
 
 renderPopularFilms();
+
+export default renderPopularFilms;

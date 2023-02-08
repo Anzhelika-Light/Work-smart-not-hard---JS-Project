@@ -6,6 +6,9 @@ import {
 } from './js/pagination/paginationInterface';
 import { refs } from './js/refs';
 import './js/pagination/setPaginationSettings';
+import renderPopularFilms from './js/trending-search-main/trending-search';
+('./js/trending-search-main/trending-search');
+
 let firstPage = 1;
 let lastPage = Math.ceil(100);
 // в цю змінну треба записати загальну кількість сторінок,
@@ -23,4 +26,5 @@ export function onLoadAnotherPage(e) {
   const indexOfPageToLoad = Number(clickedBtn.dataset.value);
   renderPaginationInterface(indexOfPageToLoad, lastPage);
   console.log('Ви перейшли на сторінку', indexOfPageToLoad);
+  renderPopularFilms(indexOfPageToLoad);
 }
