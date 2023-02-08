@@ -24,3 +24,4 @@ export function onLoadAnotherPage(e) {
   renderPaginationInterface(indexOfPageToLoad, lastPage);
   console.log('Ви перейшли на сторінку', indexOfPageToLoad);
 }
+import './js/movie_search';
