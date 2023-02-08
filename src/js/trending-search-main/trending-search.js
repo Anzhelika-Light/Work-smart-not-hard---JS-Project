@@ -2,6 +2,9 @@ import fetchPopularFilms from './fetch-movies';
 import getImages from './fetch-images-url';
 import getGenres from './fetch-genres';
 
+import { renderPaginationInterface } from '../pagination/paginationInterface';
+import { paginationSettings } from '../pagination/paginationInterface';
+
 const cardList = document.querySelector('.trending-gallery');
 
 async function createMarkup(data) {
@@ -53,15 +56,20 @@ function getGenreDeciphered(filmObject, genresList) {
 
 async function renderPopularFilms(page) {
   try {
+    cardList.innerHTML = '';
     const films = await fetchPopularFilms(page);
     console.log('films', films);
     const markup = await createMarkup(films.results);
-    cardList.insertAdjacentHTML('beforeend', markup);
+    cardList.innerHTML = markup;
+    paginationSettings.totalPages = films.total_pages;
+    console.log(typeof page);
+
+    if (films) renderPaginationInterface(page, films.total_pages);
   } catch (error) {
     console.dir(error);
   }
 }
 
-renderPopularFilms();
+renderPopularFilms(1);
 
 export default renderPopularFilms;

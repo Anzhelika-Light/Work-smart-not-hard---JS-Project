@@ -11,5 +11,6 @@ screen.addEventListener('change', onChange);
 function onChange() {
   const { currentPage, totalPages } = paginationSettings;
   setPaginationSettings(screen.matches);
+  console.log('onChange', totalPages);
   renderPaginationInterface(currentPage, totalPages);
 }

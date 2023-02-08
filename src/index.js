@@ -10,7 +10,7 @@ import renderPopularFilms from './js/trending-search-main/trending-search';
 ('./js/trending-search-main/trending-search');
 
 let firstPage = 1;
-let lastPage = Math.ceil(100);
+let lastPage = paginationSettings.totalPages;
 // в цю змінну треба записати загальну кількість сторінок,
 //які можна відобразити за результатати пошуку
 //тобто якщо із бекенду прийшло 1000 фільмів, то
@@ -18,13 +18,14 @@ let lastPage = Math.ceil(100);
 //то у змінну lastPage потрібно записати 50 (1000/20),
 //необхідно зробити округлення вверх до найближчого цілого
 
-renderPaginationInterface(firstPage, lastPage);
+// renderPaginationInterface(firstPage, lastPage);
 
 export function onLoadAnotherPage(e) {
   const clickedBtn = e.target;
   // ТУТ МАЄ БУТИ КОД ДЛЯ ВІДОБРАЖЕНЯ НАСТУПНОЇ СТОРІНКИ
   const indexOfPageToLoad = Number(clickedBtn.dataset.value);
+  renderPopularFilms(indexOfPageToLoad);
   renderPaginationInterface(indexOfPageToLoad, lastPage);
   console.log('Ви перейшли на сторінку', indexOfPageToLoad);
-  renderPopularFilms(indexOfPageToLoad);
+  console.log('total pages', paginationSettings.totalPages);
 }
