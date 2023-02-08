@@ -56,7 +56,7 @@ function findMoviesByGenre(event) {
   if (genre[genre.length - 1] === ',') {
     genre = genre.slice(0, -1);
   }
-
+  scrollToTop();
   tmdbAPI
     .fetchMoviesByGenre(`${TmdbAPI.genreIDs[genre]}`)
     .then(response => {
@@ -80,7 +80,7 @@ refs.galleryEl.addEventListener('click', findMoviesByYear);
 function findMoviesByYear(event) {
   //if not find-by-genre-js link - return
   if (![...event.target.classList].includes('find-by-year-js')) return;
-
+  scrollToTop();
   let year = Number(event.target.innerText);
 
   tmdbAPI
@@ -98,4 +98,13 @@ function findMoviesByYear(event) {
       console.error(error);
       Notify.failure('No films with such year found!');
     });
+}
+
+//scroll to the top of the page
+function scrollToTop() {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 }
