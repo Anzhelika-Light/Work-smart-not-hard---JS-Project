@@ -3,20 +3,14 @@
 }
 .footer__container {
   padding-top: 28.71px;
-  padding-right: 36px;
   padding-bottom: 29.7px;
-  padding-left: 48px;
 
   @media screen and (min-width: 768px) {
     padding-top: 30px;
-    padding-right: 143px;
     padding-bottom: 30px;
-    padding-left: 143px;
   }
   @media screen and (min-width: 1280px) {
-    padding-right: 390px;
     padding-bottom: 28px;
-    padding-left: 408px;
   }
 }
 .footer__text {
