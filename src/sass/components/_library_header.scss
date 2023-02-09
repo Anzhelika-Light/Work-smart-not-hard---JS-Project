@@ -2,23 +2,22 @@
   padding-top: 40px;
   padding-bottom: 62px;
   background-color: $header-background-color;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.45)
     ),
     url(../images/library-background/mob-background-library.jpg);
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
 
-  @media screen and (min-width: 768px) {
-    padding-top: 47px;
-    padding-bottom: 60px;
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    padding-bottom: 57px;
   }
 
-  @media screen and (min-width: 1280px) {
-    padding-top: 45px;
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 59px;
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -74,7 +73,7 @@
 }
 
 .library-nav {
-  margin-bottom: 54px;
+  margin-bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -105,7 +104,7 @@
   line-height: 1.17;
   color: $primary-white-color;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 }
@@ -130,9 +129,8 @@
 }
 
 .library-btn {
-  padding-top: 13px;
-  padding-bottom: 13px;
-  width: 127px;
+  height: 44px;
+  width: 130px;
   background: transparent;
   border: 1px solid $primary-white-color;
   border-radius: 5px;
@@ -143,11 +141,24 @@
   line-height: 1.33;
   color: $primary-white-color;
   text-transform: uppercase;
+  transition: background-color $cubic, border-color $cubic;
+  @media screen and (min-width: 768px) {
+    width: 152px;
+  }
 
-  &:hover,
+  @media screen and (min-width: 1280px) {
+    width: 148px;
+    height: 42px;
+  }
+
+  &:hover {
+    background-color: $info-color;
+    border-color: transparent;
+  }
+
   &:focus {
     background-color: $active-btn-color;
-    border: none;
+    border-color: transparent;
   }
 }
 

@@ -24,7 +24,8 @@ export function createPaginationInterface(currentPage, totalPages) {
 }
 
 export function deletePaginationInterface() {
-  refs.filmsPaginationContainer.remove();
+  refs.paginationContainer.removeEventListener('click', onLoadAnotherPage);
+  refs.filmsPaginationContainer.innerHTML = '';
 }
 
 function createBtn(btnType) {
