@@ -19,11 +19,28 @@ function onWatchedBtnClick() {
     })
     .join('');
   movieListEl.innerHTML = moviesCards;
-  console.log(movieWatched);
+  // console.log(movieWatched);
+}
+
+function onQueueBtnClick() {
+  const movieQueue = gettingItem('movieQueue');
+  // console.log(movieQueue);
+  if (movieQueue.length === 0) {
+    movieListEl.innerHTML = '<p>Ви ще не переглянули жодного фільму</p>';
+    return;
+  }
+
+  const moviesCards = movieQueue
+    .map(movie => {
+      return renderMoviesLibrary(movie);
+    })
+    .join('');
+  movieListEl.innerHTML = moviesCards;
+  // console.log(movieQueue);
 }
 
 watchedBtnEl.addEventListener('click', onWatchedBtnClick);
-// queueBtnEl.addEventListener('click', onQueueBtnClick);
+queueBtnEl.addEventListener('click', onQueueBtnClick);
 
 // localStorage functions
 function gettingItem(key) {
@@ -34,11 +51,3 @@ function gettingItem(key) {
     console.log('Everyone makes mistakes, this is yours:', error.message);
   }
 }
-
-// function removingItem(key) {
-//   try {
-//     localStorage.removeItem(key);
-//   } catch (error) {
-//     console.log('Everyone makes mistakes, this is yours:', error.message);
-//   }
-// }
