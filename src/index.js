@@ -6,6 +6,7 @@ import './js/pagination/setPaginationSettings';
 import renderPopularFilms from './js/trending-search-main/trending-search';
 import './js/trending-search-main/trending-search';
 import './js/dark-mode';
+import './js/loader';
 
 export async function onLoadAnotherPage(e) {
   try {
