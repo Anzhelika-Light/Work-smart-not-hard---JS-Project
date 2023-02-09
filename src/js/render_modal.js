@@ -43,64 +43,64 @@ export async function renderModal(list, id, watched, queue) {
 
   const voteCount =
     vote_count && vote_average
-      ? `<li class="modal__item">
-          <div class="modal__item-first">Vote/Votes</div>
-          <div class="modal__item-votes">
-            <span class="modal__item-bg modal__item--accent">${vote_average.toFixed(
+      ? `<li class="movie-modal__item">
+          <div class="movie-modal__item-first">Vote/Votes</div>
+          <div class="movie-modal__item-votes">
+            <span class="movie-modal__item-bg movie-modal__item--accent">${vote_average.toFixed(
               1
             )}</span> /
-            <span class="modal__item-bg modal__item--grey">${vote_count}</span>
+            <span class="movie-modal__item-bg movie-modal__item--grey">${vote_count}</span>
           </div>
         </li>`
       : '';
   const popularityMarkup = popularity
-    ? `<li class="modal__item">
-          <div class="modal__item-first">Popularity</div>
+    ? `<li class="movie-modal__item">
+          <div class="movie-modal__item-first">Popularity</div>
           <div>${popularity.toFixed(1)}</div>
         </li>`
     : '';
   const genresMarkup = finalGenres.length
-    ? `<li class="modal__item">
-          <div class="modal__item-first">Genre</div>
+    ? `<li class="movie-modal__item">
+          <div class="movie-modal__item-first">Genre</div>
           <div>${finalGenres.join(', ')}</div>
         </li>`
     : '';
   const originalTitleMarkup = original_title
-    ? `<li class="modal__item">
-          <div class="modal__item-first">Original Title</div>
-          <div class="modal__item-title">${original_title}</div>
+    ? `<li class="movie-modal__item">
+          <div class="movie-modal__item-first">Original Title</div>
+          <div class="movie-modal__item-title">${original_title}</div>
         </li>`
     : '';
   const overviewMarkup = overview
-    ? `<div class="modal__about-info">
-        <p class="modal__about-headline">About</p>
-        <p class="modal__about-text">
+    ? `<div class="movie-modal__about-info">
+        <p class="movie-modal__about-headline">About</p>
+        <p class="movie-modal__about-text">
           ${overview}
         </p>
       </div>`
     : '';
   const photoMarkup = poster_path
-    ? `<div class="modal__img">
+    ? `<div class="movie-modal__img">
       <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" />
     </div>`
-    : `<div class="modal__img">
+    : `<div class="movie-modal__img">
       <img src="${emptyPhoto}" alt="photo coming soon" />
     </div>`;
 
   return [
     `${photoMarkup}
-    <div class="modal__about">
-      <div class="modal__headline">${title}</div>
-      <ul class="modal__list">
+    <div class="movie-modal__about">
+      <div class="movie-modal__headline">${title}</div>
+      <ul class="movie-modal__list">
         ${voteCount}
         ${popularityMarkup}
         ${originalTitleMarkup}
         ${genresMarkup}
       </ul>
       ${overviewMarkup}
-          <div class="modal__buttons">
+          <div class="movie-modal__buttons">
 
-      <button class='modal_btn-watched interactive-button modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
+      <button class='movie-modal_btn-watched interactive-button movie-modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
     </div>
     </div>
     `,
@@ -110,7 +110,7 @@ export async function renderModal(list, id, watched, queue) {
   ];
 }
 
-// <div class="modal__add-btns">
+// <div class="movie-modal__add-btns">
 //   ${watchedBtnMarkup}
 //   ${queueBtnMarkup}
 // </div>

@@ -64,11 +64,10 @@ function removeFromQueue(e) {
 
 export async function showModal(e) {
   if (e.currentTarget !== e.target) {
-    modal.classList.remove('hidden-modal');
-    overflow.classList.remove('hidden-modal');
+    modal.classList.remove('hidden-movie-modal');
+    overflow.classList.remove('hidden-movie-modal');
 
     allCardsSection.removeEventListener('click', showModal);
-
     document.addEventListener('keydown', closeModalOnEsc);
     closeBtn.addEventListener('click', closeModal);
     overflow.addEventListener('click', closeModalOverflow);
@@ -94,8 +93,8 @@ function closeModalOnEsc(e) {
 }
 
 function closeModal() {
-  modal.classList.add('hidden-modal');
-  overflow.classList.add('hidden-modal');
+  modal.classList.add('hidden-movie-modal');
+  overflow.classList.add('hidden-movie-modal');
 
   allCardsSection.addEventListener('click', showModal);
 
