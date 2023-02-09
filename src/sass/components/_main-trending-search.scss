@@ -138,3 +138,24 @@
     padding-bottom: 12px;
   }
 }
+
+.trending-gallery__genre-name {
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+
+  @media screen and (max-width: 1199px) {
+    text-decoration: underline;
+    // box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    //   1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
+
+  transition: transform $cubic, box-shadow $cubic;
+}
+
+.trending-gallery__genre-name:hover,
+.trending-gallery__genre-name:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+  transform: skew(5deg, 5deg);
+}

@@ -18,11 +18,11 @@ async function createMarkup(data) {
         const genresNamesToRender = getGenreDeciphered(item, genreNames);
         // console.log(genresNamesToRender);
         if (genresNamesToRender.length > 2) {
-          genres = `<a class='find-by-genre-js'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js'>${genresNamesToRender[1]}</a>, Other | `;
+          genres = `<a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[1]}</a>, Other | `;
         } else if (genresNamesToRender.length === 2) {
-          genres = `<a class='find-by-genre-js'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js'>${genresNamesToRender[1]}</a> | `;
+          genres = `<a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[1]}</a> | `;
         } else if (genresNamesToRender.length === 1) {
-          genres = `<a class='find-by-genre-js'>${genresNamesToRender}</a> | `;
+          genres = `<a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender}</a> | `;
         } else {
           genres = genresNamesToRender;
         }
