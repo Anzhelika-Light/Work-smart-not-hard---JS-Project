@@ -30,6 +30,36 @@
           <use href="./images/sprite.svg#search"></use>
         </svg>
       </button>
+      <button type="button" class="search__btn search__btn--advanced">
+        <svg
+          width="12"
+          height="12"
+          class="search__icon show-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-down"></use>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="search__btn search__btn--advanced visually-hidden"
+      >
+        <svg
+          width="12"
+          height="12"
+          class="search__icon hide-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-up"></use>
+        </svg>
+      </button>
+    </form>
+    <form class="advanced-search search--advanced-js visually-hidden">
+      <select name="" id="" class="advanced-search__genre"></select
+      ><select name="" id="" class="advanced-search__year"></select
+      ><select name="" id="" class="advanced-search__exlude-genre"></select
+      ><select name="" id="" class="advanced-search__monetization"></select>
+      <checkbox class="advanced-search__adult"></checkbox>
+      <select name="" id="" class="advanced-search__sort-buy"></select>
+      <button class="advanced-search__submit" type="submit"></button>
     </form>
   </div>
 </header>

@@ -11,6 +11,21 @@ export default class TmdbAPI {
     DAY: 'day',
     WEEK: 'week',
   };
+  static watch_monetization_types = {
+    BUY: 'buy',
+    RENT: 'rent',
+    ADS: 'ads',
+    FREE: 'free',
+    FLATRATE: 'flatrate',
+  };
+  static sort_by_types = {
+    POPULARITY_ASC: 'popularity.asc',
+    POPULARITY_DESC: 'popularity.desc',
+    PRIMARY_RELEASE_DATE_ASC: 'primary_release_date.asc',
+    PRIMARY_RELEASE_DATE_DESC: 'primary_release_date.desc',
+    VOTE_AVERAGE_ASC: 'vote_average.asc',
+    VOTE_AVERAGE_DESC: 'vote_average.desc',
+  };
   static BASE_URL = 'https://api.themoviedb.org/3';
   static IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
   static genres = {}; //obj {genre_id: genre_name}
@@ -77,6 +92,25 @@ export default class TmdbAPI {
       `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
         this.#API_KEY
       }&page=1&sort_by=popularity.desc&primary_release_year=${year}`
+    );
+  }
+
+  fetchAdvancedMovieSearch({
+    primary_release_year,
+    with_genres = '',
+    sort_by = TmdbAPI.sort_by_types.POPULARITY_DESC,
+    include_adult = false,
+    page = 1,
+    with_watch_monetization_types = TmdbAPI.watch_monetization_types.ADS,
+    without_genres = null,
+  }) {
+    const without_genres_str = without_genres
+      ? `&without_genres=${without_genres}`
+      : '';
+    return axios.get(
+      `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
+        this.#API_KEY
+      }&page=${page}&sort_by=${sort_by}&primary_release_year=${primary_release_year}&with_genres=${with_genres}&include_adult=${include_adult}&with_watch_monetization_types=${with_watch_monetization_types}${without_genres_str}`
     );
   }
 
