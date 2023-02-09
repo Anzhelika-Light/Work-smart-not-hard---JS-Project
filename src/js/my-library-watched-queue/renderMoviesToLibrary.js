@@ -4,7 +4,7 @@ import emptyphoto from '../../images/empty-photo/empty-poster.jpg';
 // ---приклад даних, які приходять з localStorage
 userDataWatched = [
   {
-    poster_path: '',
+    poster_path: '/rM6qLVhApXiXYjMuzSFOESUiVaJ.jpg',
     title: 'Cats & Dogs',
     genre_ids: [
       { id: 10751, name: 'Family' },
@@ -104,12 +104,16 @@ watchedBtnEl.addEventListener('click', onWatchedBtnClick);
 function renderMovies(movie) {
   const { poster_path, title, genre_ids, release_date, vote_average } = movie;
   let poster = `${TmdbAPI.IMG_BASE_URL}${poster_path}`;
+  let releaseDate = `${release_date.slice(0, 4)}`;
   console.log(poster);
 
   // якщо немає постера
   if (!poster_path) {
     poster = `${emptyphoto}`;
-    console.log('noposter');
+  }
+
+  if (!release_date) {
+    releaseDate = `-`;
   }
 
   const va = +vote_average.toFixed(1);
@@ -124,10 +128,7 @@ function renderMovies(movie) {
     	<h3 class='trending-gallery__title'>${title}</h3>
     	<p class='trending-gallery__info'>${TmdbAPI.getGenresString(
         genres
-      )} | <span class='find-by-year-js'>${release_date.slice(
-    0,
-    4
-  )}</span> <span class='movie-rating'>${va}</span></p>
+      )} | <span class='find-by-year-js'>${releaseDate}</span> <span class='movie-rating'>${va}</span></p>
     </div>
   </li>
 	`;
