@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://Anzhelika-Light.github.io/Work-smart-not-hard---JS-Project",
   "scripts": {
-    "start": "parcel src/*.html -p 9999",
+    "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Work-smart-not-hard---JS-Project/"
   },
   "repository": {
@@ -27,10 +27,10 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
     "buffer": "^6.0.3",
+    "darkmode-js": "^1.5.7",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4",
-    "darkmode-js": "^1.5.7"
+    "posthtml-include": "^1.7.4"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
