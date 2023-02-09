@@ -21,7 +21,7 @@ export async function onLoadAnotherPage(e) {
 }
 import './js/movie_search';
 import { studentCards } from './js/footer-modal';
-
+import './js/my-library-watched-queue/renderMoviesToLibrary';
 // import Darkmode from 'darkmode-js';
 // //https://darkmodejs.learn.uno
 
