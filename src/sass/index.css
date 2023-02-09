@@ -469,16 +469,106 @@ button {
 }
 
 .movie-rating {
-  padding-right: 10px;
-  padding-left: 10px;
-  width: 36px;
-  height: 16px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.17em;
   color: #FFFFFF;
   border-radius: 5px;
   background-color: #FF6B01;
+  width: 36px;
+  height: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17em;
+}
+@media screen and (min-width: 1280px) {
+  .movie-rating {
+    width: 40px;
+    height: 20px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    -moz-column-gap: 32px;
+         column-gap: 32px;
+    row-gap: 24px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movie-list {
+    -moz-column-gap: 16px;
+         column-gap: 16px;
+    row-gap: 20px;
+  }
+}
+.movie-list__title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .movie-list__title {
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movie-list__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+  }
+}
+.movie-list__info {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  color: rgb(255, 107, 8);
+}
+@media screen and (min-width: 768px) {
+  .movie-list__info {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movie-list__info {
+    font-weight: 500;
+    font-size: 20px;
+  }
+}
+
+.library-gallery__image {
+  width: 280px;
+  height: 402px;
+  border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (min-width: 320px) {
+  .library-gallery__image {
+    width: 280px;
+    height: 402px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .library-gallery__image {
+    width: 336px;
+    height: 455px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .library-gallery__image {
+    width: 394px;
+    height: 574px;
+  }
 }
 
 .footer {
