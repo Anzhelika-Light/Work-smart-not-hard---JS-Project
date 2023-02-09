@@ -139,8 +139,8 @@ export default class TmdbAPI {
         TmdbAPI.genres[el.id] = el.name.toLowerCase();
         TmdbAPI.genreIDs[el.name.toLowerCase()] = el.id;
       });
-      console.log(TmdbAPI.genres);
-      console.log('genreIDs', TmdbAPI.genreIDs);
+      // console.log(TmdbAPI.genres);
+      // console.log('genreIDs', TmdbAPI.genreIDs);
     });
   }
 

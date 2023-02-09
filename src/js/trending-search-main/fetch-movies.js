@@ -6,8 +6,7 @@ async function fetchPopularFilms(page = 1) {
     const data = await fetch(`${BASE_URL}?api_key=${API_KEY}&page=${page}`);
     // console.log(data);
     const parcedData = await data.json();
-    // const { results } = parcedData;
-    console.log(parcedData);
+
     return parcedData;
   } catch (error) {
     console.dir(error);

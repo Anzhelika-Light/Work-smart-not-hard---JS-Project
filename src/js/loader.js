@@ -12,7 +12,7 @@ export const spinnerStart = () => {
 export const spinnerStop = () => {
   backdropRef.classList.add('is-hidden');
 };
-spinnerStart();
-setTimeout(spinnerStop, 3000);
+// spinnerStart();
+// setTimeout(spinnerStop, 3000);
 
 // spinnerStop(); //Це функція, яку потрібно вставити у Ваш код
