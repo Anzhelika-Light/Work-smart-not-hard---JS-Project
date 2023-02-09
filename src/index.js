@@ -18,3 +18,4 @@ export async function onLoadAnotherPage(e) {
   }
 }
 import './js/movie_search';
+import { studentCards } from './js/footer-modal';
