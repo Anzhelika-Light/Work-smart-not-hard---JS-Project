@@ -18,7 +18,7 @@ function findMoviesByYear(event) {
       }
       //inserting images into gallery
       refs.galleryEl.innerHTML = makeHMTLString(data);
-      console.log('findByYear', data);
+      // console.log('findByYear', data);
     })
     .catch(error => {
       console.error(error);
