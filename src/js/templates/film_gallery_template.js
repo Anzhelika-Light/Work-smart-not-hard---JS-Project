@@ -15,6 +15,7 @@ function getGenresHTMLString(str) {
 }
 
 export default function makeHMTLString({ results }) {
+  // console.log(results);
   return results
     .map(result => {
       //checking release date: if none - return 'No info', else return year
@@ -24,7 +25,7 @@ export default function makeHMTLString({ results }) {
         result.release_date = result.release_date.slice(0, 4);
       }
       return `
-	<li class='trending-gallery__item'>
+	<li class='trending-gallery__item' data-id="${result.id}">
     <img src="${TmdbAPI.IMG_BASE_URL}${
         result.poster_path
       }" alt="The poster of ${

@@ -1,27 +1,46 @@
 import {
   paginationSettings,
-  setPaginationSettings,
-  renderPaginationInterface,
   deletePaginationInterface,
 } from './js/pagination/paginationInterface';
-import { refs } from './js/refs';
 import './js/pagination/setPaginationSettings';
-let firstPage = 1;
-let lastPage = Math.ceil(100);
-// в цю змінну треба записати загальну кількість сторінок,
-//які можна відобразити за результатати пошуку
-//тобто якщо із бекенду прийшло 1000 фільмів, то
-//так як на одній сторінці може відображатись тільки 20 фільмів,
-//то у змінну lastPage потрібно записати 50 (1000/20),
-//необхідно зробити округлення вверх до найближчого цілого
+import renderPopularFilms from './js/trending-search-main/trending-search';
+import './js/trending-search-main/trending-search';
+import './js/dark-mode';
+import './js/loader';
 
-renderPaginationInterface(firstPage, lastPage);
-
-export function onLoadAnotherPage(e) {
-  const clickedBtn = e.target;
-  // ТУТ МАЄ БУТИ КОД ДЛЯ ВІДОБРАЖЕНЯ НАСТУПНОЇ СТОРІНКИ
-  const indexOfPageToLoad = Number(clickedBtn.dataset.value);
-  renderPaginationInterface(indexOfPageToLoad, lastPage);
-  console.log('Ви перейшли на сторінку', indexOfPageToLoad);
+export async function onLoadAnotherPage(e) {
+  try {
+    console.log('click');
+    deletePaginationInterface();
+    const clickedBtn = e.target;
+    const indexOfPageToLoad = Number(clickedBtn.dataset.value);
+    await renderPopularFilms(indexOfPageToLoad);
+  } catch (error) {
+    console.log(error);
+  }
 }
 import './js/movie_search';
+import { studentCards } from './js/footer-modal';
+
+// import Darkmode from 'darkmode-js';
+// //https://darkmodejs.learn.uno
+
+// // const options = {
+// //   bottom: '64px', // default: '32px'
+// //   right: 'unset', // default: '32px'
+// //   left: '32px', // default: 'unset'
+// //   time: '0.5s', // default: '0.3s'
+// //   mixColor: '#fff', // default: '#fff'
+// //   backgroundColor: '#fff', // default: '#fff'
+// //   buttonColorDark: '#100f2c', // default: '#100f2c'
+// //   buttonColorLight: '#fff', // default: '#fff'
+// //   saveInCookies: false, // default: true,
+// //   label: '🌓', // default: ''
+// //   autoMatchOsTheme: true, // default: true
+// // };
+
+// const options = {
+//   autoMatchOsTheme: false,
+// };
+// const darkmode = new Darkmode(options);
+// darkmode.showWidget();

@@ -1,4 +1,5 @@
 @import './common';
+@import './utils/mixins';
 @import './utils/variables';
 @import './utils/visually-hidden';
 @import './base/base';
@@ -13,3 +14,4 @@
 @import './components/movie_modal';
 @import './components/pagination';
 @import './components/main-trending-search';
+@import './components/loader';
