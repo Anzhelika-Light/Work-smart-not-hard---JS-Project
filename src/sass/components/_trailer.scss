@@ -1,0 +1,68 @@
+.trailer-modal {
+  position: relative;
+  padding: 40px 40px;
+  width: 590px;
+  height: 340px;
+  max-width: 1300px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.lightbox__button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  z-index: 1001;
+  background-image: url('../images/icons/icon-close.svg');
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  background-color: transparent;
+  background-color: $primary-white-color;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: background-color $cubic;
+
+  &:hover,
+  &:focus {
+    background-color: $main-accent-color;
+  }
+}
+
+@media (max-width: 550px) {
+  .trailer-modal {
+    margin: 0 5%;
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .trailer-modal {
+    width: 700px;
+    height: 430px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .trailer-modal {
+    width: 940px;
+    height: 580px;
+  }
+  .lightbox__button {
+    width: 35px;
+    height: 35px;
+  }
+}
