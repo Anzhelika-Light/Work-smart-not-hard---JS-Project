@@ -13,7 +13,7 @@
   overflow-y: scroll;
   z-index: 10;
 
-  transition: transform 1000ms, opacity 500ms, scale 500ms;
+  transition: opacity 500ms;
 
   @include tablet {
     top: 50%;
@@ -223,11 +223,10 @@
   z-index: 5;
   position: sticky;
   inset: 0;
-  transition: opacity 500ms, scale 500ms;
+  transition: opacity 500ms;
 }
 
 .hidden-movie-modal {
   opacity: 0;
-  scale: 0.8;
   pointer-events: none;
 }
