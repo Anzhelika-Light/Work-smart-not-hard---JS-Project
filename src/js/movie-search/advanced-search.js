@@ -36,29 +36,32 @@ function toggleAdvancedSearch() {
 function generateSelectOptions(form) {
   // console.log(Object.values(TmdbAPI.genres));
   const genreOptionsHtmlStr = Object.values(TmdbAPI.genres)
-    .map(genre => `<option value="${genre}">${genre}</option>`)
+    .map(
+      genre =>
+        `<option value="${genre}" class="advanced-search__option">${genre}</option>`
+    )
     .join('');
   //forming select genre select HTML
   const selectGenreHtmlStr = `
-		<select name="genre" id="" class="advanced-search__genre">
-			<option value="">Choose genre to find</option>
+		<select name="genre" id="" class="advanced-search__genre advanced-search__select">
+			<option value="" class="advanced-search__option--main">Choose genre to find</option>
 			${genreOptionsHtmlStr}
 		</select>`;
   //forming exlude genre select HTML
   const excludeGenreHtmlStr = `
 		<select name="excludeGenre" id=""
-			class="advanced-search__exlude-genre">
-			<option value="">Choose genre to exlude</option>
+			class="advanced-search__exlude-genre advanced-search__select">
+			<option value="" class="advanced-search__option--main">Choose genre to exlude</option>
 			${genreOptionsHtmlStr}
 		</select>`;
   //forming sort parameters select HTML
   const sortParamsStr = `
-		<select name="sortParams" id="" 		class="advanced-search__sort-buy">
-			<option value="">Choose sorting parameter</option>
+		<select name="sortParams" id="" 		class="advanced-search__sort-buy advanced-search__select">
+			<option value="" class="advanced-search__option--main">Choose sorting parameter</option>
 			${Object.keys(TmdbAPI.sort_by_types)
         .map(
           typeKey =>
-            `<option value="${typeKey}">${TmdbAPI.sort_by_types[typeKey]}</option>`
+            `<option value="${typeKey}" class="advanced-search__option">${TmdbAPI.sort_by_types[typeKey]}</option>`
         )
         .join('')}
 		</select>`;

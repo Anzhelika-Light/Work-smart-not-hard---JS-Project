@@ -3,16 +3,22 @@
     name="year"
     type="number"
     id=""
-    class="advanced-search__year"
+    class="advanced-search__year advanced-search__input"
     placeholder="Enter film`s year"
   />
-  <select name="monetization" id="" class="advanced-search__monetization">
-    <option value="">Enter desired film`s monetization</option>
-    <option value="BUY">buy</option>
-    <option value="RENT">rent</option>
-    <option value="ADS">ads</option>
-    <option value="FREE">free</option>
-    <option value="FLATRATE">flatrate</option>
+  <select
+    name="monetization"
+    id=""
+    class="advanced-search__monetization advanced-search__select"
+  >
+    <option value="" class="advanced-search__option--main">
+      Enter desired film`s monetization
+    </option>
+    <option value="BUY" class="advanced-search__option">buy</option>
+    <option value="RENT" class="advanced-search__option">rent</option>
+    <option value="ADS" class="advanced-search__option">ads</option>
+    <option value="FREE" class="advanced-search__option">free</option>
+    <option value="FLATRATE" class="advanced-search__option">flatrate</option>
   </select>
   <checkbox class="advanced-search__adult"></checkbox>
   <button class="advanced-search__submit" type="submit">Search</button>
