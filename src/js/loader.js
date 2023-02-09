@@ -14,4 +14,6 @@ const spinnerStop = () => {
   backdropRef.classList.add('is-hidden');
 };
 
-// spinnerStop(); //Це функція, яку потрібно вставити у Ваш код
+setTimeout(spinnerStop, 2000);
+
+//Це функція, яку потрібно вставити у Ваш код
