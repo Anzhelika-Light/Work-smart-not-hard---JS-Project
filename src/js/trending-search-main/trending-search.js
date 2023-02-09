@@ -26,7 +26,7 @@ async function createMarkup(data) {
         } else {
           genres = genresNamesToRender;
         }
-        return `<li class="trending-gallery__item">
+        return `<li class="trending-gallery__item" data-id="${item.id}">
       <img src="${imageBaseURL}${item.poster_path}"
             alt="The poster of ${item.title} film"
             class="trending-gallery__image" />
