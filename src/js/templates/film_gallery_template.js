@@ -54,7 +54,7 @@ export function makeHMTLStringWithGenre({ results }, genre) {
       }
 
       return `
-	<li class='trending-gallery__item'>
+	<li class='trending-gallery__item'  data-id="${result.id}">
     <img src="${TmdbAPI.IMG_BASE_URL}${
         result.poster_path
       }" alt="The poster of ${
