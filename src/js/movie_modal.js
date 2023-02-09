@@ -2,6 +2,7 @@
 import { refs } from './refs';
 import Notiflix from 'notiflix';
 import { renderModal } from './render_modal';
+import { onTrailerBtnClick } from './trailer';
 
 const { allCardsSection, modal, overflow, closeBtn, innerModal, body } = refs;
 
@@ -118,7 +119,9 @@ async function createModal(id) {
 function addListeners(isInQueue, isInWatched) {
   const watchedBtn = document.querySelector('.modal__btn-watched');
   const queueBtn = document.querySelector('.modal__btn-queue');
-  const watchTrailerBtn = document.querySelector('.modal__btn-watch-trailer');
+  const watchTrailerBtn = document.querySelector(
+    '.movie-modal__btn-watch-trailer'
+  );
 
   // isInQueue
   //   ? queueBtn.addEventListener('click', removeFromQueue)
@@ -128,5 +131,5 @@ function addListeners(isInQueue, isInWatched) {
   //   ? watchedBtn.addEventListener('click', removeFromWatched)
   //   : watchedBtn.addEventListener('click', addToWatched);
 
-  // watchTrailerBtn.addEventListener('click', watchTrailer);
+  watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
 }
