@@ -23,7 +23,7 @@ async function onSearchInputElChange(event) {
   try {
     const response = await tmdbAPI.fetchFilmsByQuery(query);
     const { data } = response;
-    //console.log('data', data);
+    // console.log('data', data);
     if (data.total_results === 0) {
       Notify.failure(
         'Search result not successful. Enter the correct movie name and try again!'
