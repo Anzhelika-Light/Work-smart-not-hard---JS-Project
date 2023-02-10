@@ -109,9 +109,6 @@ export async function renderModal(list, id, watched, queue) {
     </div>
     </div>
     `,
-    ,
     movieDetails,
-    // isInQueue,
-    // isInWatched,
   ];
 }
