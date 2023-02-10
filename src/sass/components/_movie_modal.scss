@@ -214,10 +214,16 @@
   }
 }
 
+.interactive-button:hover {
+  background: #ff6b01;
+  color: #ffffff;
+}
+
 .overflow {
   display: grid;
   place-items: center;
   width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.329);
   z-index: 5;
   position: sticky;

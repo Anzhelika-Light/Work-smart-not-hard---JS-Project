@@ -1,7 +1,6 @@
 import emptyPhoto from '../images/empty-photo/empty-poster.jpg';
 import { fetchMovie } from './fetch_movie_details';
 import getGenres from './trending-search-main/fetch-genres';
-import * as basicLightbox from 'basiclightbox';
 
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
@@ -24,23 +23,23 @@ export async function renderModal(list, id, watched, queue) {
     finalGenres.push(genreList[genre.id]);
   });
 
-  const foundInWatched = watched.find(film => film[id] === film_id);
-  const foundInQueue = queue.find(film => film.id === film_id);
+  // const foundInWatched = watched.find(film => film[id] === film_id);
+  // const foundInQueue = queue.find(film => film.id === film_id);
 
-  const isInQueue = !!foundInQueue;
-  const isInWatched = !!foundInWatched;
+  // const isInQueue = !!foundInQueue;
+  // const isInWatched = !!foundInWatched;
 
-  const queueBtnMarkup = isInQueue
-    ? `<button class="modal__btn-queue interactive-button" data-id=${id}>remove from queue</button>`
-    : `<button class="modal__btn-queue interactive-button" data-id=${id}>add to queue</button>`;
+  // const queueBtnMarkup = isInQueue
+  //   ? `<button class="modal__btn-queue interactive-button" data-id=${id}>remove from queue</button>`
+  //   : `<button class="modal__btn-queue interactive-button" data-id=${id}>add to queue</button>`;
 
-  const watchedBtnMarkup = isInWatched
-    ? `<button class="modal__btn-watched interactive-button" data-id=${id}>
-        remove from Watched
-      </button>`
-    : `<button class="modal__btn-watched interactive-button" data-id=${id}>
-        add to Watched
-      </button>`;
+  // const watchedBtnMarkup = isInWatched
+  //   ? `<button class="modal__btn-watched interactive-button" data-id=${id}>
+  //       remove from Watched
+  //     </button>`
+  //   : `<button class="modal__btn-watched interactive-button" data-id=${id}>
+  //       add to Watched
+  //     </button>`;
 
   const voteCount =
     vote_count && vote_average
@@ -101,35 +100,17 @@ export async function renderModal(list, id, watched, queue) {
       ${overviewMarkup}
           <div class="movie-modal__buttons">
 
-          <div class="movie-modal__add-btns">
-            ${watchedBtnMarkup}
-            ${queueBtnMarkup}
-          </div>
-
       <button class='movie-modal_btn-watched interactive-button movie-modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
     </div>
     </div>
     `,
-    ,
-    isInQueue,
-    isInWatched,
+    // ,
+    // isInQueue,
+    // isInWatched,
   ];
 }
 
-// export const renderModal = basicLightbox.create({
-//   onShow: renderModal => {
-//     renderModal.element().querySelector('.modal__close-btn').onclick =
-//       renderModal.close;
-//     document.addEventListener('keydown', onEscapePress);
-//   },
-
-//   onClose: renderModal => {
-//     document.removeEventListener('keydown', onEscapePress);
-//   },
-// });
-
-// function onEscapePress(event) {
-//   if (event.code === 'Escape') {
-//     renderModal.close();
-//   }
-// }
+// <div class="movie-modal__add-btns">
+//   ${watchedBtnMarkup}
+//   ${queueBtnMarkup}
+// </div>
