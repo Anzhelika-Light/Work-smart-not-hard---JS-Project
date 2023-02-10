@@ -1,4 +1,5 @@
 .movie-rating {
+  display: inline;
   color: $primary-white-color;
   border-radius: 5px;
   background-color: $main-accent-color;
@@ -16,6 +17,18 @@
     padding-right: 12px;
     padding-left: 12px;
   }
+}
+
+.trending-gallery__info .movie-rating:hover {
+  color: $primary-white-color;
+  text-decoration: none;
+  cursor: default;
+}
+
+.trending-gallery__info .movie-year:hover {
+  color: $main-accent-color;
+  text-decoration: none;
+  cursor: default;
 }
 
 .movie-list {

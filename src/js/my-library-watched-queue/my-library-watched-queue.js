@@ -10,7 +10,8 @@ const movieListEl = document.querySelector('.movie-list');
 function onWatchedBtnClick() {
   const movieWatched = gettingItem('movieWatched');
   if (movieWatched.length === 0) {
-    movieListEl.innerHTML = '<p>Ви ще не переглянули жодного фільму</p>';
+    movieListEl.innerHTML =
+      "<p>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
     return;
   }
   const moviesCards = movieWatched
@@ -26,7 +27,8 @@ function onQueueBtnClick() {
   const movieQueue = gettingItem('movieQueue');
   // console.log(movieQueue);
   if (movieQueue.length === 0) {
-    movieListEl.innerHTML = '<p>Ви ще не переглянули жодного фільму</p>';
+    movieListEl.innerHTML =
+      "<p>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
     return;
   }
 
