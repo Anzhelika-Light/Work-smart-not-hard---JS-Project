@@ -27,7 +27,7 @@ export default class TmdbAPI {
     VOTE_AVERAGE_DESC: 'vote_average.desc',
   };
   static BASE_URL = 'https://api.themoviedb.org/3';
-  static IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+  static IMG_BASE_URL = 'https://image.tmdb.org/t/p';
   static genres = {}; //obj {genre_id: genre_name}
   static genreIDs = {}; //obj {genre_name: genre_id}
   #API_KEY = '60bdd84997c9f2a4c6cd2341c547ed98';
