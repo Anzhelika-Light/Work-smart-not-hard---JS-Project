@@ -30,6 +30,7 @@ export async function onLoadAnotherPage(e) {
 
     if (tooglePagination.isTrendingFilmsShown) {
       await renderPopularFilms(indexOfPageToLoad);
+      spinnerStart();
     } else {
       console.log('перед кліком були показані не трендингові фільми');
       console.log(
@@ -56,3 +57,4 @@ export async function onLoadAnotherPage(e) {
 }
 import './js/movie_search';
 import { studentCards } from './js/footer-modal';
+import { spinnerStart } from './js/loader';
