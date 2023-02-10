@@ -3,23 +3,15 @@ import TmdbAPI from '../TMDB_API';
 //converts string with genre names to HTML string with tags
 function getGenresHTMLString(str) {
   if (!str || str === '') {
-    return `<a>Other</a>`;
+    return `<a class='find-by-genre-js'>Other</a>`;
   }
-  const indexOfOther = str.toLowerCase().indexOf('other');
-  let spliced = '';
-  if (indexOfOther !== -1) {
-    str = str.slice(0, indexOfOther);
-    spliced = 'Other';
-  }
-  console.log('genres-str: ', str);
-  return (
-    str
-      .split(',')
-      .map(el => {
-        return `<a class='find-by-genre-js trending-gallery__genre-name'>${el}</a>`;
-      })
-      .join(', ') + spliced
-  );
+  // console.log('genres-str: ', str);
+  return str
+    .split(',')
+    .map(el => {
+      return `<a class='find-by-genre-js'>${el}</a>`;
+    })
+    .join(',');
 }
 
 export default function makeHMTLString({ results }) {
