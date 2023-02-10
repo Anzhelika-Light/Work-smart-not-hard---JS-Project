@@ -1,3 +1,4 @@
+import './js/authFireBase.js';
 import {
   paginationSettings,
   renderPaginationInterface,
@@ -16,7 +17,9 @@ import './js/render_markup.js';
 import './js/render_modal.js';
 import './js/trending-search-main/trending-search.js';
 import './js/movie_modal.js';
+import './js/openModalWindow.js';
 import './js/authFireBase.js';
+
 
 export async function onLoadAnotherPage(e) {
   console.log('що було в полі пошуку', userQueryforPagination);
