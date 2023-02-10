@@ -1,0 +1,105 @@
+.dark-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  position: absolute;
+  bottom: 10px;
+  right: calc(50vw - 24px);
+
+  cursor: pointer;
+}
+
+.dark-toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 48px;
+  height: 22px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+  top: -2px;
+}
+
+.dark-toggle-switch:before,
+.dark-toggle-switch:after {
+  content: '';
+}
+
+.dark-toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left 0.25s;
+}
+
+.dark-toggle:hover .dark-toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.dark-toggle-checkbox:checked + .dark-toggle-switch {
+  background: #4c4b52;
+}
+
+.dark-toggle-checkbox:checked + .dark-toggle-switch:before {
+  left: 30px;
+}
+
+.dark-toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.dark-toggle-label {
+  position: relative;
+
+  color: white;
+
+  font-size: 12px;
+  line-height: 1.17;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
+}
+.darkmode--activated .dark-toggle-label {
+  color: $main-accent-color;
+  text-shadow: 0.1px 0.1px 0.1px white;
+}
+
+.darkmode--activated .darkmode-layer {
+  background: transparent;
+}
+
+.darkmode--activated section,
+.darkmode--activated footer {
+  background-color: #000;
+}
+
+.darkmode--activated footer {
+  border-top: 1px solid $main-accent-color;
+}
+
+.darkmode--activated .trending-gallery__title {
+  color: white;
+}
+
+.darkmode--activated .pagination__btn:not(.pagination__btn--active) {
+  background-color: #ffffffb5;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: 1px solid $main-accent-color;
+    color: $main-accent-color;
+  }
+}
