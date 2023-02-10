@@ -44,12 +44,11 @@ export default function makeHMTLString({ results }) {
         result.release_date = result.release_date.slice(0, 4);
       }
       return `
-	<li class='trending-gallery__item' data-id="${result.id}">
+	<li class='trending-gallery__item' data-id=${result.id}>
     ${addAdaptiveImgHTMLString(result)}
     <div class="trending-gallery__wrapper">
-    	<h3 class='trending-gallery__title'>${result.title} data-id="${
-        result.id
-      }"</h3>
+    	<h3 class='trending-gallery__title' data-id=${result.id}>${result.title} 
+			</h3>
     	<p class='trending-gallery__info'>${getGenresHTMLString(
         TmdbAPI.getGenresString(result.genre_ids)
       )} | <span class='find-by-year-js'>${result.release_date}</span></p>
