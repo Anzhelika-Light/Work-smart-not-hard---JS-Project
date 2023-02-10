@@ -6,10 +6,13 @@
   gap: 5px;
 
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   right: calc(50vw - 24px);
 
   cursor: pointer;
+  .library-header & {
+    bottom: 5px;
+  }
 }
 
 .dark-toggle-switch {
@@ -64,7 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-	gap: 2px;
+  gap: 2px;
 }
 
 .dark-toggle-label {
@@ -88,6 +91,7 @@
   background: transparent;
 }
 
+body.darkmode--activated,
 .darkmode--activated main,
 .darkmode--activated footer {
   background-color: #000;
@@ -107,34 +111,30 @@
   border: 1px solid transparent;
   transition: border-color $cubic, color $cubic;
 
-&:hover:not(:disabled),
-&:focus:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     background-color: $primary-black-color;
     border: 1px solid $main-accent-color;
-      color: $main-accent-color;
+    color: $main-accent-color;
   }
 }
 
-
-
-
-
 .darkmode--activated .pagination__btn--active {
   background-color: $main-accent-color;
-  }
+}
 
 .darkmode--activated .pagination__btn--prev,
-.darkmode--activated .pagination__btn--next  {
+.darkmode--activated .pagination__btn--next {
   background-color: $additional-text-color-1;
   transition: border-color $cubic, background-color $cubic;
   border: 1px solid transparent;
 
   &:hover:not(:disabled),
-    &:focus:not(:disabled) {
-      background-color: $main-accent-color;
-      border: 1px solid $main-accent-color;
-      color: $main-accent-color;
-    }
+  &:focus:not(:disabled) {
+    background-color: $main-accent-color;
+    border: 1px solid $main-accent-color;
+    color: $main-accent-color;
+  }
 }
 
 .darkmode--activated .pagination__btn--prev {
@@ -147,8 +147,6 @@
 .darkmode--activated .pagination__btn--ellipsis {
   background-image: url(../images/icons/ellipsis-white.svg);
 }
-
-
 
 // .darkmode--activated .pagination__btn:not(.pagination__btn--active) {
 //   &:hover,
@@ -171,8 +169,6 @@
 //   transition: border-color $cubic, color $cubic;
 // }
 
-
-
 #day-night-icon {
   fill: $primary-white-color;
 }
@@ -181,8 +177,7 @@
   fill: $main-accent-color;
 }
 
-
 .darkmode--activated .footer__text,
-.darkmode--activated .footer__text-link  {
+.darkmode--activated .footer__text-link {
   color: $additional-text-color-2;
 }

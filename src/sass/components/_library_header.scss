@@ -1,6 +1,7 @@
 .library-header {
+  position: relative;
   padding-top: 40px;
-  padding-bottom: 55px;
+  padding-bottom: 70px;
   background-color: $header-background-color;
   background-size: 100% 100%;
   background-position: center;
@@ -13,7 +14,7 @@
     url(../images/library-background/mob-background-library.jpg);
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 49px;
+    padding-bottom: 64px;
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -177,7 +178,6 @@
   }
 
   &:hover {
-   
     border-color: $active-btn-color;
     transform: scale(1.01);
   }

@@ -1,4 +1,5 @@
 import './js/my-library-watched-queue/my-library-watched-queue';
+import './js/dark-mode';
 import './js/footer-modal';
 import { spinnerStart, spinnerStop } from './js/loader';
 spinnerStart();
