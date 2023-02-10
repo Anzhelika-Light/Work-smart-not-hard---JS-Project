@@ -54,6 +54,7 @@
     font-size: 12px;
     line-height: 1.33;
     text-transform: uppercase;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
       font-weight: 500;
@@ -107,7 +108,7 @@
   width: 280px;
   height: 402px;
   border-radius: 5px;
-
+cursor: pointer;
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 402px;

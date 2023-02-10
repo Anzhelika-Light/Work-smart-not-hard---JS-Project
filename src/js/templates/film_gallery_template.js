@@ -3,15 +3,23 @@ import TmdbAPI from '../TMDB_API';
 //converts string with genre names to HTML string with tags
 function getGenresHTMLString(str) {
   if (!str || str === '') {
-    return `<a class='find-by-genre-js'>Other</a>`;
+    return `<a>Other</a>`;
   }
-  // console.log('genres-str: ', str);
-  return str
-    .split(',')
-    .map(el => {
-      return `<a class='find-by-genre-js trending-gallery__genre-name'>${el}</a>`;
-    })
-    .join(', ');
+  const indexOfOther = str.toLowerCase().indexOf('other');
+  let spliced = '';
+  if (indexOfOther !== -1) {
+    str = str.slice(0, indexOfOther);
+    spliced = 'Other';
+  }
+  console.log('genres-str: ', str);
+  return (
+    str
+      .split(',')
+      .map(el => {
+        return `<a class='find-by-genre-js trending-gallery__genre-name'>${el}</a>`;
+      })
+      .join(', ') + spliced
+  );
 }
 
 function addAdaptiveImgHTMLString(result) {

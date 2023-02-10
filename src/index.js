@@ -16,6 +16,7 @@ import './js/render_markup.js';
 import './js/render_modal.js';
 import './js/trending-search-main/trending-search.js';
 import './js/movie_modal.js';
+import './js/authFireBase.js';
 
 export async function onLoadAnotherPage(e) {
   console.log('що було в полі пошуку', userQueryforPagination);
@@ -54,9 +55,9 @@ export async function onLoadAnotherPage(e) {
     }
   } catch (error) {
     console.log(error);
+  } finally {
+    setTimeout(spinnerStop, 1000);
   }
-  setTimeout(spinnerStop, 1000);
 }
 import './js/movie_search';
-import { studentCards } from './js/footer-modal';
-import { spinnerStart } from './js/loader';
+import './js/footer-modal';

@@ -1,0 +1,245 @@
+$mainCubicBazier: cubic-bezier(0.4, 0, 0.2, 1);
+$mainTransitionDuration: 250ms;
+
+.backdrop-modal-login {
+    overflow-y: scroll;
+
+    @media screen and (max-width: 767px) {
+        padding-top: 93px;
+        padding-bottom: 93px;
+    }
+
+    @media screen and (min-width:767px) and (max-width:1199px) {
+        padding-top: 208px;
+        padding-bottom: 208px;
+
+    }
+
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.725);
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: $mainTransitionDuration;
+    transition-timing-function: $mainCubicBazier;
+
+    z-index: 4; //
+
+    &.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.hide {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    display: none;
+}
+
+.is-hidden {
+
+
+    @media screen and (max-width: 1199px) {
+        & .login-window {
+            scale: 0.1;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        & .login-window {
+            transform: translate(-50%, -50%) scale(0.1);
+            opacity: 0.1;
+        }
+    }
+}
+
+.login-window {
+
+    z-index: 5; //
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 450px;
+    height: 450px;
+
+    @media screen and (max-width:479px) {
+        width: calc(100% - 30px);
+    }
+
+    @media screen and (max-width: 1199px) {
+        scale: 1;
+        transition-property: scale;
+        transition-duration: $mainTransitionDuration;
+        transition-timing-function: $mainCubicBazier;
+    }
+
+    @media screen and (min-width: 1200px) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 528px;
+        height: 581px;
+        transform: translate(-50%, -50%) scale(1);
+        transition-property: transform, opacity;
+        transition-duration: $mainTransitionDuration;
+        transition-timing-function: $mainCubicBazier;
+
+    }
+
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid #FF6B08;
+}
+
+.login-window__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 30px;
+    width: 30px;
+    right: 8px;
+    top: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    transition-property: fill;
+    transition-duration: $mainTransitionDuration;
+    transition-timing-function: $mainCubicBazier;
+
+    &:hover,
+    &:focus {
+        fill: red;
+    }
+}
+
+.form-login {
+    padding: 40px 40px 40px 40px;
+    height: 100%;
+    font-family: inherit;
+
+    @media screen and (max-width:479px) {
+        padding: 40px 15px 40px 15px;
+    }
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.login,
+.password {
+    outline: none;
+    border: 2px solid rgba(128, 128, 128, 0.409);
+    border-radius: 5px;
+    height: 36px;
+}
+
+.login:focus,
+.password:focus {
+    border-color: #FF6B08;
+}
+
+.form-login__item {
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-login__item--row {
+    flex-direction: row;
+    column-gap: 50px;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.form-login__submit {
+    display: block;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border: 1px solid #000000;
+    border-radius: 5px;
+
+    @media screen and (max-width: 360px) {
+        width: 60px;
+        height: 40px;
+    }
+}
+
+.form-login__submit:hover,
+.form-login__submit:focus {
+    background-color: #FF6B08;
+    color: #fff;
+    border: none;
+}
+
+.form-login__margin {
+  
+    @media screen and (min-width: 768px) {
+            margin-top: 40px;
+        }
+                 @media screen and (min-width: 120px) {
+                     margin-top: 80px;
+                 }
+}
+
+
+.btn-log-out {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile__photo {
+
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+
+    background-color: #FF6B08;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.profile__name {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+.form-login__authorized{
+    font-family: inherit;
+    font-weight: 700;
+    text-align: center;
+    font-size: 26px;
+    @media screen and (max-width: 360px) {
+            font-size: 22px;
+        }
+                 @media screen and (min-width: 1200px) {
+                     font-size: 36px;
+                 }
+}
