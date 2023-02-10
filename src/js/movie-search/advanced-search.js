@@ -116,7 +116,11 @@ function onAdvancedSearchElSubmit(event) {
   optionsObj.primary_release_year = searchYear;
 
   //checking if included and excluded genre are not equal
-  if (optionsObj.with_genres === optionsObj.without_genres) {
+  if (
+    optionsObj.with_genres === optionsObj.without_genres &&
+    optionsObj.with_genres !== undefined &&
+    optionsObj.without_genres !== undefined
+  ) {
     Notify.failure("You can't choose and exclude the same genre!");
     return;
   }
@@ -143,6 +147,8 @@ function checkYear(searchYear) {
 
 function isOptionsObjHasValues(optionsObj) {
   let result = false;
+  //if film year entered - object has values
+  if (refs.advancedSearchEl.year.value !== '') return true;
   Object.values(optionsObj).forEach(value => {
     if (value !== undefined && !emptyStingRegEx.test(value)) {
       result = true;
