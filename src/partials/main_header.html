@@ -34,19 +34,6 @@
     </div>
 
     <form class="search">
-      <input
-        type="text"
-        class="search__input"
-        name="searchQuery"
-        autocomplete="off"
-        required
-        placeholder="Movie search"
-      />
-      <button type="submit" class="search__btn">
-        <svg width="12" height="12" class="search__icon">
-          <use href="./images/sprite.svg#search"></use>
-        </svg>
-      </button>
       <button type="button" class="search__btn search__btn--advanced">
         <svg
           width="12"
@@ -68,6 +55,41 @@
           <use href="./images/sprite.svg#arrow-up"></use>
         </svg>
       </button>
+      <input
+        type="text"
+        class="search__input"
+        name="searchQuery"
+        autocomplete="off"
+        required
+        placeholder="Movie search"
+      />
+      <button type="submit" class="search__btn search__btn--simple">
+        <svg width="12" height="12" class="search__icon">
+          <use href="./images/sprite.svg#search"></use>
+        </svg>
+      </button>
+
+      <!-- <button type="button" class="search__btn search__btn--advanced">
+        <svg
+          width="12"
+          height="12"
+          class="search__icon show-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-down"></use>
+        </svg>
+      </button> -->
+      <!-- <button
+        type="button"
+        class="search__btn search__btn--advanced visually-hidden"
+      >
+        <svg
+          width="12"
+          height="12"
+          class="search__icon hide-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-up"></use>
+        </svg>
+      </button> -->
     </form>
 
     <include src="./partials/advanced_search_form.html"></include>
