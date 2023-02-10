@@ -62,7 +62,7 @@ export async function renderModal(list, id, watched, queue) {
   const genresMarkup = finalGenres.length
     ? `<li class="movie-modal__item">
           <div class="movie-modal__item-first">Genre</div>
-          <div>${finalGenres.join(', ')}</div>
+          <div class="movie-modal__genres">${finalGenres.join(', ')}</div>
         </li>`
     : '';
   const originalTitleMarkup = original_title
@@ -81,7 +81,7 @@ export async function renderModal(list, id, watched, queue) {
     : '';
   const photoMarkup = poster_path
     ? `<div class="movie-modal__img">
-      <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" />
+      <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" class="movie-modal__img-poster"/>
     </div>`
     : `<div class="movie-modal__img">
       <img src="${emptyPhoto}" alt="photo coming soon" />
@@ -90,7 +90,7 @@ export async function renderModal(list, id, watched, queue) {
   return [
     `${photoMarkup}
     <div class="movie-modal__about">
-      <div class="movie-modal__headline">${title}</div>
+      <h2 class="movie-modal__headline">${title}</h2>
       <ul class="movie-modal__list">
         ${voteCount}
         ${popularityMarkup}

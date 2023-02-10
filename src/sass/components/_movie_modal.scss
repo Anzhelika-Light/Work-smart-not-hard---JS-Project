@@ -13,7 +13,7 @@
   overflow-y: scroll;
   z-index: 10;
 
-  transition: transform 1000ms, opacity 500ms, scale 500ms;
+  transition: opacity 500ms;
 
   @include tablet {
     top: 50%;
@@ -56,10 +56,16 @@
 
     @include tablet {
       width: 264px;
+      height: 374px;
     }
     @include desktop {
       width: 375px;
+      height: 478px;
     }
+  }
+
+  &__img-poster {
+    border-radius: 5px;
   }
 
   &__about {
@@ -89,7 +95,8 @@
 
   &__item-first {
     min-width: 80px;
-    color: grey;
+    color: $additional-text-color-2;
+    line-height: 1.33;
   }
 
   &__item-bg {
@@ -111,14 +118,24 @@
   &__headline {
     font-size: 20px;
     line-height: calc(35.16 / 30);
-
+    text-transform: uppercase;
+    @include tablet {
+      line-height: 1.15;
+    }
     @media screen and (min-width: 1024px) {
       font-size: 30px;
     }
   }
 
+  &__genres {
+    line-height: 1.33;
+  }
+
   &__about-headline {
     text-transform: uppercase;
+    @media screen and (min-width: 1024px) {
+      line-height: 1.33;
+    }
   }
 
   &__item-votes {
@@ -145,7 +162,8 @@
     position: absolute;
     background-color: transparent;
     border: none;
-
+    width: 30px;
+    height: 30px;
     top: 8px;
     right: 8px;
   }
@@ -203,13 +221,12 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.329);
   z-index: 5;
-  position: fixed;
-  top: 0;
-  transition: transform 1000ms, opacity 500ms, scale 500ms;
+  position: sticky;
+  inset: 0;
+  transition: opacity 500ms;
 }
 
 .hidden-movie-modal {
   opacity: 0;
-  scale: 0.8;
   pointer-events: none;
 }
