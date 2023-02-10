@@ -2,6 +2,11 @@ import ultimatePagination from 'ultimate-pagination';
 import { onLoadAnotherPage } from '../../index';
 import { refs } from '../refs';
 
+export const tooglePagination = {
+  isTrendingFilmsShown: true,
+  isFilmsByQueryShown: false,
+};
+
 export const paginationSettings = {
   currentPage: 0,
   totalPages: 0,
@@ -24,6 +29,7 @@ export function createPaginationInterface(currentPage, totalPages) {
 }
 
 export function deletePaginationInterface() {
+  console.log('видаляємо попередній інтерфейс пагінації');
   refs.paginationContainer.removeEventListener('click', onLoadAnotherPage);
   refs.filmsPaginationContainer.innerHTML = '';
 }
@@ -65,6 +71,12 @@ export function setStandartPaginationSettings() {
 }
 
 export function renderPaginationInterface(currentPage, totalPages) {
+  console.log(
+    'render pagination interface from ',
+    currentPage,
+    'to',
+    totalPages
+  );
   refs.filmsPaginationContainer.innerHTML = createPaginationInterface(
     currentPage,
     totalPages
