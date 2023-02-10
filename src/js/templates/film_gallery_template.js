@@ -29,7 +29,7 @@ function addAdaptiveImgHTMLString(result) {
 		<source srcset="${TmdbAPI.IMG_BASE_URL}/w342${result.poster_path} 342w, ${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w" media="(min-width: 768px)" sizes="336px">
 		<source srcset="${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w, ${TmdbAPI.IMG_BASE_URL}/w780${result.poster_path} 780w" media="(min-width: 1280px)" sizes="395px">
 
-  	<img src="${TmdbAPI.IMG_BASE_URL}/original${result.poster_path}" alt="The poster of ${result.title} film" class="trending-gallery__image" loading="lazy"/>
+  	<img src="${TmdbAPI.IMG_BASE_URL}/original${result.poster_path}" alt="The poster of ${result.title} film" class="trending-gallery__image" loading="lazy" data-id="${result.id}"/>
 	</picture>`;
 }
 
@@ -47,7 +47,9 @@ export default function makeHMTLString({ results }) {
 	<li class='trending-gallery__item' data-id="${result.id}">
     ${addAdaptiveImgHTMLString(result)}
     <div class="trending-gallery__wrapper">
-    	<h3 class='trending-gallery__title'>${result.title}</h3>
+    	<h3 class='trending-gallery__title'>${result.title} data-id="${
+        result.id
+      }"</h3>
     	<p class='trending-gallery__info'>${getGenresHTMLString(
         TmdbAPI.getGenresString(result.genre_ids)
       )} | <span class='find-by-year-js'>${result.release_date}</span></p>
