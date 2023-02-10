@@ -25,6 +25,7 @@
     "ultimate-pagination": "^1.0.0"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.6.0",
     "@parcel/transformer-sass": "^2.6.0",
     "buffer": "^6.0.3",
     "darkmode-js": "^1.5.7",
