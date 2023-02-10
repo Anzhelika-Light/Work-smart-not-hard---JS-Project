@@ -1,0 +1,52 @@
+<button data-modal-open class="enter-btn" type="button">Enter</button>
+<div data-modal class="backdrop-modal-login is-hidden">
+  <div class="login-window">
+    <div class="form-login" id="profile">
+      <div class="profile__photo">
+        <svg height="96" width="96">
+          <use href="./images/sprite.svg#avatar"></use>
+        </svg>
+      </div>
+      <h2 class="profile__name"></h2>
+      <button class="btn-log-out form-login__submit" type="button">
+        Log out
+      </button>
+    </div>
+    <form class="form-login" id="form-login">
+      <div class="form-login__item">
+        <label class="login-lbl" for="user_login">Email</label>
+        <input
+          class="login"
+          type="email"
+          name="login"
+          id="user_login"
+          placeholder="Login"
+        />
+      </div>
+      <div class="form-login__item form-login__margin">
+        <label class="password-lbl" for="user_password">Password</label>
+        <input
+          id="user_password"
+          class="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-login__item form-login__item--row">
+        <button class="btn-login form-login__submit" type="submit">
+          Log in
+        </button>
+        <button class="btn-sign form-login__submit" type="submit">
+          Sign up
+        </button>
+      </div>
+    </form>
+    <button class="login-window__close" data-modal-close>
+      <svg height="11" width="11">
+        <use href="./images/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+  <!-- <button class="test" type="button">test</button>-->
+</div>
