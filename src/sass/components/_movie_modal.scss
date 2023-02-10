@@ -10,7 +10,7 @@
 
   background-color: $primary-white-color;
 
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 10;
 
   transition: opacity 500ms;
@@ -56,11 +56,11 @@
 
     @include tablet {
       width: 264px;
-      height: 374px;
+      // height: 374px;
     }
     @include desktop {
       width: 375px;
-      height: 478px;
+      // height: 478px;
     }
   }
 
@@ -235,4 +235,15 @@
 .hidden-movie-modal {
   opacity: 0;
   pointer-events: none;
+}
+
+.movie-modal::-webkit-scrollbar {
+  width: 0.5em;
+}
+.movie-modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.movie-modal::-webkit-scrollbar-thumb {
+  background-color: #ff6b01;
+  border-radius: 5px;
 }
