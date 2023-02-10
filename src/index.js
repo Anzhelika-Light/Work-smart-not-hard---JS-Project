@@ -58,5 +58,4 @@ export async function onLoadAnotherPage(e) {
   setTimeout(spinnerStop, 1000);
 }
 import './js/movie_search';
-import { studentCards } from './js/footer-modal';
-import { spinnerStart } from './js/loader';
+import './js/footer-modal';
