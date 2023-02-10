@@ -50,8 +50,15 @@
     height: 350px;
   }
   .lightbox__button {
-    top: 3px;
-    right: 3px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+@media (max-width: 767px) {
+   .lightbox__button {
+    top: 12px;
+    right: 14px;
   }
 }
 
