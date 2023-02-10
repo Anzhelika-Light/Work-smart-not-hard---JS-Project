@@ -5,7 +5,6 @@ function getGenresHTMLString(str) {
   if (!str || str === '') {
     return `<a>Other</a>`;
   }
-  // console.log('genres-str: ', str);
   const indexOfOther = str.toLowerCase().indexOf('other');
   let spliced = '';
   if (indexOfOther !== -1) {
@@ -23,6 +22,17 @@ function getGenresHTMLString(str) {
   );
 }
 
+function addAdaptiveImgHTMLString(result) {
+  return `
+	<picture>
+		<source srcset="${TmdbAPI.IMG_BASE_URL}/w185${result.poster_path} 185w, ${TmdbAPI.IMG_BASE_URL}/w342${result.poster_path} 342w, ${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w" media="(max-width: 767px)" sizes="280px">
+		<source srcset="${TmdbAPI.IMG_BASE_URL}/w342${result.poster_path} 342w, ${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w" media="(min-width: 768px)" sizes="336px">
+		<source srcset="${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w, ${TmdbAPI.IMG_BASE_URL}/w780${result.poster_path} 780w" media="(min-width: 1280px)" sizes="395px">
+
+  	<img src="${TmdbAPI.IMG_BASE_URL}/original${result.poster_path}" alt="The poster of ${result.title} film" class="trending-gallery__image" loading="lazy"/>
+	</picture>`;
+}
+
 export default function makeHMTLString({ results }) {
   // console.log('це прийшло в функцію MAKEHTMLstring', results);
   return results
@@ -35,11 +45,7 @@ export default function makeHMTLString({ results }) {
       }
       return `
 	<li class='trending-gallery__item' data-id="${result.id}">
-    <img src="${TmdbAPI.IMG_BASE_URL}${
-        result.poster_path
-      }" alt="The poster of ${
-        result.title
-      } film" class="trending-gallery__image" />
+    ${addAdaptiveImgHTMLString(result)}
     <div class="trending-gallery__wrapper">
     	<h3 class='trending-gallery__title'>${result.title}</h3>
     	<p class='trending-gallery__info'>${getGenresHTMLString(
@@ -64,11 +70,7 @@ export function makeHMTLStringWithGenre({ results }, genre) {
 
       return `
 	<li class='trending-gallery__item'  data-id="${result.id}">
-    <img src="${TmdbAPI.IMG_BASE_URL}${
-        result.poster_path
-      }" alt="The poster of ${
-        result.title
-      } film" class="trending-gallery__image" />
+    ${addAdaptiveImgHTMLString(result)}
     <div class="trending-gallery__wrapper">
     	<h3 class='trending-gallery__title'>${result.title}</h3>
     	<p class='trending-gallery__info'>${getGenresHTMLString(
@@ -83,3 +85,9 @@ export function makeHMTLStringWithGenre({ results }, genre) {
     })
     .join('');
 }
+
+// <img src="${TmdbAPI.IMG_BASE_URL}${
+//         result.poster_path
+//       }" alt="The poster of ${
+//         result.title
+//       } film" class="trending-gallery__image" loading="lazy"/>
