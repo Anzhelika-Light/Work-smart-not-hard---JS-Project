@@ -1,7 +1,6 @@
 import * as basicLightbox from 'basiclightbox';
 
 const studentsEl = document.querySelector('.footer__text-link');
-console.log(studentsEl);
 
 export const studentCards = basicLightbox.create(
   `

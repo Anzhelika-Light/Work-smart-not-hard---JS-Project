@@ -15,7 +15,7 @@ function getGenresHTMLString(str) {
 }
 
 export default function makeHMTLString({ results }) {
-  // console.log(results);
+  // console.log('це прийшло в функцію MAKEHTMLstring', results);
   return results
     .map(result => {
       //checking release date: if none - return 'No info', else return year

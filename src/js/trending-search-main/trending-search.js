@@ -1,9 +1,12 @@
 import fetchPopularFilms from './fetch-movies';
 import getImages from './fetch-images-url';
 import getGenres from './fetch-genres';
-
-import { renderPaginationInterface } from '../pagination/paginationInterface';
-import { paginationSettings } from '../pagination/paginationInterface';
+// import { isTrendingFilmsShown } from '../../index.js';
+import {
+  renderPaginationInterface,
+  paginationSettings,
+  tooglePagination,
+} from '../pagination/paginationInterface';
 
 const cardList = document.querySelector('.trending-gallery');
 
@@ -58,14 +61,24 @@ async function renderPopularFilms(page) {
   try {
     cardList.innerHTML = '';
     const films = await fetchPopularFilms(page);
-    // console.log('films', films);
+    console.log('який обэкт фільмів прийшов від сервера', films);
 
     const markup = await createMarkup(films.results);
+
     cardList.innerHTML = markup;
 
     paginationSettings.totalPages = films.total_pages;
+    tooglePagination.isTrendingFilmsShown = true;
 
     if (films) renderPaginationInterface(page, paginationSettings.totalPages);
+    console.log(
+      'в налаштуваннях пагінації поточна сторінка',
+      paginationSettings.currentPage
+    );
+    console.log(
+      'в налаштуваннях пагінації всього сторінок',
+      paginationSettings.totalPages
+    );
   } catch (error) {
     console.dir(error);
   }
