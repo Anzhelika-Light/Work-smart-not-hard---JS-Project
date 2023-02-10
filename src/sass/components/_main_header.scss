@@ -1,112 +1,75 @@
 .header {
   padding-top: 40px;
-  padding-bottom: 92px;
+  padding-bottom: 81px;
   background-color: $header-background-color;
-  background-image:  // linear-gradient(
-    // //     0deg,
-    // //     rgba(0, 0, 0, 0.2),
-    // //     rgba(0, 0, 0, 0.2)
-    // //   ),
-    url(../images/home-background/mobile-background-home.jpg);
+  background-image: url(../images/home-background/mobile-background-home.jpg);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 81px;
+    padding-bottom: 75px;
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
     screen and (min-resolution: 2dppx) and (max-width: 767px) {
-    background-image:
-    // linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.2),
-    //     rgba(0, 0, 0, 0.2)
-    //   ),
-      url(../images/home-background/mobile-background-home@2x.jpg);
+    background-image: url(../images/home-background/mobile-background-home@2x.jpg);
   }
 
   @media screen and (min-width: 768px) {
-    background-image:
-    // linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.2),
-    //     rgba(0, 0, 0, 0.2)
-    //   ),
-      url(../images/home-background/tablet-background-home.jpg);
+    background-image: url(../images/home-background/tablet-background-home.jpg);
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
     screen and (min-resolution: 192dpi) and (min-width: 768px),
     screen and (min-resolution: 2dppx) and (min-width: 768px) {
-    background-image:
-    // linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.2),
-    //     rgba(0, 0, 0, 0.2)
-    //   ),
-      url(../images/home-background/tablet-background-home@2x.jpg);
+    background-image: url(../images/home-background/tablet-background-home@2x.jpg);
   }
 
   @media screen and (min-width: 1280px) {
-    background-image:
-    // linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.2),
-    //     rgba(0, 0, 0, 0.2)
-    //   ),
-      url(../images/home-background/desktop-background-home.jpg);
+    background-image: url(../images/home-background/desktop-background-home.jpg);
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (min-width: 1280px),
     screen and (min-resolution: 192dpi) and (min-width: 1280px),
     screen and (min-resolution: 2dppx) and (min-width: 1280px) {
-    background-image:
-    // linear-gradient(
-    //     0deg,
-    //     rgba(0, 0, 0, 0.2),
-    //     rgba(0, 0, 0, 0.2)
-    //   ),
-      url(../images/home-background/desktop-background-home@2x.jpg);
+    background-image: url(../images/home-background/desktop-background-home@2x.jpg);
   }
 }
 
 .header__link-container {
   margin-bottom: 54px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 41px;
+  }
 }
 
 .nav {
-  // margin-right: auto;
-  // margin-bottom: 54px;
   display: flex;
-  gap: 50px;
+  gap: 60px;
   align-items: center;
-  // justify-content: left;
 
   @media screen and (min-width: 768px) {
-    // margin-bottom: 40px;
-    gap: 300px;
+    gap: 320px;
   }
 
   @media screen and (min-width: 1280px) {
-    // margin-bottom: 40px;
-    gap: 800px;
+    gap: 820px;
   }
 }
 
 .nav__logo {
-  // margin-right: 200px;
   display: flex;
   align-items: center;
 }
 
 .nav__logo-img {
-  margin-right: 8px;
   stroke: $primary-white-color;
 
   @media screen and (min-width: 1280px) {
@@ -115,12 +78,17 @@
 }
 
 .nav__logo-text {
+  margin-left: 8px;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.17;
   color: $primary-white-color;
+
   @media screen and (max-width: 767px) {
     display: none;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 10px;
   }
 }
 
@@ -140,6 +108,16 @@
   line-height: 1.17;
   text-transform: uppercase;
   color: $primary-white-color;
+}
+
+.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: $info-color;
 }
 
 .search {
@@ -173,6 +151,7 @@
     width: 100%;
     height: 0.5px;
     background-color: $primary-white-color;
+    transition: background-color $cubic;
   }
 
   &:focus-within::after {
@@ -187,7 +166,6 @@
 }
 
 .search__input {
-  // margin-right: auto;
   width: 100%;
   font-weight: 400;
   font-size: 14px;
@@ -203,44 +181,44 @@
     font-size: 14px;
     line-height: 1.14;
     color: $primary-white-color;
+    opacity: 0.7;
+  }
+}
+
+.search__btn {
+  fill: $primary-white-color;
+  transform: scale(1);
+  transition: fill $cubic, transform $cubic;
+
+  &:hover {
+    transform: scale(1.3);
   }
 }
 
 .search__icon {
-  fill: $primary-white-color;
-
-  &:hover,
-  &:focus {
-    fill: $active-btn-color;
-  }
+  fill: inherit;
 }
 
-.active-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: $info-color;
+.search__input:focus + .search__btn {
+  fill: $active-btn-color;
 }
 
-.sign-in-btn {
-  background-color: transparent;
-  width: 35px;
-  height: 35px;
-  border: 1.5px solid $primary-white-color;
-  border-radius: 50%;
-  fill: $primary-white-color;
+// .sign-in-btn {
+//   background-color: transparent;
+//   width: 35px;
+//   height: 35px;
+//   border: 2px solid $primary-white-color;
+//   border-radius: 50%;
+//   fill: $primary-white-color;
 
-  @media screen and (min-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
+//   @media screen and (min-width: 768px) {
+//     width: 40px;
+//     height: 40px;
+//   }
 
-  &:hover,
-  &:focus {
-    fill: $active-btn-color;
-    border-color: $active-btn-color;
-  }
-}
+//   &:hover,
+//   &:focus {
+//     fill: $active-btn-color;
+//     border-color: $active-btn-color;
+//   }
+// }
