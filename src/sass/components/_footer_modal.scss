@@ -1,0 +1,163 @@
+.basicLightbox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0.01;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+  transition: opacity $cubic;
+}
+
+.basicLightbox--visible {
+  opacity: 1;
+}
+
+.modal {
+  overflow-y: auto;
+  position: relative;
+  padding: 40px 40px;
+  max-height: 800px;
+  background: $additional-bg-color;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+
+  @media screen and (max-width: 767px) {
+    margin: 0 5%;
+    width: 90%;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 750px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 850px;
+  }
+}
+
+.modal__title {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 30px;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.team-list__item {
+  background-color: $primary-white-color;
+  box-shadow: 6px 4px 16px 0px rgba(201, 201, 201, 1);
+  border-radius: 0px 0px 4px 4px;
+  max-width: 200px;
+}
+
+.team-list__wrapper {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.team-list__title {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.18;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+.team-list__text {
+  color: $additional-text-color-1;
+  font-size: 14px;
+  line-height: 1.18;
+  text-align: center;
+  letter-spacing: 0.03em;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 13px;
+}
+
+.team-list__position {
+  font-weight: 600;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  z-index: 1001;
+  background-image: url('../images/team/icon-close.svg');
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-color: $primary-white-color;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color $cubic;
+  &:hover,
+  &:focus {
+    background-color: $main-accent-color;
+  }
+}
+
+.github {
+  background-image: url('../images/team/github.svg');
+  background-position: center;
+  background-size: 103%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color $cubic;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-black-color;
+  }
+}

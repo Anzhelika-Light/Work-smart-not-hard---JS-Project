@@ -1,23 +1,38 @@
 <header class="library-header">
   <div class="container">
-    <nav class="library-nav">
-      <a href="./index.html" class="library-nav__logo">
-        <svg class="library-nav__logo-img" width="24" height="24" aria-label="">
-          <use href="./images/sprite.svg#film"></use>
-        </svg>
-        <span class="library-nav__logo-text">Filmoteka</span>
-      </a>
-      <ul class="library-nav__list">
-        <li>
-          <a href="./" class="library-nav__link">Home</a>
-        </li>
-        <li>
-          <a href="./library.html" class="library-nav__link active-link"
-            >My library</a
+    <div class="library-header__link-container">
+      <nav class="library-nav">
+        <a href="./index.html" class="library-nav__logo">
+          <svg
+            class="library-nav__logo-img"
+            width="24"
+            height="24"
+            aria-label=""
           >
-        </li>
-      </ul>
-    </nav>
+            <use href="./images/sprite.svg#film"></use>
+          </svg>
+          <span class="library-nav__logo-text">Filmoteka</span>
+        </a>
+        <ul class="library-nav__list">
+          <li>
+            <a href="./" class="library-nav__link">Home</a>
+          </li>
+          <li>
+            <a href="./library.html" class="library-nav__link active-link"
+              >My library</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <button type="button" class="sign-in-btn">
+        <svg width="24" height="24" aria-label="кнопка авторизації">
+          <use href="./images/sprite.svg#icon-lock"></use>
+        </svg>
+        <!-- <svg width="24" height="24" aria-label="кнопка авторизації">
+          <use href="./images/sprite.svg#icon-lock-open"></use>
+        </svg> -->
+      </button>
+    </div>
     <div class="library-btn__container">
       <button type="button" class="library-btn js-library-btn--watched">
         Watched
