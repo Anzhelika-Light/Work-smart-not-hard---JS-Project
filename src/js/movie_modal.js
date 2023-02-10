@@ -62,9 +62,11 @@ function removeFromQueue(e) {
   e.target.addEventListener('click', addToQueue);
   Notiflix.Notify.success('Removed from queue!');
 }
-
+//e.currentTarget !== e.target &&
 export async function showModal(e) {
-  if (e.currentTarget !== e.target) {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'H3') {
+    console.log('e.currentTarget', e.currentTarget);
+    console.log('e.target', e.target);
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
 
@@ -74,7 +76,7 @@ export async function showModal(e) {
     overflow.addEventListener('click', closeModalOverflow);
 
     const id =
-      e.target.nodeName === 'LI'
+      e.target.nodeName === 'IMG'
         ? e.target.dataset.id
         : e.target.closest('li').dataset.id;
     await createModal(id);
