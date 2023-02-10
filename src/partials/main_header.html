@@ -1,21 +1,40 @@
 <header class="header">
   <div class="container">
-    <nav class="nav">
-      <a href="./index.html" class="nav__logo">
-        <svg class="nav__logo-img" width="24" height="24" aria-label="">
-          <use href="./images/sprite.svg#film"></use>
+    <div class="header__link-container">
+      <nav class="nav">
+        <a href="./index.html" class="nav__logo">
+          <svg
+            class="nav__logo-img"
+            width="24"
+            height="24"
+            aria-label="логотип"
+          >
+            <use href="./images/sprite.svg#film"></use>
+          </svg>
+          <span class="nav__logo-text">Filmoteka</span>
+        </a>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="./" class="nav__link active-link">Home</a>
+          </li>
+          <li class="nav__item">
+            <a href="./library.html" class="nav__link">My library</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" class="sign-in-btn">
+        <svg width="15" height="15" aria-label="кнопка авторизації">
+          <use href="./images/sprite.svg#icon-lock"></use>
         </svg>
-        <span class="nav__logo-text">Filmoteka</span>
-      </a>
-      <ul class="nav__list">
-        <li class="nav__item">
-          <a href="./" class="nav__link active-link">Home</a>
-        </li>
-        <li class="nav__item">
-          <a href="./library.html" class="nav__link">My library</a>
-        </li>
-      </ul>
-    </nav>
+      </button>
+      <!-- <button type="button" class="sign-in-btn">
+        <svg width="15" height="15" aria-label="кнопка авторизації">
+          <use href="./images/sprite.svg#icon-tick"></use>
+        </svg>
+      </button> -->
+    </div>
+
     <form class="search">
       <input
         type="text"
@@ -30,6 +49,28 @@
           <use href="./images/sprite.svg#search"></use>
         </svg>
       </button>
+      <button type="button" class="search__btn search__btn--advanced">
+        <svg
+          width="12"
+          height="12"
+          class="search__icon show-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-down"></use>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="search__btn search__btn--advanced visually-hidden"
+      >
+        <svg
+          width="12"
+          height="12"
+          class="search__icon hide-advanced-search-js"
+        >
+          <use href="./images/sprite.svg#arrow-up"></use>
+        </svg>
+      </button>
     </form>
+    <include src="./partials/advanced_search_form.html"></include>
   </div>
 </header>
