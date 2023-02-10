@@ -17,6 +17,7 @@ import './js/render_modal.js';
 import './js/trending-search-main/trending-search.js';
 import './js/movie_modal.js';
 import './js/authFireBase.js';
+import './js/add-to-local-storage.js';
 
 export async function onLoadAnotherPage(e) {
   console.log('що було в полі пошуку', userQueryforPagination);

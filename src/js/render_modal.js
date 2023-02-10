@@ -5,6 +5,8 @@ import getGenres from './trending-search-main/fetch-genres';
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
 
+  console.log('modie detils for Anya', movieDetails);
+
   const {
     poster_path,
     original_title,
