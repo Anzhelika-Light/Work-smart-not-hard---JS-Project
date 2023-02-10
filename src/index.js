@@ -8,7 +8,7 @@ import './js/pagination/setPaginationSettings';
 import renderPopularFilms from './js/trending-search-main/trending-search';
 import './js/trending-search-main/trending-search';
 import './js/dark-mode';
-import './js/loader';
+import { spinnerStart, spinnerStop } from './js/loader';
 import { refs, tmdbAPI, TmdbAPI } from './js/movie-search/search-refs';
 import { userQueryforPagination } from './js/movie-search/search-by-keyword';
 import makeHMTLString from './js/templates/film_gallery_template';
@@ -43,6 +43,7 @@ export async function onLoadAnotherPage(e) {
         tmdbAPI.page
       );
       const response = await tmdbAPI.fetchFilmsByQuery(userQueryforPagination);
+      spinnerStart();
       const { data } = response;
       console.log(
         'що прийшло із сервера після кліку, якщо до цього відоражалась сторінка не з трендинговими фото?',
@@ -54,6 +55,7 @@ export async function onLoadAnotherPage(e) {
   } catch (error) {
     console.log(error);
   }
+  setTimeout(spinnerStop, 1000);
 }
 import './js/movie_search';
 import { studentCards } from './js/footer-modal';
