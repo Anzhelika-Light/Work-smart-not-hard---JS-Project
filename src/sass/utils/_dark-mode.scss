@@ -20,7 +20,7 @@
   height: 22px;
   position: relative;
   vertical-align: middle;
-  transition: background 0.25s;
+  transition: background-color 0.25s;
   top: -2px;
 }
 
@@ -88,7 +88,7 @@
   background: transparent;
 }
 
-.darkmode--activated section,
+.darkmode--activated main,
 .darkmode--activated footer {
   background-color: #000;
 }
@@ -101,16 +101,77 @@
   color: white;
 }
 
-.darkmode--activated .pagination__btn:not(.pagination__btn--active) {
-  background-color: #ffffffb5;
+.darkmode--activated .pagination__btn {
+  background-color: $primary-black-color;
+  color: $primary-white-color;
+  border: 1px solid transparent;
+  transition: border-color $cubic, color $cubic;
 
-  &:hover,
-  &:focus,
-  &:active {
+&:hover:not(:disabled),
+&:focus:not(:disabled) {
+    background-color: $primary-black-color;
     border: 1px solid $main-accent-color;
-    color: $main-accent-color;
+      color: $main-accent-color;
   }
 }
+
+
+
+
+
+.darkmode--activated .pagination__btn--active {
+  background-color: $main-accent-color;
+  }
+
+.darkmode--activated .pagination__btn--prev,
+.darkmode--activated .pagination__btn--next  {
+  background-color: $additional-text-color-1;
+  transition: border-color $cubic, background-color $cubic;
+  border: 1px solid transparent;
+
+  &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      background-color: $main-accent-color;
+      border: 1px solid $main-accent-color;
+      color: $main-accent-color;
+    }
+}
+
+.darkmode--activated .pagination__btn--prev {
+  background-image: url(../images/icons/arrow-left-white.svg);
+}
+
+.darkmode--activated .pagination__btn--next {
+  background-image: url(../images/icons/arrow-right-white.svg);
+}
+.darkmode--activated .pagination__btn--ellipsis {
+  background-image: url(../images/icons/ellipsis-white.svg);
+}
+
+
+
+// .darkmode--activated .pagination__btn:not(.pagination__btn--active) {
+//   &:hover,
+//   &:focus,
+//   &:active {
+//     border: 1px solid $main-accent-color;
+//     color: $main-accent-color;
+//   }
+// }
+
+// .darkmode--activated .pagination__btn--active {
+//   background-color: $main-accent-color;
+//   border: 1px solid transparent;
+// }
+
+// .darkmode--activated .pagination__btn:not(.pagination__btn--active) {
+//   background-color: $primary-black-color;
+//   color: $primary-white-color;
+//   border: 1px solid transparent;
+//   transition: border-color $cubic, color $cubic;
+// }
+
+
 
 #day-night-icon {
   fill: $primary-white-color;
@@ -118,4 +179,10 @@
 
 .darkmode--activated #day-night-icon {
   fill: $main-accent-color;
+}
+
+
+.darkmode--activated .footer__text,
+.darkmode--activated .footer__text-link  {
+  color: $additional-text-color-2;
 }
