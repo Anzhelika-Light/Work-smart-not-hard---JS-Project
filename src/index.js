@@ -12,6 +12,11 @@ import './js/loader';
 import { refs, tmdbAPI, TmdbAPI } from './js/movie-search/search-refs';
 import { userQueryforPagination } from './js/movie-search/search-by-keyword';
 import makeHMTLString from './js/templates/film_gallery_template';
+import './js/render_markup.js';
+import './js/render_modal.js';
+import './js/trending-search-main/trending-search.js';
+import './js/movie_modal.js';
+
 export async function onLoadAnotherPage(e) {
   console.log('що було в полі пошуку', userQueryforPagination);
   console.log(
@@ -51,4 +56,3 @@ export async function onLoadAnotherPage(e) {
 }
 import './js/movie_search';
 import { studentCards } from './js/footer-modal';
-
