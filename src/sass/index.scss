@@ -1,4 +1,5 @@
 @import './common';
+@import './utils/mixins';
 @import './utils/variables';
 @import './utils/visually-hidden';
 @import './base/base';
@@ -15,3 +16,6 @@
 @import './components/main-trending-search';
 @import './components/loader';
 @import './components/authorization_button';
+@import './components/advanced_search_form';
+@import './components/trailer';
+

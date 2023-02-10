@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+main {
+  min-height: calc(100vh - 216px - 72px);
+}
+
 h1,
 h2,
 h3,
