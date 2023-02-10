@@ -30,7 +30,7 @@ export default function makeHMTLString({ results }) {
         result.poster_path
       }" alt="The poster of ${
         result.title
-      } film" class="trending-gallery__image" />
+      } film" class="trending-gallery__image" data-id="${result.id}"/>
     <div class="trending-gallery__wrapper">
     	<h3 class='trending-gallery__title'>${result.title}</h3>
     	<p class='trending-gallery__info'>${getGenresHTMLString(

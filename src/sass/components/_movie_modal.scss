@@ -229,6 +229,7 @@
   position: sticky;
   inset: 0;
   transition: opacity 500ms;
+  overflow-y: auto;
 }
 
 .hidden-movie-modal {
