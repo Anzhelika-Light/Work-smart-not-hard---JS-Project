@@ -69,8 +69,8 @@ export const userDataQueue = [
   },
 ];
 
-settingItem('movieWatched', userDataWatched);
-settingItem('movieQueue', userDataQueue);
+// settingItem('movieWatched', userDataWatched);
+// settingItem('movieQueue', userDataQueue);
 // ---/приклад даних, які приходять з localStorage
 
 function settingItem(key, value) {

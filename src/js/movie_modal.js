@@ -3,8 +3,15 @@ import { refs } from './refs';
 import Notiflix from 'notiflix';
 import { renderModal } from './render_modal';
 import { onTrailerBtnClick } from './trailer';
+import { all } from 'axios';
 
 const { allCardsSection, modal, overflow, closeBtn, innerModal, body } = refs;
+
+// const QUEUE_KEY = 'queue';
+// const WATCHED_KEY = 'watched';
+
+// const queue = [];
+// const watched = [];
 
 const queueJSON = localStorage.getItem('queue');
 const watchedJSON = localStorage.getItem('watched');
@@ -43,7 +50,7 @@ function removeFromWatched(e) {
 
 function addToQueue(e) {
   e.target.innerText = 'remove from queue';
-  const currentList = updateMoviesList();
+  // const currentList = updateMoviesList();
   const clickedFilm = currentList[e.target.dataset.id];
   queue.push(clickedFilm);
   localStorage.setItem('queue', JSON.stringify(queue));
@@ -112,6 +119,8 @@ function closeModal() {
 async function createModal(id) {
   const currentList = updateMoviesList();
   const rendered = await renderModal(currentList, id, watched, queue);
+
+  console.log('rendered info', rendered);
   innerModal.innerHTML = rendered[0];
   addListeners(rendered[1], rendered[2]);
 }
@@ -130,6 +139,22 @@ function addListeners(isInQueue, isInWatched) {
   // isInWatched
   //   ? watchedBtn.addEventListener('click', removeFromWatched)
   //   : watchedBtn.addEventListener('click', addToWatched);
+
+  if (!isInQueue) {
+    console.log('is queue');
+    queueBtn.addEventListener('click', addToQueue);
+  } else {
+    console.log('not in queue');
+    queueBtn.addEventListener('click', removeFromQueue);
+  }
+
+  if (!isInWatched) {
+    console.log('is watched');
+    watchedBtn.addEventListener('click', addToWatched);
+  } else {
+    console.log('not in watched');
+    watchedBtn.addEventListener('click', removeFromWatched);
+  }
 
   watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
 }
