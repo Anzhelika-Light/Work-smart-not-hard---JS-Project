@@ -1,4 +1,4 @@
-<button data-modal-open class="enter-btn" type="button">Enter</button>
+<!--<button data-modal-open class="enter-btn" type="button">Enter</button>-->
 <div data-modal class="backdrop-modal-login is-hidden">
   <div class="login-window">
     <div class="form-login" id="profile">
@@ -13,7 +13,8 @@
       </button>
     </div>
     <form class="form-login" id="form-login">
-      <div class="form-login__item">
+      <p class="form-login__authorized">You are not authorized</p>
+      <div class="form-login__item form-login__margin">
         <label class="login-lbl" for="user_login">Email</label>
         <input
           class="login"
@@ -23,7 +24,7 @@
           placeholder="Login"
         />
       </div>
-      <div class="form-login__item form-login__margin">
+      <div class="form-login__item">
         <label class="password-lbl" for="user_password">Password</label>
         <input
           id="user_password"
