@@ -34,7 +34,9 @@ async function createMarkup(data) {
             alt="The poster of ${item.title} film"
             class="trending-gallery__image" data-id="${item.id}" />
       <div class="trending-gallery__wrapper">
-      <h3 class="trending-gallery__title">${item.title}</h3>
+      <h3 class="trending-gallery__title" data-id="${item.id}">${
+          item.title
+        }</h3>
       <p class="trending-gallery__info">${genres}<span>${item.release_date.slice(
           0,
           4

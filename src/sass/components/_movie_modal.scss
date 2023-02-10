@@ -187,7 +187,7 @@
     }
   }
   &__btn-watch-trailer {
-    height: 70px;
+    height: auto;
 
     @include tablet {
       height: 44px;
