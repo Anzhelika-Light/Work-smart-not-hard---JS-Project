@@ -1,9 +1,11 @@
 import emptyphoto from '../../images/empty-photo/empty-poster.jpg';
-import TmdbAPI from '../TMDB_API';
+// import TmdbAPI from '../TMDB_API';
+
+const IMG_PATH = 'https://image.tmdb.org/t/p/original';
 
 export function renderMoviesLibrary(movie) {
   const { poster_path, title, genres, release_date, vote_average } = movie;
-  let poster = `${TmdbAPI.IMG_BASE_URL}${poster_path}`;
+  let poster = `${IMG_PATH}${poster_path}`;
   let releaseDate = `${release_date.slice(0, 4)}`;
 
   // якщо немає постера

@@ -6,8 +6,14 @@ const watchedBtnEl = document.querySelector('.js-library-btn--watched');
 const queueBtnEl = document.querySelector('.js-library-btn--queue');
 const movieListEl = document.querySelector('.movie-list');
 
+onWatchedBtnClick();
+watchedBtnEl.style.background = '#ff6b01';
+watchedBtnEl.style.borderColor = '#ff6b01';
+
 // при натисканні на Watched
 function onWatchedBtnClick() {
+  watchedBtnEl.style.background = '#ff6b01';
+  watchedBtnEl.style.borderColor = '#ff6b01';
   const movieWatched = gettingItem('movieWatched');
   if (movieWatched.length === 0) {
     movieListEl.innerHTML =
@@ -24,6 +30,8 @@ function onWatchedBtnClick() {
 }
 
 function onQueueBtnClick() {
+  watchedBtnEl.style.background = 'transparent';
+  watchedBtnEl.style.borderColor = '#ffffff';
   const movieQueue = gettingItem('movieQueue');
   // console.log(movieQueue);
   if (movieQueue.length === 0) {
