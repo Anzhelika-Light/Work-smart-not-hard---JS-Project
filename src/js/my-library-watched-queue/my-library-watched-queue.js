@@ -53,6 +53,7 @@ function onWatchedBtnClick() {
   spinnerStart();
 
   const movieWatched = gettingItem('movieWatched');
+  console.log(movieWatched);
   if (movieWatched.length === 0) {
     movieListEl.innerHTML =
       "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
