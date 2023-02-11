@@ -15,6 +15,9 @@ watchedBtnEl.style.borderColor = '#ff6b01';
 function onWatchedBtnClick() {
   spinnerStart();
 
+  queueBtnEl.style.background = 'transparent';
+  queueBtnEl.style.borderColor = '#ffffff';
+
   watchedBtnEl.style.background = '#ff6b01';
   watchedBtnEl.style.borderColor = '#ff6b01';
   const movieWatched = gettingItem('movieWatched');
@@ -35,6 +38,10 @@ function onWatchedBtnClick() {
 
 function onQueueBtnClick() {
   spinnerStart();
+
+  queueBtnEl.style.background = '#ff6b01';
+  queueBtnEl.style.borderColor = '#ff6b01';
+
   watchedBtnEl.style.background = 'transparent';
   watchedBtnEl.style.borderColor = '#ffffff';
   const movieQueue = gettingItem('movieQueue');
