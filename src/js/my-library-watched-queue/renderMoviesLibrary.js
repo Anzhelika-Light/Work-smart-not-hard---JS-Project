@@ -25,7 +25,7 @@ export function renderMoviesLibrary(movie) {
 	<li class='trending-gallery__item' data-id='${movie_id}'>
     <img src="${poster}" alt="The poster of ${title} film" class="library-gallery__image" data-id='${movie_id}'/>
     <div class="trending-gallery__wrapper">
-    	<h3 class='trending-gallery__title' data-id='${movie_id}'>${title}</h3>
+    	<h3 class='trending-gallery__title' data-id='${movie_id}'><span class="title-modal-open">${title}</span></h3>
     	<p class='trending-gallery__info'>${genres.join(
         ', '
       )} | <span class='movie-year'>${releaseDate}</span> <span class='movie-rating'>${voteAverageFixed}</span></p>
