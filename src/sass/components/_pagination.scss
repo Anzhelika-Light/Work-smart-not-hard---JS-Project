@@ -1,0 +1,83 @@
+
+.films-pagination{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.pagination__container {
+  display:flex;
+  justify-content: center;
+}
+
+
+.films-pagination__container {
+  margin-top: 40px;
+    @media screen and (min-width: 768px) {
+        margin-top: 60px;
+      }
+}
+
+.pagination__btn {
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  color: $primary-black-color;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+ transform: scale(1);
+  transition: background-color $cubic, color $cubic;
+
+  &:hover:not(:disabled),
+  &:focus {
+color: $primary-white-color;
+    background-color: $main-accent-color;
+    
+  }
+}
+
+.pagination__btn--active {
+  background-color: $active-btn-color;
+  color: $primary-white-color;
+}
+
+.pagination__btn--prev,
+.pagination__btn--next,
+.pagination__btn--ellipsis
+ {
+ 
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+.pagination__btn--prev{
+  background-color: $additional-bg-color;
+  background-image: url(../images/icons/arrow-left.svg);
+}
+.pagination__btn--next{
+  background-color: $additional-bg-color;
+  background-image: url(../images/icons/arrow-right.svg);
+}
+.pagination__btn--ellipsis {
+  @media screen and (max-width: 767px) {
+      display: none;
+  }    
+background-image: url(../images/icons/ellipsis.svg);
+}
+
+
+
+
+//  @media screen and (max-width: 767px) {
+//  .pagination__btn--first,
+//   .pagination__btn--last {
+// display: none;
+//   }
+
+
+   
+//  }

@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://Anzhelika-Light.github.io/Work-smart-not-hard---JS-Project",
   "scripts": {
-    "start": "parcel src/*.html",
+    "start": "parcel src/*.html -p 7878",
     "build": "parcel build src/*.html --public-url /Work-smart-not-hard---JS-Project/"
   },
   "repository": {
@@ -18,13 +18,22 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "axios": "^1.3.2",
+    "basiclightbox": "^5.0.4",
+    "firebase": "^9.17.1",
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.6",
+    "ultimate-pagination": "^1.0.0"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.6.0",
     "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
+    "darkmode-js": "^1.5.7",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4"
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }

@@ -1,0 +1,83 @@
+.trailer-modal {
+  position: absolute;
+  padding: 25px 25px;
+  width: 350px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+}
+
+.lightbox__button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 25px;
+  height: 25px;
+  padding: 0;
+
+  z-index: 1001;
+  background-image: url('../images/icons/icon-close.svg');
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  background-color: transparent;
+  background-color: $primary-white-color;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: background-color $cubic;
+
+  &:hover,
+  &:focus {
+    background-color: $main-accent-color;
+    background-image: url('../images/icons/icon-close_white.svg');
+  }
+}
+.trailer-modal__video {
+  border-radius: 3%;
+}
+
+@media (min-width: 500px) {
+  .trailer-modal {
+    width: 450px;
+    height: 350px;
+  }
+  .lightbox__button {
+    top: 2px;
+    right: 2px;
+  }
+}
+
+@media (max-width: 767px) {
+   .lightbox__button {
+    top: 12px;
+    right: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .trailer-modal {
+    width: 740px;
+    height: 590px;
+    margin: 0%;
+    padding: 40px 40px;
+  }
+  .lightbox__button {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .trailer-modal {
+    width: 1000px;
+    height: 650px;
+  }
+}

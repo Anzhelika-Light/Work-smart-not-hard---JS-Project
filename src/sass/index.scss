@@ -1,2 +1,11 @@
 @import './common';
-
+@import './utils/mixins';
+@import './utils/variables';
+@import './utils/visually-hidden';
+@import './base/base';
+@import './base/main_container';
+@import './base/library_container';
+@import './components/main_header';
+@import './components/library_header';
+@import './components/movie_card';
+@import './components/buttons';

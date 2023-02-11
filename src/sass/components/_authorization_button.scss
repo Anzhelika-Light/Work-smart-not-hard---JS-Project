@@ -1,0 +1,42 @@
+.sign-in-btn {
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border: 1px solid $primary-white-color;
+  border-radius: 50%;
+  fill: $primary-white-color;
+  transform: scale(1);
+  transition: border-color $cubic, background-color $cubic, transform $cubic;
+
+  @media screen and (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  & svg {
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in;
+  }
+
+  &:hover {
+    border-color: $active-btn-color;
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    background-color: $active-btn-color;
+    border-color: transparent;
+    transform: scale(1.05);
+  }
+
+  &:hover svg {
+    transform: scale(1.01);
+    fill: $active-btn-color;
+  }
+
+  &:focus svg {
+    transform: scale(1.01);
+    fill: $active-btn-color;
+  }
+}

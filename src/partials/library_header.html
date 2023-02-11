@@ -1,0 +1,44 @@
+<header class="library-header">
+  <include src="./partials/dark-toggle.html"></include>
+  <div class="container">
+    <div class="library-header__link-container">
+      <nav class="library-nav">
+        <a href="./index.html" class="library-nav__logo">
+          <svg
+            class="library-nav__logo-img"
+            width="24"
+            height="24"
+            aria-label=""
+          >
+            <use href="./images/sprite.svg#film"></use>
+          </svg>
+          <span class="library-nav__logo-text">Filmoteka</span>
+        </a>
+        <ul class="library-nav__list">
+          <li>
+            <a href="./" class="library-nav__link">Home</a>
+          </li>
+          <li>
+            <a href="./library.html" class="library-nav__link active-link"
+              >My library</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <button
+        data-switch
+        data-modal-open
+        type="button"
+        class="sign-in-btn"
+      ></button>
+    </div>
+    <div class="library-btn__container">
+      <button type="button" class="library-btn js-library-btn--watched">
+        Watched
+      </button>
+      <button type="button" class="library-btn js-library-btn--queue">
+        Queue
+      </button>
+    </div>
+  </div>
+</header>
