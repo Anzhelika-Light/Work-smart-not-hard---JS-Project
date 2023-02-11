@@ -83,13 +83,20 @@ function onQueueBtnClick() {
 
   const movieQueue = gettingItem('movieQueue');
 
-  if (movieQueue.length === 0) {
+  if (movieQueue === undefined) {
     movieListEl.innerHTML =
       "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
     setTimeout(spinnerStop, 500);
 
     return;
   }
+  // if (movieQueue.length === 0) {
+  //   movieListEl.innerHTML =
+  //     "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+  //   setTimeout(spinnerStop, 500);
+
+  //   return;
+  // }
 
   const moviesCards = movieQueue
     .map(movie => {
