@@ -68,9 +68,9 @@ async function createMarkup(data) {
              />
 
       <div class="trending-gallery__wrapper">
-      <h3 class="trending-gallery__title" data-id="${item.id}">${
-          item.title
-        }</h3>
+      <h3 class="trending-gallery__title" data-id="${
+        item.id
+      }"><span class="title-modal-open">${item.title}</span></h3>
       <p class="trending-gallery__info">${genres}<span class="find-by-year-js">${item.release_date.slice(
           0,
           4
