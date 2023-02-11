@@ -18,8 +18,8 @@ const {
 // Наступні два рядки - додавання даних в об'єкти з local storage для коректного відображення кнопок і роботи
 let queue = JSON.parse(localStorage.getItem('movieQueue')) || [];
 let watched = JSON.parse(localStorage.getItem('movieWatched')) || [];
-allCardsSection.addEventListener('click', showModal);
-// sectionLibrary.addEventListener('click', showModal);
+// allCardsSection.addEventListener('click', showModal);
+sectionLibrary.addEventListener('click', showModal);
 
 function updateMoviesList() {
   const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
@@ -27,18 +27,13 @@ function updateMoviesList() {
   return allMoviesList;
 }
 export async function showModal(e) {
-  const titleSpanEl = document.querySelector('.title-modal-open');
-
-  if (
-    e.target.nodeName === 'IMG' ||
-    e.target.className === 'title-modal-open'
-  ) {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'SPAN') {
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
     overflow.classList.add('overflow-height');
 
-    allCardsSection.removeEventListener('click', showModal);
-    // sectionLibrary.removeEventListener('click', showModal);
+    // allCardsSection.removeEventListener('click', showModal);
+    sectionLibrary.removeEventListener('click', showModal);
 
     document.addEventListener('keydown', closeModalOnEsc);
     closeBtn.addEventListener('click', closeModal);
@@ -74,8 +69,8 @@ function closeModal() {
   overflow.classList.add('hidden-movie-modal');
   overflow.classList.remove('overflow-height');
 
-  allCardsSection.addEventListener('click', showModal);
-  // sectionLibrary.addEventListener('click', showModal);
+  // allCardsSection.addEventListener('click', showModal);
+  sectionLibrary.addEventListener('click', showModal);
 
   document.removeEventListener('keydown', closeModal);
   closeBtn.removeEventListener('click', closeModal);
@@ -89,12 +84,13 @@ function closeModal() {
 async function createModal(id) {
   const currentList = updateMoviesList();
   const rendered = await renderModal(currentList, id, watched, queue);
+  // console.log('rendered info', rendered);
   innerModal.innerHTML = rendered;
 }
 // Далі і до кінця йдуть два обробники: watched i queue, які самі вирішують, додавати чи видаляти в результаті перевірки
 async function handleWatched(e) {
   const modalEl = document.querySelector('.movie-modal__main');
-
+  console.log('modalEl', modalEl.dataset);
   const movie = {
     poster_path: modalEl.dataset.poster,
     title: modalEl.dataset.title,
@@ -103,30 +99,35 @@ async function handleWatched(e) {
     vote_average: modalEl.dataset.votes,
     id: modalEl.dataset.id,
   };
-
+  console.log('movie', movie);
   const isInWatched = watched.some(film => film.id === movie.id);
-
+  console.log('inInWatched', isInWatched);
+  console.dir(e.target);
   if (e.target.innerText === 'ADD TO WATCHED') {
     if (!isInWatched) {
       watched.push(movie);
       localStorage.setItem('movieWatched', JSON.stringify(watched));
       e.target.innerText = 'Remove from watched';
-
+      console.log('movie', movie);
+      console.log('watched', watched);
       const saved = JSON.parse(localStorage.getItem('movieWatched'));
-
+      console.log('saved', saved);
+      // e.target.addEventListener('click', removeFromWatched);
+      // e.target.removeEventListener('click', addToWatched);
       Notiflix.Notify.success('Added to watched!');
     }
   } else if (e.target.innerText === 'REMOVE FROM WATCHED') {
     watched = watched.filter(film => film.id !== movie.id);
     localStorage.setItem('movieWatched', JSON.stringify(watched));
     e.target.innerText = 'Add to watched';
-
+    // e.target.removeEventListener('click', removeFromWatched);
+    // e.target.addEventListener('click', addToWatched);
     Notiflix.Notify.success('Removed from watched!');
   }
 }
 async function handleQueued(e) {
   const modalEl = document.querySelector('.movie-modal__main');
-
+  console.log('modalEl', modalEl.dataset);
   const movie = {
     poster_path: modalEl.dataset.poster,
     title: modalEl.dataset.title,
@@ -135,9 +136,10 @@ async function handleQueued(e) {
     vote_average: modalEl.dataset.votes,
     id: modalEl.dataset.id,
   };
-
+  console.log('movie', movie);
   const isInQueued = queue.some(film => film.id === movie.id);
-
+  console.log(isInQueued);
+  console.dir(e.target);
   if (e.target.innerText === 'ADD TO QUEUE') {
     if (!isInQueued) {
       queue.push(movie);

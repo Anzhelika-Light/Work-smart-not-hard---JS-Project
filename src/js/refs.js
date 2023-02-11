@@ -4,6 +4,7 @@ export const refs = {
   ),
   paginationContainer: '',
   allCardsSection: document.querySelector('.trending-gallery'),
+  sectionLibrary: document.querySelector('.section-library'),
   modal: document.querySelector('.movie-modal'),
   overflow: document.querySelector('.overflow'),
   closeBtn: document.querySelector('.movie-modal__close-btn'),
