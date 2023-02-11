@@ -9,7 +9,7 @@ export function renderMoviesLibrary(movie) {
   let poster = `${IMG_PATH}${poster_path}`;
 
   let releaseDate = `${release_date.slice(0, 4)}`;
-  console.log(id);
+
   // якщо немає постера
 
   if (poster_path || testImage(poster)) {
