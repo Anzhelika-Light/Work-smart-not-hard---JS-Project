@@ -43,9 +43,6 @@ function findMoviesByGenre(event) {
   }
 
   genreID = TmdbAPI.genreIDs[genre.toLowerCase()];
-  console.log(genreID);
-
-  console.log('searched genre: ', genre);
 
   deletePaginationInterface();
   userGenreForPagination = genreID;
@@ -55,7 +52,6 @@ function findMoviesByGenre(event) {
     .fetchMoviesByGenre(`${TmdbAPI.genreIDs[genre.toLowerCase()]}`)
     .then(response => {
       const { data } = response;
-      console.log('які фільми за резальтатами запиту за ЖАНРОМ прийшли', data);
 
       if (data.total_results === 0) {
         Notify.failure('Search result not successful.');

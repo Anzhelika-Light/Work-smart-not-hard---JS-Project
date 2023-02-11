@@ -99,7 +99,6 @@ export function makeAdvancedSearch(optionsObj) {
     .fetchAdvancedMovieSearch(optionsObj)
     .then(response => {
       const { data } = response;
-      console.log('який обэкт прийшов за результатом РОЗШИРЕНОГО пошуку', data);
 
       scrollToTop();
       searchRefs.galleryEl.innerHTML = makeHMTLString(response.data);
@@ -150,7 +149,7 @@ function onAdvancedSearchElSubmit(event) {
   tooglePagination.isFilmsByYearShown = true;
   //checking search year input
   let searchYear = searchRefs.advancedSearchEl.year.value;
-  // console.log('searchYear', searchYear);
+
   if (!checkYear(searchYear)) {
     searchYear = new Date().getFullYear();
   }
