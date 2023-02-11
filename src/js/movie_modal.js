@@ -69,6 +69,7 @@ export async function showModal(e) {
     console.log('e.target', e.target);
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
+    overflow.classList.add('overflow-height');
 
     allCardsSection.removeEventListener('click', showModal);
     document.addEventListener('keydown', closeModalOnEsc);
@@ -98,6 +99,7 @@ function closeModalOnEsc(e) {
 function closeModal() {
   modal.classList.add('hidden-movie-modal');
   overflow.classList.add('hidden-movie-modal');
+  overflow.classList.remove('overflow-height');
 
   allCardsSection.addEventListener('click', showModal);
 

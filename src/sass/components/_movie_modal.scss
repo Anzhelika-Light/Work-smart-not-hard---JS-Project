@@ -232,6 +232,10 @@
   overflow-y: auto;
 }
 
+.overflow-height {
+  height: 100vh;
+}
+
 .hidden-movie-modal {
   opacity: 0;
   pointer-events: none;
