@@ -45,19 +45,10 @@ async function defaultLibrary() {
 defaultLibrary();
 // --/дефолт інфа в бібліотеці
 
-// onWatchedBtnClick();
-// watchedBtnEl.style.background = '#ff6b01';
-// watchedBtnEl.style.borderColor = '#ff6b01';
-
 // при натисканні на Watched
 function onWatchedBtnClick() {
   spinnerStart();
 
-  queueBtnEl.style.background = 'transparent';
-  queueBtnEl.style.borderColor = '#ffffff';
-
-  watchedBtnEl.style.background = '#ff6b01';
-  watchedBtnEl.style.borderColor = '#ff6b01';
   const movieWatched = gettingItem('movieWatched');
   if (movieWatched.length === 0) {
     movieListEl.innerHTML =
@@ -79,11 +70,6 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   spinnerStart();
 
-  queueBtnEl.style.background = '#ff6b01';
-  queueBtnEl.style.borderColor = '#ff6b01';
-
-  watchedBtnEl.style.background = 'transparent';
-  watchedBtnEl.style.borderColor = '#ffffff';
   const movieQueue = gettingItem('movieQueue');
   // console.log(movieQueue);
   if (movieQueue.length === 0) {
