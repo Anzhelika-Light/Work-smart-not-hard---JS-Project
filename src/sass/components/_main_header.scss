@@ -42,18 +42,17 @@
 .header__link-container {
   // margin-bottom: 54px;
   margin-bottom: 42px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @media screen and (min-width: 768px) {
-    // margin-bottom: 41px;
     margin-bottom: 25px;
   }
 }
 
 .nav {
+  margin-right: auto;
   display: flex;
   gap: 60px;
   align-items: center;
@@ -74,10 +73,6 @@
 
 .nav__logo-img {
   stroke: $primary-white-color;
-
-  @media screen and (min-width: 1280px) {
-    margin-right: 10px;
-  }
 }
 
 .nav__logo-text {
@@ -100,7 +95,7 @@
   column-gap: 20px;
 
   @media screen and (min-width: 768px) {
-    margin-right: 40px;
+    column-gap: 40px;
   }
 }
 
