@@ -11,21 +11,25 @@ const { allCardsSection, modal, overflow, closeBtn, innerModal, body } = refs;
 let queue = JSON.parse(localStorage.getItem('movieQueue')) || [];
 let watched = JSON.parse(localStorage.getItem('movieWatched')) || [];
 allCardsSection.addEventListener('click', showModal);
+
 function updateMoviesList() {
   const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
   const allMoviesList = JSON.parse(allMoviesListFromStorage);
   return allMoviesList;
 }
 export async function showModal(e) {
-  if (e.currentTarget !== e.target) {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'SPAN') {
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
+    overflow.classList.add('overflow-height');
+
     allCardsSection.removeEventListener('click', showModal);
     document.addEventListener('keydown', closeModalOnEsc);
     closeBtn.addEventListener('click', closeModal);
     overflow.addEventListener('click', closeModalOverflow);
+
     const id =
-      e.target.nodeName === 'LI'
+      e.target.nodeName === 'IMG'
         ? e.target.dataset.id
         : e.target.closest('li').dataset.id;
     await createModal(id);
@@ -61,6 +65,7 @@ function closeModal() {
   body.style.top = '';
   window.scrollTo(0, parseInt(top || '0') * -1);
 }
+
 async function createModal(id) {
   const currentList = updateMoviesList();
   const rendered = await renderModal(currentList, id, watched, queue);
