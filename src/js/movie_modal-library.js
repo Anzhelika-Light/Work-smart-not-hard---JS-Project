@@ -18,8 +18,8 @@ const {
 // Наступні два рядки - додавання даних в об'єкти з local storage для коректного відображення кнопок і роботи
 let queue = JSON.parse(localStorage.getItem('movieQueue')) || [];
 let watched = JSON.parse(localStorage.getItem('movieWatched')) || [];
-allCardsSection.addEventListener('click', showModal);
-// sectionLibrary.addEventListener('click', showModal);
+// allCardsSection.addEventListener('click', showModal);
+sectionLibrary.addEventListener('click', showModal);
 
 function updateMoviesList() {
   const allMoviesListFromStorage = localStorage.getItem('currentFilmList');
@@ -27,18 +27,13 @@ function updateMoviesList() {
   return allMoviesList;
 }
 export async function showModal(e) {
-  const titleSpanEl = document.querySelector('.title-modal-open');
-
-  if (
-    e.target.nodeName === 'IMG' ||
-    e.target.className === 'title-modal-open'
-  ) {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'SPAN') {
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
     overflow.classList.add('overflow-height');
 
-    allCardsSection.removeEventListener('click', showModal);
-    // sectionLibrary.removeEventListener('click', showModal);
+    // allCardsSection.removeEventListener('click', showModal);
+    sectionLibrary.removeEventListener('click', showModal);
 
     document.addEventListener('keydown', closeModalOnEsc);
     closeBtn.addEventListener('click', closeModal);
@@ -74,8 +69,8 @@ function closeModal() {
   overflow.classList.add('hidden-movie-modal');
   overflow.classList.remove('overflow-height');
 
-  allCardsSection.addEventListener('click', showModal);
-  // sectionLibrary.addEventListener('click', showModal);
+  // allCardsSection.addEventListener('click', showModal);
+  sectionLibrary.addEventListener('click', showModal);
 
   document.removeEventListener('keydown', closeModal);
   closeBtn.removeEventListener('click', closeModal);

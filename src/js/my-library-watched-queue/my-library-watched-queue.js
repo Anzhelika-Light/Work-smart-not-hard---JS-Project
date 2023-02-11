@@ -19,9 +19,9 @@ async function defaultLibrary() {
     const IMG_PATH = 'https://image.tmdb.org/t/p/original';
     movieListEl.innerHTML = '';
     const films = await fetchPopularFilms(page);
-    console.log(films.results);
+    // console.log(films.results);
 
-    const markup = `<h3 class='library-gallery-recomend'>RECOMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
+    const markup = `<h3 class='library-gallery-recomend'>RECOMMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
     <div><p class='library-gallery__default__title'>${films.results[1].title}</p>
     <p class='library-gallery__default-overview'>${films.results[1].overview}</p></div>
     </div>
@@ -35,7 +35,7 @@ async function defaultLibrary() {
     <div><p class='library-gallery__default__title'>${films.results[3].title}</p>
     <p class='library-gallery__default-overview'>${films.results[3].overview}</p></div>
     </div>`;
-    console.log(markup);
+    // console.log(markup);
     movieListEl.innerHTML = markup;
   } catch (error) {
     console.log(error);
