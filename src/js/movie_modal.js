@@ -125,7 +125,7 @@ async function handleWatched(e) {
     }
   } else if (e.target.innerText === 'REMOVE FROM WATCHED') {
     watched = watched.filter(film => film.id !== movie.id);
-    localStorage.removeItem('movieWatched', JSON.stringify(watched));
+    localStorage.setItem('movieWatched', JSON.stringify(watched));
     e.target.innerText = 'Add to watched';
     // e.target.removeEventListener('click', removeFromWatched);
     // e.target.addEventListener('click', addToWatched);
@@ -165,7 +165,7 @@ async function handleQueued(e) {
     }
   } else if (e.target.innerText === 'REMOVE FROM QUEUE') {
     queue = queue.filter(film => film.id !== movie.id);
-    localStorage.removeItem('movieQueue', JSON.stringify(watched));
+    localStorage.setItem('movieQueue', JSON.stringify(queue));
 
     e.target.innerText = 'Add to queue';
     // e.target.removeEventListener('click', removeFromWatched);
