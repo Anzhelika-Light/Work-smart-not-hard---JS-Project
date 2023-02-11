@@ -1,11 +1,9 @@
 import emptyPhoto from '../images/empty-photo/empty-poster.jpg';
 import { fetchMovie } from './fetch_movie_details';
 import getGenres from './trending-search-main/fetch-genres';
-import * as basicLightbox from 'basiclightbox';
-
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
-
+  console.log('modie detils for Anya', movieDetails);
   const {
     poster_path,
     original_title,
@@ -17,23 +15,36 @@ export async function renderModal(list, id, watched, queue) {
     overview,
     id: film_id,
   } = movieDetails;
-  const genreList = await getGenres();
-
-  const finalGenres = [];
-  genres.forEach(genre => {
-    finalGenres.push(genreList[genre.id]);
+  // const genreList = await getGenres();
+  // console.log('genres', genres);
+  //////трохи скоригувала отримання жанрів, бо не працювало
+  // const finalGenres = [];
+  const finalGenres = genres.map(genre => {
+    console.log('single genre', genre);
+    return genre.name;
   });
-
-  const foundInWatched = watched.find(film => film[id] === film_id);
-  const foundInQueue = queue.find(film => film.id === film_id);
-
-  const isInQueue = !!foundInQueue;
-  const isInWatched = !!foundInWatched;
-
+  // console.log('final genres', finalGenres);
+  // для отримання даних про фільм додаю іх в data-атрибути
+  const modalEl = document.querySelector('.movie-modal__main');
+  modalEl.setAttribute('data-poster', poster_path);
+  modalEl.setAttribute('data-title', title);
+  modalEl.setAttribute('data-genres', finalGenres);
+  modalEl.setAttribute('data-date', movieDetails.release_date);
+  modalEl.setAttribute('data-votes', vote_average);
+  modalEl.setAttribute('data-id', id);
+  ///////////////////////////////////////////////////////////
+  // також скоригувала наступні два рядки коду: отримання інфи, чи є даний фільм в бібліотеці,
+  // для того, щоб відобразити правильний текст на кнопці
+  const isInQueue = queue.some(film => film.id === id);
+  const isInWatched = watched.some(film => film.id === id);
+  console.log('is in watched and in queue', isInWatched, isInQueue);
+  console.log('rendering', watched, queue);
+  //////////////////////////////////////////////////////////////
+  // const isInQueue = foundInQueue;
+  // const isInWatched = foundInWatched;
   const queueBtnMarkup = isInQueue
     ? `<button class="modal__btn-queue interactive-button" data-id=${id}>remove from queue</button>`
     : `<button class="modal__btn-queue interactive-button" data-id=${id}>add to queue</button>`;
-
   const watchedBtnMarkup = isInWatched
     ? `<button class="modal__btn-watched interactive-button" data-id=${id}>
         remove from Watched
@@ -41,7 +52,6 @@ export async function renderModal(list, id, watched, queue) {
     : `<button class="modal__btn-watched interactive-button" data-id=${id}>
         add to Watched
       </button>`;
-
   const voteCount =
     vote_count && vote_average
       ? `<li class="movie-modal__item">
@@ -87,9 +97,8 @@ export async function renderModal(list, id, watched, queue) {
     : `<div class="movie-modal__img">
       <img src="${emptyPhoto}" alt="photo coming soon" />
     </div>`;
-
-  return [
-    `${photoMarkup}
+  //фукнція повертає рядок розмітки, а не масив (ті дані нерелевантні, і я їх прибрала)
+  return `${photoMarkup}
     <div class="movie-modal__about">
       <h2 class="movie-modal__headline">${title}</h2>
       <ul class="movie-modal__list">
@@ -100,36 +109,12 @@ export async function renderModal(list, id, watched, queue) {
       </ul>
       ${overviewMarkup}
           <div class="movie-modal__buttons">
-
           <div class="movie-modal__add-btns">
-            ${watchedBtnMarkup}
-            ${queueBtnMarkup}
-          </div>
-
+          ${watchedBtnMarkup}
+          ${queueBtnMarkup}
+        </div>
       <button class='movie-modal_btn-watched interactive-button movie-modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
     </div>
     </div>
-    `,
-    ,
-    isInQueue,
-    isInWatched,
-  ];
+    `;
 }
-
-// export const renderModal = basicLightbox.create({
-//   onShow: renderModal => {
-//     renderModal.element().querySelector('.modal__close-btn').onclick =
-//       renderModal.close;
-//     document.addEventListener('keydown', onEscapePress);
-//   },
-
-//   onClose: renderModal => {
-//     document.removeEventListener('keydown', onEscapePress);
-//   },
-// });
-
-// function onEscapePress(event) {
-//   if (event.code === 'Escape') {
-//     renderModal.close();
-//   }
-// }

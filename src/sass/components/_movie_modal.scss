@@ -206,7 +206,7 @@
   font-size: 12px;
   text-align: center;
   line-height: calc(16 / 12);
-  border: 1px solid;
+  border: 1px solid $primary-black-color;
   border-radius: 5px;
   text-transform: uppercase;
   background-color: transparent;
@@ -221,9 +221,13 @@
   }
 }
 
-.interactive-button:hover {
-  background: #ff6b01;
-  color: #ffffff;
+
+.interactive-button:hover,
+.interactive-button:focus {
+  background-color: $main-accent-color;
+  color: $primary-white-color;
+  border: 1px solid transparent;
+
 }
 
 .overflow {

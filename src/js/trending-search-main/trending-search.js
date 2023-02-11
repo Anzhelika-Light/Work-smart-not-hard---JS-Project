@@ -6,10 +6,7 @@ import ultimatePagination from 'ultimate-pagination';
 import { userQueryForPagination } from '../movie-search/search-by-keyword';
 import { userYearForPagination } from '../movie-search/search-by-year.js';
 import { userGenreForPagination } from '../movie-search/search-by-genre.js';
-import {
-  userAdvancedSearchForPagination,
-  makeAdvancedSearch,
-} from '../movie-search/advanced-search.js';
+import { userAdvancedSearchForPagination,  makeAdvancedSearch } from '../movie-search/advanced-search.js';
 import { spinnerStart, spinnerStop } from '../loader';
 import { refs } from '../refs';
 import { searchRefs, tmdbAPI, scrollToTop } from '../movie-search/search-refs';
@@ -96,6 +93,7 @@ function getGenreDeciphered(filmObject, genresList) {
 async function renderPopularFilms(page) {
   try {
     cardList.innerHTML = '';
+    spinnerStart();
     const films = await fetchPopularFilms(page);
     console.log('прийшов обєкт таких трендингових фільмів', films);
 
@@ -108,6 +106,10 @@ async function renderPopularFilms(page) {
     if (films) renderPaginationInterface(page, paginationSettings.totalPages);
   } catch (error) {
     console.dir(error);
+  } finally {
+    setTimeout(() => {
+      spinnerStop();
+    }, 1000);
   }
 }
 
