@@ -206,10 +206,12 @@ const studentCards = basicLightbox.create(
     onShow: studentCards => {
       studentCards.element().querySelector('.modal__close-btn').onclick =
         studentCards.close;
+      document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', onEscapePress);
     },
 
     onClose: studentCards => {
+      document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', onEscapePress);
     },
   }
