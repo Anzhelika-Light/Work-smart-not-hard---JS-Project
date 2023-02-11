@@ -31,7 +31,7 @@ const studentCards = basicLightbox.create(
           <h3 class="team-list__title">Svitlana Honchar</h3>
           <p class="team-list__text">
             <span class="team-list__position">Scrum-master,</span>
-            "Add to Watched", "Add to Queue" buttons, Code Review, Presentation
+            "Add to Watched", "Add to Queue" buttons, Presentation
           </p>
           <a href="https://github.com/SvitlanaHonchar" target="_blank" class="github"></a>
         </div>
