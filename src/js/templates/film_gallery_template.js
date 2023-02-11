@@ -1,4 +1,5 @@
 import TmdbAPI from '../TMDB_API';
+import emptyphoto from '../../images/empty-photo/empty-poster.jpg';
 
 //converts string with genre names to HTML string with tags
 function getGenresHTMLString(str) {
@@ -22,6 +23,20 @@ function getGenresHTMLString(str) {
 }
 
 function addAdaptiveImgHTMLString(result) {
+  // // ----------
+  let poster = result.poster_path;
+  poster = result.poster_path;
+  let testImg = `${TmdbAPI.IMG_BASE_URL}/original${result.poster_path}`;
+  if (poster || testImage(testImg)) {
+    poster = result.poster_path;
+  } else {
+    return `<picture>
+  	<img src="${emptyphoto}" alt="The poster of ${result.title} film" class="trending-gallery__image" loading="lazy" data-id="${result.id}"/>
+	</picture>`;
+  }
+
+  //     // ----------
+
   return `
 	<picture>
 		<source srcset="${TmdbAPI.IMG_BASE_URL}/w185${result.poster_path} 185w, ${TmdbAPI.IMG_BASE_URL}/w342${result.poster_path} 342w, ${TmdbAPI.IMG_BASE_URL}/w500${result.poster_path} 500w" media="(max-width: 767px)" sizes="280px">
@@ -87,3 +102,12 @@ export function makeHMTLStringWithGenre({ results }, genre) {
     })
     .join('');
 }
+
+// -----------test
+function testImage(poster) {
+  let tester = new Image();
+  tester.addEventListener('load', () => console.log('loaded'));
+  tester.addEventListener('error', () => false);
+  tester.src = poster;
+}
+// -----------test
