@@ -164,9 +164,16 @@
     border: none;
     width: 30px;
     height: 30px;
-    top: 8px;
-    right: 8px;
-  }
+    top: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  background-color: transparent;
+  transition: background-color $cubic;
+    border-radius: 20px;
+     }
+         
 
   &__buttons {
     display: flex;
@@ -223,13 +230,17 @@
   display: grid;
   place-items: center;
   width: 100vw;
-  height: 100vh;
+  // height: 100vh;
   background-color: rgba(0, 0, 0, 0.329);
   z-index: 5;
   position: sticky;
   inset: 0;
   transition: opacity 500ms;
   overflow-y: auto;
+}
+
+.overflow-height {
+  height: 100vh;
 }
 
 .hidden-movie-modal {
@@ -246,4 +257,11 @@
 .movie-modal::-webkit-scrollbar-thumb {
   background-color: #ff6b01;
   border-radius: 5px;
+}
+
+
+.movie-modal__close-btn:hover,
+.movie-modal__close-btn:focus {
+  background-color: $main-accent-color;
+ 
 }

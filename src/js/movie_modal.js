@@ -64,11 +64,12 @@ function removeFromQueue(e) {
 }
 //e.currentTarget !== e.target &&
 export async function showModal(e) {
-  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'H3') {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'SPAN') {
     console.log('e.currentTarget', e.currentTarget);
     console.log('e.target', e.target);
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
+    overflow.classList.add('overflow-height');
 
     allCardsSection.removeEventListener('click', showModal);
     document.addEventListener('keydown', closeModalOnEsc);
@@ -98,6 +99,7 @@ function closeModalOnEsc(e) {
 function closeModal() {
   modal.classList.add('hidden-movie-modal');
   overflow.classList.add('hidden-movie-modal');
+  overflow.classList.remove('overflow-height');
 
   allCardsSection.addEventListener('click', showModal);
 
