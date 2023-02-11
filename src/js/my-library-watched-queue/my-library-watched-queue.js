@@ -2,14 +2,52 @@ import Notiflix from 'notiflix';
 import { renderMoviesLibrary } from './renderMoviesLibrary';
 import { userDataQueue, userDataWatched } from './data-template-local-storage';
 import { spinnerStart, spinnerStop } from '../loader';
+import fetchPopularFilms from '../trending-search-main/fetch-movies';
 
 const watchedBtnEl = document.querySelector('.js-library-btn--watched');
 const queueBtnEl = document.querySelector('.js-library-btn--queue');
 const movieListEl = document.querySelector('.movie-list');
 
-onWatchedBtnClick();
-watchedBtnEl.style.background = '#ff6b01';
-watchedBtnEl.style.borderColor = '#ff6b01';
+// --дефолт інфа в бібліотеці
+
+async function defaultLibrary() {
+  minPage = Math.ceil(1);
+  maxPage = Math.floor(100);
+  let page = Math.floor(Math.random() * (maxPage - minPage + 1) + minPage);
+
+  try {
+    const IMG_PATH = 'https://image.tmdb.org/t/p/original';
+    movieListEl.innerHTML = '';
+    const films = await fetchPopularFilms(page);
+    console.log(films.results);
+
+    const markup = `<h3 class='library-gallery-recomend'>RECOMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
+    <div><p class='library-gallery__default__title'>${films.results[1].title}</p>
+    <p class='library-gallery__default-overview'>${films.results[1].overview}</p></div>
+    </div>
+    
+    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[2].poster_path}>
+    <div><p class='library-gallery__default__title'>${films.results[2].title}</p>
+    <p class='library-gallery__default-overview'>${films.results[2].overview}</p></div>
+    </div>
+    
+    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[3].poster_path}>
+    <div><p class='library-gallery__default__title'>${films.results[3].title}</p>
+    <p class='library-gallery__default-overview'>${films.results[3].overview}</p></div>
+    </div>`;
+    console.log(markup);
+    movieListEl.innerHTML = markup;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+defaultLibrary();
+// --/дефолт інфа в бібліотеці
+
+// onWatchedBtnClick();
+// watchedBtnEl.style.background = '#ff6b01';
+// watchedBtnEl.style.borderColor = '#ff6b01';
 
 // при натисканні на Watched
 function onWatchedBtnClick() {

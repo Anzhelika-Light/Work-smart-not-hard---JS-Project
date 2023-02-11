@@ -104,11 +104,51 @@
   }
 }
 
+.library-gallery__default {
+  display: flex;
+  gap: 15px;
+  background-color: $primary-white-color;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.library-gallery__default-poster {
+  display: block;
+  width: 100px;
+  height: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.library-gallery__default__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+.library-gallery__default-overview {
+  margin-top: 20px;
+  // font-family: 'Roboto';
+  // font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.3em;
+}
+
+.library-gallery-recomend {
+  // margin-left: auto;
+  margin-right: auto;
+  background-color: $primary-white-color;
+  border-radius: 10px;
+  padding: 10px;
+  // text-align: center;
+}
+
 .no-movies {
   margin-left: auto;
   margin-right: auto;
   background-color: $primary-white-color;
   border-radius: 10px;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
