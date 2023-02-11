@@ -100,6 +100,7 @@ queueBtnEl.addEventListener('click', onQueueBtnClick);
 function gettingItem(key) {
   try {
     const serializedState = localStorage.getItem(key);
+    console.log(serializedState);
     if (serializedState === null) return undefined;
     return JSON.parse(serializedState);
     // return serializedState === null ? undefined : JSON.parse(serializedState);
