@@ -83,7 +83,7 @@ export default class TmdbAPI {
     return axios.get(
       `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
         this.#API_KEY
-      }&page=1&sort_by=popularity.desc&with_genres=${genre}`
+      }&page=${this.page}&sort_by=popularity.desc&with_genres=${genre}`
     );
   }
 
@@ -91,7 +91,7 @@ export default class TmdbAPI {
     return axios.get(
       `${TmdbAPI.BASE_URL}${this.#findByMovieResource}?api_key=${
         this.#API_KEY
-      }&page=1&sort_by=popularity.desc&primary_release_year=${year}`
+      }&page=${this.page}&sort_by=popularity.desc&primary_release_year=${year}`
     );
   }
 
@@ -100,7 +100,7 @@ export default class TmdbAPI {
     with_genres,
     sort_by = TmdbAPI.sort_by_types.POPULARITY_DESC,
     include_adult = false,
-    page = 1,
+    page = this.page,
     with_watch_monetization_types,
     without_genres = null,
   }) {

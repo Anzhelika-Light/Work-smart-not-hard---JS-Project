@@ -11,7 +11,6 @@ function getGenresHTMLString(str) {
     str = str.slice(0, indexOfOther);
     spliced = 'Other';
   }
-  console.log('genres-str: ', str);
   return (
     str
       .split(',')

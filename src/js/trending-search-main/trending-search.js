@@ -1,12 +1,40 @@
 import fetchPopularFilms from './fetch-movies';
 import getImages from './fetch-images-url';
 import getGenres from './fetch-genres';
-// import { isTrendingFilmsShown } from '../../index.js';
+
+import ultimatePagination from 'ultimate-pagination';
+import { userQueryForPagination } from '../movie-search/search-by-keyword';
+import { userYearForPagination } from '../movie-search/search-by-year.js';
+import { userGenreForPagination } from '../movie-search/search-by-genre.js';
 import {
-  renderPaginationInterface,
-  paginationSettings,
-  tooglePagination,
-} from '../pagination/paginationInterface';
+  userAdvancedSearchForPagination,
+  makeAdvancedSearch,
+} from '../movie-search/advanced-search.js';
+import { spinnerStart, spinnerStop } from '../loader';
+import { refs } from '../refs';
+import { searchRefs, tmdbAPI, scrollToTop } from '../movie-search/search-refs';
+import makeHMTLString from '../templates/film_gallery_template';
+
+export const tooglePagination = {
+  isTrendingFilmsShown: true,
+  isFilmsByQueryShown: false,
+  isFilmsByYearShown: false,
+  isFilmsByGenreShown: false,
+  isFilmsByAdvancedSearchShown: false,
+};
+export const paginationSettings = {
+  currentPage: 0,
+  totalPages: 0,
+  boundaryPagesRange: 1,
+  siblingPagesRange: 2,
+  hideEllipsis: false,
+  hidePreviousAndNextPagebtns: false,
+  hideFirstAndLastPagebtns: true,
+};
+
+let screen = window.matchMedia('(max-width: 767px)');
+setPaginationSettings(screen.matches);
+screen.addEventListener('change', onChange);
 
 const cardList = document.querySelector('.trending-gallery');
 
@@ -43,7 +71,7 @@ async function createMarkup(data) {
       <h3 class="trending-gallery__title" data-id="${item.id}">${
           item.title
         }</h3>
-      <p class="trending-gallery__info">${genres}<span>${item.release_date.slice(
+      <p class="trending-gallery__info">${genres}<span class="find-by-year-js">${item.release_date.slice(
           0,
           4
         )}</span></p>
@@ -69,29 +97,177 @@ async function renderPopularFilms(page) {
   try {
     cardList.innerHTML = '';
     const films = await fetchPopularFilms(page);
-    console.log('який обэкт фільмів прийшов від сервера', films);
+    console.log('прийшов обєкт таких трендингових фільмів', films);
 
     const markup = await createMarkup(films.results);
 
     cardList.innerHTML = markup;
-
     paginationSettings.totalPages = films.total_pages;
     tooglePagination.isTrendingFilmsShown = true;
 
     if (films) renderPaginationInterface(page, paginationSettings.totalPages);
-    console.log(
-      'в налаштуваннях пагінації поточна сторінка',
-      paginationSettings.currentPage
-    );
-    console.log(
-      'в налаштуваннях пагінації всього сторінок',
-      paginationSettings.totalPages
-    );
   } catch (error) {
     console.dir(error);
   }
 }
 
 renderPopularFilms(1);
-
 export default renderPopularFilms;
+
+export function deletePaginationInterface() {
+  refs.paginationContainer.removeEventListener('click', onLoadAnotherPage);
+  refs.filmsPaginationContainer.innerHTML = '';
+}
+
+export function renderPaginationInterface(currentPage, totalPages) {
+  refs.filmsPaginationContainer.innerHTML = createPaginationInterface(
+    currentPage,
+    totalPages
+  );
+  refs.paginationContainer = document.querySelector('.pagination__container');
+  refs.paginationContainer.addEventListener('click', onLoadAnotherPage);
+}
+
+function onChange() {
+  const { currentPage, totalPages } = paginationSettings;
+  setPaginationSettings(screen.matches);
+  renderPaginationInterface(currentPage, totalPages);
+}
+
+async function onLoadAnotherPage(e) {
+  try {
+    deletePaginationInterface();
+    const clickedBtn = e.target;
+    const indexOfPageToLoad = Number(clickedBtn.dataset.value);
+
+    if (tooglePagination.isTrendingFilmsShown) {
+      await renderPopularFilms(indexOfPageToLoad);
+      scrollToTop();
+      spinnerStart();
+      return;
+    } else if (tooglePagination.isFilmsByQueryShown) {
+      tmdbAPI.page = indexOfPageToLoad;
+
+      const response = await tmdbAPI.fetchFilmsByQuery(userQueryForPagination);
+      scrollToTop();
+      spinnerStart();
+      const { data } = response;
+      console.log(
+        'за ПОШУКОВИМ словом користувача прийшов такий обэкт фільмів',
+        data
+      );
+
+      searchRefs.galleryEl.innerHTML = makeHMTLString(data);
+      renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
+      return;
+    } else if (tooglePagination.isFilmsByYearShown) {
+      tmdbAPI.page = indexOfPageToLoad;
+      const response = await tmdbAPI.fetchMoviesByYear(userYearForPagination);
+      scrollToTop();
+      spinnerStart();
+      const { data } = response;
+      console.log('за запитом по РОКУ прийшов такий обєкт', data);
+      searchRefs.galleryEl.innerHTML = makeHMTLString(data);
+      renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
+      return;
+    } else if (tooglePagination.isFilmsByGenreShown) {
+      tmdbAPI.page = indexOfPageToLoad;
+      const response = await tmdbAPI.fetchMoviesByGenre(userGenreForPagination);
+      scrollToTop();
+      spinnerStart();
+      const { data } = response;
+      console.log(response);
+      console.log('за запитом по жанру прийшов такий обєкт за ЖАНРОМ?', data);
+      searchRefs.galleryEl.innerHTML = makeHMTLString(data);
+      renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
+      return;
+    } else if (tooglePagination.isFilmsByAdvancedSearchShown) {
+      userGenreForPagination.page = indexOfPageToLoad;
+      tmdbAPI.page = indexOfPageToLoad;
+
+      if (tooglePagination.isFilmsByAdvancedSearchShown) {
+        userAdvancedSearchForPagination.page = indexOfPageToLoad;
+      }
+      scrollToTop();
+      spinnerStart();
+      searchRefs.galleryEl.innerHTML = makeAdvancedSearch(
+        userAdvancedSearchForPagination
+      );
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setTimeout(spinnerStop, 1000);
+  }
+}
+
+function createPaginationInterface(currentPage, totalPages) {
+  paginationSettings.currentPage = currentPage;
+  paginationSettings.totalPages = totalPages;
+
+  const pagination = ultimatePagination.getPaginationModel(paginationSettings);
+
+  const btnsMarkup = pagination.map(createBtn).join('');
+
+  return `<ul class="pagination__container">${btnsMarkup}</ul>`;
+}
+
+function createBtn(btnType) {
+  const { type, value, isActive, key } = btnType;
+  let modifier;
+  switch (type) {
+    case 'PREVIOUS_PAGE_LINK':
+      modifier = '--prev';
+      return isActive
+        ? createIconBtnTemplate(modifier, value, 'disabled')
+        : createIconBtnTemplate(modifier, value);
+
+    case 'NEXT_PAGE_LINK':
+      modifier = '--next';
+      return isActive
+        ? createIconBtnTemplate(modifier, value, 'disabled')
+        : createIconBtnTemplate(modifier, value);
+
+    case 'ELLIPSIS':
+      modifier = '--ellipsis';
+      return createIconBtnTemplate(modifier, value);
+
+    case 'PAGE':
+      modifier = '--active';
+      return createDigitBtnTemplate(modifier, value, isActive, 'disabled');
+  }
+}
+
+function setMobilePaginationSettings() {
+  paginationSettings.boundaryPagesRange = 0;
+  paginationSettings.hideEllipsis = true;
+}
+
+function setStandartPaginationSettings() {
+  paginationSettings.boundaryPagesRange = 1;
+  paginationSettings.hideEllipsis = false;
+}
+
+function setPaginationSettings(isMobile) {
+  if (isMobile) {
+    setMobilePaginationSettings();
+  } else {
+    setStandartPaginationSettings();
+  }
+}
+
+function createIconBtnTemplate(modifier, value, disabled = '') {
+  return ` <li class="pagination__element">
+          <button type="button" class="pagination__btn pagination__btn${modifier}" data-value=${value} ${disabled}></button>
+        </li>`;
+}
+function createDigitBtnTemplate(modifier, value, isActive, disabled) {
+  return isActive
+    ? ` <li class="pagination__element">
+          <button type="button" class="pagination__btn pagination__btn${modifier}" data-value=${value} ${disabled}>${value}</button>
+        </li>`
+    : ` <li class="pagination__element">
+       <button type="button" class="pagination__btn" data-value=${value}>${value}</button>
+     </li>`;
+}
