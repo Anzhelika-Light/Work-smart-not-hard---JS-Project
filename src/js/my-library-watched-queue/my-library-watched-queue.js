@@ -61,13 +61,13 @@ function onWatchedBtnClick() {
 
     return;
   }
-  // if (movieWatched.length === 0) {
-  //   movieListEl.innerHTML =
-  //     "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
-  //   setTimeout(spinnerStop, 500);
+  if (movieWatched.length === 0) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
+    setTimeout(spinnerStop, 500);
 
-  //   return;
-  // }
+    return;
+  }
 
   const moviesCards = movieWatched
     .map(movie => {
@@ -90,13 +90,13 @@ function onQueueBtnClick() {
 
     return;
   }
-  // if (movieQueue.length === 0) {
-  //   movieListEl.innerHTML =
-  //     "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
-  //   setTimeout(spinnerStop, 500);
+  if (movieQueue.length === 0) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+    setTimeout(spinnerStop, 500);
 
-  //   return;
-  // }
+    return;
+  }
 
   const moviesCards = movieQueue
     .map(movie => {
