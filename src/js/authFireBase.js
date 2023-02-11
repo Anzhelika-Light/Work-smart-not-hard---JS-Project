@@ -10,7 +10,7 @@ import { getDatabase, ref, set, child, get, push, update } from "firebase/databa
 
 
 //data-template-local-storage.js////////////////////////////
-import { userDataWatched, userDataQueue } from "./my-library-watched-queue/data-template-local-storage.js"
+//import { userDataWatched, userDataQueue } from "./my-library-watched-queue/data-template-local-storage.js"
 
 
 export let currentUID = "";
@@ -30,6 +30,9 @@ const svg1 = ` <svg width="30" height="30"  viewBox="0 0 32 32" xmlns="http://ww
 
 const useEl = document.querySelector("[data-switch]");
 
+
+const watchedBtnEl2 = document.querySelector('.js-library-btn--watched');
+const queueBtnEl2 = document.querySelector('.js-library-btn--queue');
 
 console.log(useEl);
 //Element
@@ -62,6 +65,17 @@ export async function writeUserDataQueue(userId, data) {
   const db = getDatabase();
   update(ref(db, 'users/' + userId), { userDataQueue: data });
 }
+
+export async function currentFilmList(userId, data) {
+  if (userId === "") {
+    console.log("userId is missing");
+    return;
+  }
+  const db = getDatabase();
+  update(ref(db, 'users/' + userId), { currentFilmList: data });
+}
+
+
 export async function writeUserDataWatch(userId, data) {
   if (userId === "") {
     console.log("userId is missing");
@@ -112,6 +126,9 @@ const loginEmailPassword = async (event) => {
   catch (error) {
     showLoginEror(error);
   }
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000)
 
 
 };
@@ -166,8 +183,6 @@ onAuthStateChanged(auth, async user => {
     profile.classList.remove("hide");//
     currentUID = user.uid;
     useEl.innerHTML = svg2;
-    writeUserDataQueue(currentUID, userDataQueue);
-    writeUserDataWatch(currentUID, userDataWatched);
 
     try {
       const rez = await readAllUserData(currentUID);
@@ -189,12 +204,7 @@ onAuthStateChanged(auth, async user => {
     form.classList.remove("hide");//
     profile.classList.add("hide");//
     useEl.innerHTML = svg1;
-    try {
-      movieListEl2.innerHTML = "";
-    }
-    catch {
 
-    }
 
   }
 })
@@ -203,6 +213,22 @@ const logout = async () => {
   currentUID = "";
   login.value = "";
   password.value = "";
+  try {
+    queueBtnEl2.style.background = 'transparent';
+    queueBtnEl2.style.borderColor = '#ffffff';
+
+    watchedBtnEl2.style.background = 'transparent';
+    watchedBtnEl2.style.borderColor = '#ffffff';
+    movieListEl2.innerHTML = "";
+  }
+  catch {
+
+  }
+  setTimeout(() => {
+    document.location.reload();
+  }, 1000)
+
+
 }
 btnLogOut.addEventListener("click", logout);
 

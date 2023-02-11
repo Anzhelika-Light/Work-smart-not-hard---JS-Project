@@ -5,5 +5,5 @@ import './js/dark-mode';
 import './js/footer-modal';
 import { spinnerStart, spinnerStop } from './js/loader';
 spinnerStart();
-setTimeout(spinnerStop, 1000);
+setTimeout(spinnerStop, 500);
 import './js/scroll_to_top';
