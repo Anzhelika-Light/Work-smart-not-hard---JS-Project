@@ -54,7 +54,7 @@
     font-size: 12px;
     line-height: 1.33;
     text-transform: uppercase;
-    cursor: pointer;
+    
 
     @media screen and (min-width: 768px) {
       font-weight: 500;
@@ -168,3 +168,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+.title-modal-open {
+  cursor:pointer;
+}
+

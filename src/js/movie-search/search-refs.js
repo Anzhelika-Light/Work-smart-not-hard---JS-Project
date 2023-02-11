@@ -4,7 +4,7 @@ import TmdbAPI from '../TMDB_API';
 const emptyStingRegEx = /^\s*$/; // regular expression of an empty string
 const tmdbAPI = new TmdbAPI();
 
-const refs = {
+const searchRefs = {
   galleryEl: document.querySelector('.trending-gallery'),
   searchInputEl: document.querySelector('.search__input'),
   searchForm: document.querySelector('.search'),
@@ -22,4 +22,4 @@ function scrollToTop() {
   });
 }
 
-export { refs, tmdbAPI, TmdbAPI, scrollToTop, emptyStingRegEx, Notify };
+export { searchRefs, tmdbAPI, TmdbAPI, scrollToTop, emptyStingRegEx, Notify };
