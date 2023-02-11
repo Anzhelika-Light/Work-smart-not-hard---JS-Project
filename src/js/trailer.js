@@ -47,7 +47,6 @@ function createVideoFrame(key) {
     {
       onClose: instance => {
         document.removeEventListener('keydown', onEscClose);
-        console.log('onCLose');
       },
     }
   );

@@ -15,7 +15,7 @@ export function renderMoviesLibrary(movie) {
   let poster = `${IMG_PATH}${poster_path}`;
 
   let releaseDate = `${release_date.slice(0, 4)}`;
-  console.log(movie_id);
+
   // якщо немає постера
 
   if (poster_path || testImage(poster)) {
@@ -43,7 +43,6 @@ export function renderMoviesLibrary(movie) {
   </li>
 	`;
 
-  // console.log(markUp);
   return markUp;
 }
 

@@ -131,16 +131,14 @@ export default class TmdbAPI {
   #createGenresObj() {
     //if TmdbAPI.genres already has data - do not fetch again
     if (Object.keys(TmdbAPI.genres).length !== 0) return;
-    //creating the genres obj: id: name
+
     this.#fetchGenreMoviesList().then(response => {
       const genrArr = response.data.genres;
-      // console.log(genrArr);
+
       genrArr.forEach(el => {
         TmdbAPI.genres[el.id] = el.name.toLowerCase();
         TmdbAPI.genreIDs[el.name.toLowerCase()] = el.id;
       });
-      // console.log(TmdbAPI.genres);
-      // console.log('genreIDs', TmdbAPI.genreIDs);
     });
   }
 
@@ -169,13 +167,10 @@ export default class TmdbAPI {
   }
 
   static getGenresStringWithSearchedGenre(genre_ids, genre) {
-    // console.log(genre_ids, genre);
     const genreID = TmdbAPI.genreIDs[genre.toLowerCase()];
     const genreIndex = genre_ids.indexOf(genreID);
-    // console.log(TmdbAPI.genreIDs);
-    // console.log(genreID, genreIndex);
+
     genre_ids.splice(genreIndex, 1);
-    // console.log('spliced', genre_ids);
 
     switch (genre_ids.length) {
       case 1:

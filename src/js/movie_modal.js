@@ -69,13 +69,13 @@ function closeModal() {
 async function createModal(id) {
   const currentList = updateMoviesList();
   const rendered = await renderModal(currentList, id, watched, queue);
-  console.log('rendered info', rendered);
+
   innerModal.innerHTML = rendered;
 }
 // Далі і до кінця йдуть два обробники: watched i queue, які самі вирішують, додавати чи видаляти в результаті перевірки
 async function handleWatched(e) {
   const modalEl = document.querySelector('.movie-modal__main');
-  console.log('modalEl', modalEl.dataset);
+
   const movie = {
     poster_path: modalEl.dataset.poster,
     title: modalEl.dataset.title,
@@ -84,35 +84,30 @@ async function handleWatched(e) {
     vote_average: modalEl.dataset.votes,
     id: modalEl.dataset.id,
   };
-  console.log('movie', movie);
+
   const isInWatched = watched.some(film => film.id === movie.id);
-  console.log('inInWatched', isInWatched);
-  console.dir(e.target);
+
   if (e.target.innerText === 'ADD TO WATCHED') {
     if (!isInWatched) {
       watched.push(movie);
       localStorage.setItem('movieWatched', JSON.stringify(watched));
       e.target.innerText = 'Remove from watched';
-      console.log('movie', movie);
-      console.log('watched', watched);
+
       const saved = JSON.parse(localStorage.getItem('movieWatched'));
-      console.log('saved', saved);
-      // e.target.addEventListener('click', removeFromWatched);
-      // e.target.removeEventListener('click', addToWatched);
+
       Notiflix.Notify.success('Added to watched!');
     }
   } else if (e.target.innerText === 'REMOVE FROM WATCHED') {
     watched = watched.filter(film => film.id !== movie.id);
     localStorage.setItem('movieWatched', JSON.stringify(watched));
     e.target.innerText = 'Add to watched';
-    // e.target.removeEventListener('click', removeFromWatched);
-    // e.target.addEventListener('click', addToWatched);
+
     Notiflix.Notify.success('Removed from watched!');
   }
 }
 async function handleQueued(e) {
   const modalEl = document.querySelector('.movie-modal__main');
-  console.log('modalEl', modalEl.dataset);
+
   const movie = {
     poster_path: modalEl.dataset.poster,
     title: modalEl.dataset.title,
@@ -121,10 +116,9 @@ async function handleQueued(e) {
     vote_average: modalEl.dataset.votes,
     id: modalEl.dataset.id,
   };
-  console.log('movie', movie);
+
   const isInQueued = queue.some(film => film.id === movie.id);
-  console.log(isInQueued);
-  console.dir(e.target);
+
   if (e.target.innerText === 'ADD TO QUEUE') {
     if (!isInQueued) {
       queue.push(movie);
