@@ -12,15 +12,19 @@ import {
   deletePaginationInterface,
   tooglePagination,
 } from '../trending-search-main/trending-search.js';
-import { userQueryForPagination } from './search-by-keyword';
-import { userYearForPagination } from './search-by-year';
+// import { userQueryForPagination } from './search-by-keyword';
+// import { userYearForPagination } from './search-by-year';
 import { CLIENT_RENEG_LIMIT } from 'tls';
-export let userGenreForPagination = '';
+import { userSearchObj } from './search-by-keyword';
+
+// export let userGenreForPagination = '';
 
 //find movies by genre
 searchRefs.galleryEl.addEventListener('click', findMoviesByGenre);
 let genreID;
+console.log(searchRefs.galleryEl);
 function findMoviesByGenre(event) {
+  console.log('click');
   if (tooglePagination.isFilmsByAdvancedSearchShown) {
     searchRefs.advancedSearchEl.reset();
   }
@@ -45,7 +49,8 @@ function findMoviesByGenre(event) {
   genreID = TmdbAPI.genreIDs[genre.toLowerCase()];
 
   deletePaginationInterface();
-  userGenreForPagination = genreID;
+  console.log(userSearchObj.userGenreForPagination);
+  userSearchObj.userGenreForPagination = genreID;
   tmdbAPI.page = 1;
 
   tmdbAPI

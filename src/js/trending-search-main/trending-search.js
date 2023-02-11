@@ -3,13 +3,15 @@ import getImages from './fetch-images-url';
 import getGenres from './fetch-genres';
 
 import ultimatePagination from 'ultimate-pagination';
-import { userQueryForPagination } from '../movie-search/search-by-keyword';
-import { userYearForPagination } from '../movie-search/search-by-year.js';
-import { userGenreForPagination } from '../movie-search/search-by-genre.js';
+import { userSearchObj } from '../movie-search/search-by-keyword';
+// import { userQueryForPagination } from '../movie-search/search-by-keyword';
+// import { userYearForPagination } from '../movie-search/search-by-year.js';
+// import { userGenreForPagination } from '../movie-search/search-by-genre.js';
 import {
   userAdvancedSearchForPagination,
   makeAdvancedSearch,
 } from '../movie-search/advanced-search.js';
+// import { makeAdvancedSearch } from '../movie-search/advanced-search.js';
 import { spinnerStart, spinnerStop } from '../loader';
 import { refs } from '../refs';
 import { searchRefs, tmdbAPI, scrollToTop } from '../movie-search/search-refs';
@@ -152,7 +154,9 @@ async function onLoadAnotherPage(e) {
     } else if (tooglePagination.isFilmsByQueryShown) {
       tmdbAPI.page = indexOfPageToLoad;
 
-      const response = await tmdbAPI.fetchFilmsByQuery(userQueryForPagination);
+      const response = await tmdbAPI.fetchFilmsByQuery(
+        userSearchObj.userQueryForPagination
+      );
       scrollToTop();
       spinnerStart();
       const { data } = response;
@@ -162,7 +166,9 @@ async function onLoadAnotherPage(e) {
       return;
     } else if (tooglePagination.isFilmsByYearShown) {
       tmdbAPI.page = indexOfPageToLoad;
-      const response = await tmdbAPI.fetchMoviesByYear(userYearForPagination);
+      const response = await tmdbAPI.fetchMoviesByYear(
+        userSearchObj.userYearForPagination
+      );
       scrollToTop();
       spinnerStart();
       const { data } = response;
@@ -172,7 +178,9 @@ async function onLoadAnotherPage(e) {
       return;
     } else if (tooglePagination.isFilmsByGenreShown) {
       tmdbAPI.page = indexOfPageToLoad;
-      const response = await tmdbAPI.fetchMoviesByGenre(userGenreForPagination);
+      const response = await tmdbAPI.fetchMoviesByGenre(
+        userSearchObj.userGenreForPagination
+      );
       scrollToTop();
       spinnerStart();
       const { data } = response;
@@ -181,12 +189,9 @@ async function onLoadAnotherPage(e) {
       renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
       return;
     } else if (tooglePagination.isFilmsByAdvancedSearchShown) {
-      userGenreForPagination.page = indexOfPageToLoad;
+      userAdvancedSearchForPagination.page = indexOfPageToLoad;
       tmdbAPI.page = indexOfPageToLoad;
 
-      if (tooglePagination.isFilmsByAdvancedSearchShown) {
-        userAdvancedSearchForPagination.page = indexOfPageToLoad;
-      }
       scrollToTop();
       spinnerStart();
       searchRefs.galleryEl.innerHTML = makeAdvancedSearch(

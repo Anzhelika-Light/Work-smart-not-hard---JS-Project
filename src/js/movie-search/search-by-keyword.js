@@ -17,14 +17,20 @@ import {
 
 import renderPopularFilms from '../trending-search-main/trending-search';
 
-export let userQueryForPagination = '';
+export const userSearchObj = {
+  userQueryForPagination: '',
+  userYearForPagination: '',
+  userGenreForPagination: '',
+};
+
+// export let userQueryForPagination = '';
 searchRefs.searchForm.addEventListener('submit', onSearchInputElChange);
 
 async function onSearchInputElChange(event) {
   event.preventDefault();
   deletePaginationInterface();
   const query = searchRefs.searchInputEl.value;
-  userQueryForPagination = query;
+  userSearchObj.userQueryForPagination = query;
 
   searchRefs.searchInputEl.value = '';
   //if input is an empty string - return

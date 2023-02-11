@@ -6,11 +6,15 @@ import {
   deletePaginationInterface,
   tooglePagination,
 } from '../trending-search-main/trending-search.js';
-import { userQueryForPagination } from './search-by-keyword';
+
+import { userSearchObj } from './search-by-keyword';
+
+// import { userQueryForPagination } from './search-by-keyword';
 // import { userGenreForPagination } from './search-by-genre';
 //find movies by year
 searchRefs.galleryEl.addEventListener('click', findMoviesByYear);
-export let userYearForPagination = '';
+// export let userYearForPagination = '';
+console.log('search by year');
 
 function findMoviesByYear(event) {
   //if not find-by-genre-js link - return
@@ -25,8 +29,8 @@ function findMoviesByYear(event) {
 
   scrollToTop();
   let year = Number(event.target.innerText);
-  userQueryForPagination = '';
-  userYearForPagination = year;
+  userSearchObj.userQueryForPagination = '';
+  userSearchObj.userYearForPagination = year;
 
   tmdbAPI.page = 1;
 
