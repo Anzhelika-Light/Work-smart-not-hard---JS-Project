@@ -129,7 +129,7 @@ const studentCards = basicLightbox.create(
         <div class="team-list__wrapper">
           <h3 class="team-list__title">Uliana Shymanska</h3>
           <div class="team-list__text-wrapper">
-            <p class="team-list__text">Trailer modal window</p>
+            <p class="team-list__text">Trailer modal window, Scroll to top button</p>
             <a href="https://github.com/UlianaShyma" target="_blank" class="github"></a>
           </div>
         </div>
