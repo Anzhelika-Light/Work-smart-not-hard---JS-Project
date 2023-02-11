@@ -7,6 +7,7 @@ import {
   paginationSettings,
   tooglePagination,
 } from '../pagination/paginationInterface';
+import { spinnerStart, spinnerStop } from '../loader';
 
 const cardList = document.querySelector('.trending-gallery');
 
@@ -60,6 +61,7 @@ function getGenreDeciphered(filmObject, genresList) {
 async function renderPopularFilms(page) {
   try {
     cardList.innerHTML = '';
+    spinnerStart();
     const films = await fetchPopularFilms(page);
     console.log('який обэкт фільмів прийшов від сервера', films);
 
@@ -81,6 +83,10 @@ async function renderPopularFilms(page) {
     );
   } catch (error) {
     console.dir(error);
+  } finally {
+    setTimeout(() => {
+      spinnerStop();
+    }, 1000);
   }
 }
 

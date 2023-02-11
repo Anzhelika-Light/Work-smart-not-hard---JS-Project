@@ -18,14 +18,20 @@ export async function renderModal(list, id, watched, queue) {
     overview,
     id: film_id,
   } = movieDetails;
-  const genreList = await getGenres();
 
-  const finalGenres = [];
-  genres.forEach(genre => {
-    finalGenres.push(genreList[genre.id]);
+  // const genreList = await getGenres();
+
+  // console.log('genres', genres);
+
+  //////трохи скоригувала отримання жанрів, бо не працювало
+  // const finalGenres = [];
+  const finalGenres = genres.map(genre => {
+    console.log('single genre', genre);
+    return genre.name;
   });
+  // console.log('final genres', finalGenres);
 
-  // для отримання даних про фільм
+  // для отримання даних про фільм додаю іх в data-атрибути
   const modalEl = document.querySelector('.movie-modal__main');
   modalEl.setAttribute('data-poster', poster_path);
   modalEl.setAttribute('data-title', title);
@@ -34,9 +40,14 @@ export async function renderModal(list, id, watched, queue) {
   modalEl.setAttribute('data-votes', vote_average);
   modalEl.setAttribute('data-id', id);
   ///////////////////////////////////////////////////////////
+  // також скоригувала наступні два рядки коду: отримання інфи, чи є даний фільм в бібліотеці,
+  // для того, щоб відобразити правильний текст на кнопці
+  const isInQueue = queue.some(film => film.id === id);
+  const isInWatched = watched.some(film => film.id === id);
+  console.log('is in watched and in queue', isInWatched, isInQueue);
 
-  const isInQueue = watched.find(film => film[id] === film_id);
-  const isInWatched = queue.find(film => film.id === film_id);
+  console.log('rendering', watched, queue);
+  //////////////////////////////////////////////////////////////
 
   // const isInQueue = foundInQueue;
   // const isInWatched = foundInWatched;
@@ -99,8 +110,8 @@ export async function renderModal(list, id, watched, queue) {
       <img src="${emptyPhoto}" alt="photo coming soon" />
     </div>`;
 
-  return [
-    `${photoMarkup}
+  //фукнція повертає рядок розмітки, а не масив (ті дані нерелевантні, і я їх прибрала)
+  return `${photoMarkup}
     <div class="movie-modal__about">
       <h2 class="movie-modal__headline">${title}</h2>
       <ul class="movie-modal__list">
@@ -118,7 +129,5 @@ export async function renderModal(list, id, watched, queue) {
       <button class='movie-modal_btn-watched interactive-button movie-modal__btn-watch-trailer' data-id=${film_id}>watch trailer</button>
     </div>
     </div>
-    `,
-    movieDetails,
-  ];
+    `;
 }
