@@ -7,7 +7,7 @@ import {
   tooglePagination,
 } from '../trending-search-main/trending-search.js';
 import { userQueryForPagination } from './search-by-keyword';
-import { userGenreForPagination } from './search-by-genre';
+// import { userGenreForPagination } from './search-by-genre';
 //find movies by year
 searchRefs.galleryEl.addEventListener('click', findMoviesByYear);
 export let userYearForPagination = '';
