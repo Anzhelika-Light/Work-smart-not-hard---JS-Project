@@ -54,13 +54,21 @@ function onWatchedBtnClick() {
 
   const movieWatched = gettingItem('movieWatched');
   console.log(movieWatched);
-  if (movieWatched.length === 0) {
+  if (movieWatched === undefined) {
     movieListEl.innerHTML =
       "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
     setTimeout(spinnerStop, 500);
 
     return;
   }
+  // if (movieWatched.length === 0) {
+  //   movieListEl.innerHTML =
+  //     "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
+  //   setTimeout(spinnerStop, 500);
+
+  //   return;
+  // }
+
   const moviesCards = movieWatched
     .map(movie => {
       return renderMoviesLibrary(movie);
