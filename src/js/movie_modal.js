@@ -64,7 +64,7 @@ function removeFromQueue(e) {
 }
 //e.currentTarget !== e.target &&
 export async function showModal(e) {
-  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'H3') {
+  if (e.target.nodeName === 'IMG' || e.target.nodeName === 'SPAN') {
     console.log('e.currentTarget', e.currentTarget);
     console.log('e.target', e.target);
     modal.classList.remove('hidden-movie-modal');

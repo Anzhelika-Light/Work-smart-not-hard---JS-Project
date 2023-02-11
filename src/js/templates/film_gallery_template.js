@@ -46,7 +46,7 @@ export default function makeHMTLString({ results }) {
 	<li class='trending-gallery__item' data-id=${result.id}>
     ${addAdaptiveImgHTMLString(result)}
     <div class="trending-gallery__wrapper">
-    	<h3 class='trending-gallery__title' data-id=${result.id}><span>${
+    	<h3 class='trending-gallery__title' ><span data-id=${result.id}>${
         result.title
       }</span>
 			</h3>

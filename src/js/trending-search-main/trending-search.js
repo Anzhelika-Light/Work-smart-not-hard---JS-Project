@@ -60,7 +60,7 @@ async function createMarkup(data) {
         return `<li class="trending-gallery__item" data-id="${item.id}">
       <img src="${imageBaseURL}${item.poster_path}"
 
-            
+
             class="trending-gallery__image" data-id="${item.id}"
 
             alt="The poster of ${item.title} film "
@@ -68,9 +68,9 @@ async function createMarkup(data) {
              />
 
       <div class="trending-gallery__wrapper">
-      <h3 class="trending-gallery__title" data-id="${
+      <h3 class="trending-gallery__title" ><span class="title-modal-open" data-id="${
         item.id
-      }"><span class="title-modal-open">${item.title}</span></h3>
+      }">${item.title}</span></h3>
       <p class="trending-gallery__info">${genres}<span class="find-by-year-js">${item.release_date.slice(
           0,
           4
