@@ -136,14 +136,14 @@ button {
 }
 
 .header__link-container {
-  margin-bottom: 42px;
+  margin-bottom: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 @media screen and (min-width: 768px) {
   .header__link-container {
-    margin-bottom: 25px;
+    margin-bottom: 41px;
   }
 }
 
