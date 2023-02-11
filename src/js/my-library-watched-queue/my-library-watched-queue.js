@@ -23,7 +23,9 @@ function onWatchedBtnClick() {
   const movieWatched = gettingItem('movieWatched');
   if (movieWatched.length === 0) {
     movieListEl.innerHTML =
-      "<p>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
+      "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
+    setTimeout(spinnerStop, 500);
+
     return;
   }
   const moviesCards = movieWatched
@@ -48,7 +50,9 @@ function onQueueBtnClick() {
   // console.log(movieQueue);
   if (movieQueue.length === 0) {
     movieListEl.innerHTML =
-      "<p>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+      "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+    setTimeout(spinnerStop, 500);
+
     return;
   }
 
