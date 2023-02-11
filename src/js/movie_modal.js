@@ -9,11 +9,8 @@ import TmdbAPI from './TMDB_API';
 
 const { allCardsSection, modal, overflow, closeBtn, innerModal, body } = refs;
 
-// const QUEUE_KEY = 'queue';
-// const WATCHED_KEY = 'watched';
-
-const queue = [];
-const watched = [];
+let queue = [];
+let watched = [];
 
 // const queueJSON = localStorage.getItem('queue');
 // const watchedJSON = localStorage.getItem('watched');
@@ -47,6 +44,17 @@ export async function showModal(e) {
     const top = window.scrollY;
     body.style.position = 'fixed';
     body.style.top = `-${top}px`;
+
+    const watchedBtn = document.querySelector('.modal__btn-watched');
+    const queueBtn = document.querySelector('.modal__btn-queue');
+    const watchTrailerBtn = document.querySelector(
+      '.movie-modal__btn-watch-trailer'
+    );
+
+    watchedBtn.addEventListener('click', handleWatched);
+    queueBtn.addEventListener('click', handleQueued);
+
+    watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
   }
 }
 
@@ -80,54 +88,25 @@ async function createModal(id) {
 
   console.log('rendered info', rendered);
   innerModal.innerHTML = rendered[0];
-
-  addListeners();
 }
-
-function addListeners() {
-  const watchedBtn = document.querySelector('.modal__btn-watched');
-  const queueBtn = document.querySelector('.modal__btn-queue');
-  const watchTrailerBtn = document.querySelector(
-    '.movie-modal__btn-watch-trailer'
-  );
-
-  // const movie = {
-  //   poster_path: movieInfo.poster_path,
-  //   title: movieInfo.title,
-  //   genre_ids: movieInfo.genre_ids,
-  //   release_date: movieInfo.release_date,
-  //   vote_average: movieInfo.vote_average,
-  //   id: movieInfo.id,
-  // };
-
-  // console.log('movie', movie);
-
-  watchedBtn.addEventListener('click', handleWatched);
-  queueBtn.addEventListener('click', handleQueued);
-
-  watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
-}
-
 async function handleWatched(e) {
-  const movieInfo = await TmdbAPI.fetchFilmByID(e.target.dataset.id);
-  console.log('movieinfo', movieInfo);
+  const modalEl = document.querySelector('.movie-modal__main');
+  console.log('modalEl', modalEl.dataset);
 
   const movie = {
-    poster_path: movieInfo.poster_path,
-    title: movieInfo.title,
-    genre_ids: movieInfo.genre_ids,
-    release_date: movieInfo.release_date,
-    vote_average: movieInfo.vote_average,
-    id: movieInfo.id,
+    poster_path: modalEl.dataset.poster,
+    title: modalEl.dataset.title,
+    genre_ids: modalEl.dataset.genre,
+    release_date: modalEl.dataset.date,
+    vote_average: modalEl.dataset.vote,
+    id: modalEl.dataset.id,
   };
 
   console.log('movie', movie);
 
-  const isInWatched = watched.find(
-    film => film[e.target.dataset.id] === movie.id
-  );
+  const isInWatched = watched.some(film => film.id === movie.id);
 
-  console.log(isInWatched);
+  console.log('inInWatched', isInWatched);
   console.dir(e.target);
 
   if (e.target.innerText === 'ADD TO WATCHED') {
@@ -136,15 +115,17 @@ async function handleWatched(e) {
       localStorage.setItem('watched', JSON.stringify(watched));
 
       e.target.innerText = 'remove from watched';
-      console.log(movie);
-      console.log(watched);
+      console.log('movie', movie);
+      console.log('watched', watched);
+      const saved = JSON.parse(localStorage.getItem('watched'));
+      console.log('saved', saved);
 
       // e.target.addEventListener('click', removeFromWatched);
       // e.target.removeEventListener('click', addToWatched);
       Notiflix.Notify.success('Added to watched!');
     } else {
       watched = watched.filter(film => film[e.target.dataset.id] !== movie.id);
-      localStorage.setItem('watched', JSON.stringify(watched));
+      localStorage.removeItem('watched', JSON.stringify(watched));
       // e.target.removeEventListener('click', removeFromWatched);
       // e.target.addEventListener('click', addToWatched);
       Notiflix.Notify.success('Removed from watched!');
@@ -153,27 +134,26 @@ async function handleWatched(e) {
 }
 
 async function handleQueued(e) {
-  const movieInfo = await fetchMovie(e.target.dataset.id);
+  const modalEl = document.querySelector('.movie-modal__main');
+  console.log('modalEl', modalEl.dataset);
 
   const movie = {
-    poster_path: movieInfo.poster_path,
-    title: movieInfo.title,
-    genre_ids: movieInfo.genre_ids,
-    release_date: movieInfo.release_date,
-    vote_average: movieInfo.vote_average,
-    id: movieInfo.id,
+    poster_path: modalEl.dataset.poster,
+    title: modalEl.dataset.title,
+    genre_ids: modalEl.dataset.genre,
+    release_date: modalEl.dataset.date,
+    vote_average: modalEl.dataset.vote,
+    id: modalEl.dataset.id,
   };
 
   console.log('movie', movie);
-  const isInQueued = watched.find(
-    film => film[e.target.dataset.id] === movie.id
-  );
+  const isInQueued = queue.some(film => film.id === movie.id);
 
   console.log(isInQueued);
   console.dir(e.target);
 
   if (e.target.innerText === 'ADD TO QUEUE') {
-    if (!isInWatched) {
+    if (!isInQueued) {
       queue.push(movie);
       localStorage.setItem('queue', JSON.stringify(queue));
 
@@ -181,57 +161,13 @@ async function handleQueued(e) {
 
       // e.target.addEventListener('click', removeFromWatched);
       // e.target.removeEventListener('click', addToWatched);
-      Notiflix.Notify.success('Added to watched!');
+      Notiflix.Notify.success('Added to queue!');
     } else {
-      watched = watched.filter(film => film[e.target.dataset.id] !== movie.id);
-      localStorage.setItem('watched', JSON.stringify(watched));
+      queue = queue.filter(film => film[e.target.dataset.id] !== movie.id);
+      localStorage.removeItem('queue', JSON.stringify(watched));
       // e.target.removeEventListener('click', removeFromWatched);
       // e.target.addEventListener('click', addToWatched);
-      Notiflix.Notify.success('Removed from watched!');
+      Notiflix.Notify.success('Removed from queue!');
     }
   }
 }
-
-// function addToWatched(e) {
-//   e.target.innerText = 'remove from watched';
-//   const currentList = updateMoviesList();
-//   const clickedFilm = currentList[e.target.dataset.id];
-//   watched.push(clickedFilm);
-//   localStorage.setItem('watched', JSON.stringify(watched));
-//   e.target.addEventListener('click', removeFromWatched);
-//   e.target.removeEventListener('click', addToWatched);
-//   Notiflix.Notify.success('Added to watched!');
-// }
-
-// function removeFromWatched(e) {
-//   e.target.innerText = 'add to watched';
-//   const currentList = updateMoviesList();
-//   const clickedFilm = currentList[e.target.dataset.id];
-//   watched = watched.filter(film => film.id !== clickedFilm.id);
-//   localStorage.setItem('watched', JSON.stringify(watched));
-//   e.target.removeEventListener('click', removeFromWatched);
-//   e.target.addEventListener('click', addToWatched);
-//   Notiflix.Notify.success('Removed from watched!');
-// }
-
-// function addToQueue(e) {
-//   e.target.innerText = 'remove from queue';
-//   // const currentList = updateMoviesList();
-//   const clickedFilm = currentList[e.target.dataset.id];
-//   queue.push(clickedFilm);
-//   localStorage.setItem('queue', JSON.stringify(queue));
-//   e.target.addEventListener('click', removeFromQueue);
-//   e.target.removeEventListener('click', addToQueue);
-//   Notiflix.Notify.success('Added to queue!');
-// }
-
-// function removeFromQueue(e) {
-//   e.target.innerText = 'add to queue';
-//   const currentList = updateMoviesList();
-//   const clickedFilm = currentList[e.target.dataset.id];
-//   queue = queue.filter(film => film.id !== clickedFilm.id);
-//   localStorage.setItem('queue', JSON.stringify(queue));
-//   e.target.removeEventListener('click', removeFromQueue);
-//   e.target.addEventListener('click', addToQueue);
-//   Notiflix.Notify.success('Removed from queue!');
-// }

@@ -25,6 +25,16 @@ export async function renderModal(list, id, watched, queue) {
     finalGenres.push(genreList[genre.id]);
   });
 
+  // для отримання даних про фільм
+  const modalEl = document.querySelector('.movie-modal__main');
+  modalEl.setAttribute('data-poster', poster_path);
+  modalEl.setAttribute('data-title', title);
+  modalEl.setAttribute('data-genres', finalGenres);
+  modalEl.setAttribute('data-date', movieDetails.release_date);
+  modalEl.setAttribute('data-votes', vote_average);
+  modalEl.setAttribute('data-id', id);
+  ///////////////////////////////////////////////////////////
+
   const isInQueue = watched.find(film => film[id] === film_id);
   const isInWatched = queue.find(film => film.id === film_id);
 
