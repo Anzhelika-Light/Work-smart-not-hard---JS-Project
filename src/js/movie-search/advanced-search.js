@@ -1,6 +1,6 @@
 import makeHMTLString from '../templates/film_gallery_template';
 import {
-  refs,
+  searchRefs,
   tmdbAPI,
   TmdbAPI,
   scrollToTop,
@@ -8,18 +8,36 @@ import {
   Notify,
 } from './search-refs';
 
+import renderPopularFilms, {
+  renderPaginationInterface,
+  paginationSettings,
+  deletePaginationInterface,
+  tooglePagination,
+} from '../trending-search-main/trending-search.js';
+
+export let userAdvancedSearchForPagination = {
+  primary_release_year: '',
+  with_genres: '',
+  sort_by: '',
+  page: '',
+  with_watch_monetization_types: '',
+  without_genres: '',
+};
 let areOptionsGenerated = false;
 
-refs.searchForm.addEventListener('click', showAdvancedSearch);
-refs.searchForm.addEventListener('click', hideAdvancedSearch);
-refs.advancedSearchEl.addEventListener('submit', onAdvancedSearchElSubmit);
+searchRefs.searchForm.addEventListener('click', showAdvancedSearch);
+searchRefs.searchForm.addEventListener('click', hideAdvancedSearch);
+searchRefs.advancedSearchEl.addEventListener(
+  'submit',
+  onAdvancedSearchElSubmit
+);
 
 function showAdvancedSearch(event) {
   // console.dir(event.target);/
   if (!event.target.classList.value.includes('show-advanced-search-js')) return;
   toggleAdvancedSearch();
   if (areOptionsGenerated) return;
-  generateSelectOptions(refs.advancedSearchEl);
+  generateSelectOptions(searchRefs.advancedSearchEl);
 }
 
 function hideAdvancedSearch(event) {
@@ -28,9 +46,13 @@ function hideAdvancedSearch(event) {
 }
 
 function toggleAdvancedSearch() {
-  refs.advancedSearchEl.classList.toggle('visually-hidden');
-  refs.showAdvancedSearchEl.parentNode.classList.toggle('visually-hidden');
-  refs.hideAdvancedSearchEl.parentNode.classList.toggle('visually-hidden');
+  searchRefs.advancedSearchEl.classList.toggle('visually-hidden');
+  searchRefs.showAdvancedSearchEl.parentNode.classList.toggle(
+    'visually-hidden'
+  );
+  searchRefs.hideAdvancedSearchEl.parentNode.classList.toggle(
+    'visually-hidden'
+  );
 }
 
 function generateSelectOptions(form) {
@@ -72,13 +94,26 @@ function generateSelectOptions(form) {
   areOptionsGenerated = true;
 }
 
-function makeAdvancedSearch(optionsObj) {
-  // console.log('search advanced');
+export function makeAdvancedSearch(optionsObj) {
   tmdbAPI
     .fetchAdvancedMovieSearch(optionsObj)
     .then(response => {
-      // console.log('adv-resp', makeHMTLString(response.data));
-      refs.galleryEl.innerHTML = makeHMTLString(response.data);
+      const { data } = response;
+      console.log('який обэкт прийшов за результатом РОЗШИРЕНОГО пошуку', data);
+
+      scrollToTop();
+      searchRefs.galleryEl.innerHTML = makeHMTLString(response.data);
+      tooglePagination.isTrendingFilmsShown = false;
+      tooglePagination.isFilmsByQueryShown = false;
+      tooglePagination.isFilmsByAdvancedSearchShown = true;
+      tooglePagination.isFilmsByYearShown = false;
+      tooglePagination.isFilmsByGenreShown = false;
+      if (data.total_pages > 500) {
+        paginationSettings.totalPages = 500;
+      } else {
+        paginationSettings.totalPages = data.total_pages;
+      }
+      renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
     })
     .catch(console.error);
 }
@@ -89,25 +124,32 @@ function onAdvancedSearchElSubmit(event) {
 
   //forming advanced search object
   const optionsObj = {
-    with_genres: TmdbAPI.genreIDs[refs.advancedSearchEl.genre.value],
-    without_genres: TmdbAPI.genreIDs[refs.advancedSearchEl.excludeGenre.value],
-    sort_by: TmdbAPI.sort_by_types[refs.advancedSearchEl.sortParams.value],
+    with_genres: TmdbAPI.genreIDs[searchRefs.advancedSearchEl.genre.value],
+    without_genres:
+      TmdbAPI.genreIDs[searchRefs.advancedSearchEl.excludeGenre.value],
+    sort_by:
+      TmdbAPI.sort_by_types[searchRefs.advancedSearchEl.sortParams.value],
     with_watch_monetization_types:
       TmdbAPI.watch_monetization_types[
-        refs.advancedSearchEl.monetization.value
+        searchRefs.advancedSearchEl.monetization.value
       ],
   };
 
-  console.log('searchObj', optionsObj);
+  const isTheSameSettings = Object.keys(optionsObj).reduce((acc, rec) => {
+    return acc && optionsObj[rec] === userAdvancedSearchForPagination[rec];
+  }, true);
 
   //check if nothing chosen
   if (!isOptionsObjHasValues(optionsObj)) {
     Notify.failure('Choose some parameters!');
+
     return;
   }
+  tmdbAPI.page = 1;
 
+  tooglePagination.isFilmsByYearShown = true;
   //checking search year input
-  let searchYear = refs.advancedSearchEl.year.value;
+  let searchYear = searchRefs.advancedSearchEl.year.value;
   // console.log('searchYear', searchYear);
   if (!checkYear(searchYear)) {
     searchYear = new Date().getFullYear();
@@ -125,8 +167,23 @@ function onAdvancedSearchElSubmit(event) {
     return;
   }
 
-  optionsObj.page = 1;
+  optionsObj.page = tmdbAPI.page;
+  userAdvancedSearchForPagination.with_genres = optionsObj.with_genres;
+  userAdvancedSearchForPagination.without_genres = optionsObj.without_genres;
+  userAdvancedSearchForPagination.sort_by = optionsObj.sort_by;
+  userAdvancedSearchForPagination.primary_release_year =
+    optionsObj.primary_release_year;
+  userAdvancedSearchForPagination.with_watch_monetization_types =
+    optionsObj.with_watch_monetization_types;
 
+  userAdvancedSearchForPagination.page = optionsObj.page;
+
+  if (isTheSameSettings) {
+    Notify.info('Please,make changes in search params and try again');
+    renderPopularFilms(1);
+    return;
+  }
+  deletePaginationInterface();
   makeAdvancedSearch(optionsObj);
 }
 
@@ -148,7 +205,7 @@ function checkYear(searchYear) {
 function isOptionsObjHasValues(optionsObj) {
   let result = false;
   //if film year entered - object has values
-  if (refs.advancedSearchEl.year.value !== '') return true;
+  if (searchRefs.advancedSearchEl.year.value !== '') return true;
   Object.values(optionsObj).forEach(value => {
     if (value !== undefined && !emptyStingRegEx.test(value)) {
       result = true;

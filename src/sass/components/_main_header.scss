@@ -40,14 +40,16 @@
 }
 
 .header__link-container {
-  margin-bottom: 54px;
+  // margin-bottom: 54px;
+  margin-bottom: 42px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 41px;
+    // margin-bottom: 41px;
+    margin-bottom: 25px;
   }
 }
 
@@ -126,7 +128,10 @@
   margin-right: auto;
   margin-left: auto;
   display: flex;
-  height: 20px;
+
+  border: 0.5px solid $primary-white-color;
+  border-radius: 10px;
+  transition: border-color $cubic;
 
   @media screen and (max-width: 319px) {
     width: 100%;
@@ -143,21 +148,6 @@
   @media screen and (min-width: 1280px) {
     width: 394px;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 0.5px;
-    background-color: $primary-white-color;
-    transition: background-color $cubic;
-  }
-
-  &:focus-within::after {
-    background-color: $active-btn-color;
-  }
 }
 
 .search__input,
@@ -168,10 +158,12 @@
 
 .search__input {
   width: 100%;
+  padding: 5px;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
   color: $primary-white-color;
+  border: none;
 
   &:focus {
     outline: none;
@@ -188,38 +180,42 @@
 
 .search__btn {
   fill: $primary-white-color;
-  transform: scale(1);
-  transition: fill $cubic, transform $cubic;
+  transition: fill $cubic, border-color $cubic;
+}
 
-  &:hover {
-    transform: scale(1.3);
-  }
+.search__btn--advanced {
+  padding-right: 4px;
+  border-right: 0.5px solid $primary-white-color;
+}
+
+.search__btn--simple {
+  padding-right: 5px;
+  padding-left: 5px;
+  border-left: 0.5px solid $primary-white-color;
 }
 
 .search__icon {
   fill: inherit;
+  transform: scale(1);
+  transition: fill $cubic, transform $cubic;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
-.search__input:focus + .search__btn {
+.search:focus-within {
+  border: 0.5px solid $active-btn-color;
+}
+
+.search:focus-within .search__btn--advanced {
+  border-right: 0.5px solid $active-btn-color;
+}
+
+.search:focus-within .search__btn--simple {
+  border-left: 0.5px solid $active-btn-color;
+}
+
+.search:focus-within .search__btn {
   fill: $active-btn-color;
 }
-
-// .sign-in-btn {
-//   background-color: transparent;
-//   width: 35px;
-//   height: 35px;
-//   border: 2px solid $primary-white-color;
-//   border-radius: 50%;
-//   fill: $primary-white-color;
-
-//   @media screen and (min-width: 768px) {
-//     width: 40px;
-//     height: 40px;
-//   }
-
-//   &:hover,
-//   &:focus {
-//     fill: $active-btn-color;
-//     border-color: $active-btn-color;
-//   }
-// }
