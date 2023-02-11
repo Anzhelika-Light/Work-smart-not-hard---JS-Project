@@ -31,7 +31,7 @@ const studentCards = basicLightbox.create(
           <h3 class="team-list__title">Svitlana Honchar</h3>
           <p class="team-list__text">
             <span class="team-list__position">Scrum-master,</span>
-            "Add to Watched", "Add to Queue" buttons, Presentation
+            "Add to Watched", "Add to Queue" buttons, 
           </p>
           <a href="https://github.com/SvitlanaHonchar" target="_blank" class="github"></a>
         </div>
@@ -47,7 +47,7 @@ const studentCards = basicLightbox.create(
           <h3 class="team-list__title">Anna Kilchytska</h3>
           <div class="team-list__text-wrapper">
             <p class="team-list__text">
-              Main container, Cards, Rendering of trending movies
+              Movie cards style, Rendering of trending movies, "Add to Watched" and "Add to Queue" buttons (local Storage)
             </p>
             <a href="https://github.com/AnnaKilchytska" target="_blank" class="github"></a>
           </div>
@@ -145,7 +145,7 @@ const studentCards = basicLightbox.create(
           <h3 class="team-list__title">Vadum Kulyk</h3>
           <div class="team-list__text-wrapper">
             <p class="team-list__text">
-              "Add to Watched", "Add to Queue" buttons
+               "Add to Watched", "Add to Queue" buttons, Presentation
             </p>
             <a href="https://github.com/vadym-kulyk" target="_blank" class="github"> </a>
           </div>
