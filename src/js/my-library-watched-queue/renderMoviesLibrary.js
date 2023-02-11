@@ -7,12 +7,17 @@ export function renderMoviesLibrary(movie) {
   const { poster_path, title, genres, release_date, vote_average, movie_id } =
     movie;
   let poster = `${IMG_PATH}${poster_path}`;
+
   let releaseDate = `${release_date.slice(0, 4)}`;
   console.log(movie_id);
   // якщо немає постера
-  if (!poster_path) {
+
+  if (poster_path || testImage(poster)) {
+    poster = `${IMG_PATH}${poster_path}`;
+  } else {
     poster = `${emptyphoto}`;
   }
+
   // якщо немає дати випуску
   if (!release_date) {
     releaseDate = `-`;
@@ -36,3 +41,12 @@ export function renderMoviesLibrary(movie) {
   // console.log(markUp);
   return markUp;
 }
+
+// -----------test
+function testImage(poster) {
+  let tester = new Image();
+  tester.addEventListener('load', () => true);
+  tester.addEventListener('error', () => false);
+  tester.src = poster;
+}
+// -----------test

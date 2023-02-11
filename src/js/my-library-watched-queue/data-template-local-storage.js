@@ -1,7 +1,7 @@
 // ---приклад даних, які приходять з localStorage
 export const userDataWatched = [
   {
-    poster_path: '/rM6qLVhApXiXYjMuzSFOESUiVaJ.jpg',
+    poster_path: '',
     title: 'Cats & Dogs',
     genres: ['Family', 'Comedy'],
     release_date: '2001-07-04',
