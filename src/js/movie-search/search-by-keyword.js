@@ -25,7 +25,7 @@ async function onSearchInputElChange(event) {
   deletePaginationInterface();
   const query = searchRefs.searchInputEl.value;
   userQueryForPagination = query;
-  console.log('що шукає користувач?', userQueryForPagination);
+
   searchRefs.searchInputEl.value = '';
   //if input is an empty string - return
   if (emptyStingRegEx.test(query)) return;
@@ -33,7 +33,6 @@ async function onSearchInputElChange(event) {
     tmdbAPI.page = 1;
     const response = await tmdbAPI.fetchFilmsByQuery(query);
     const { data } = response;
-    console.log('за ПОШУКОВИМ СЛОВОМ користувача прийшов такий обэкт', data);
 
     //if nothing found by entered keyword - show trending
     if (data.total_results === 0) {

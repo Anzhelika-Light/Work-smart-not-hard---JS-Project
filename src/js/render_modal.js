@@ -3,7 +3,7 @@ import { fetchMovie } from './fetch_movie_details';
 import getGenres from './trending-search-main/fetch-genres';
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
-  console.log('modie detils for Anya', movieDetails);
+
   const {
     poster_path,
     original_title,
@@ -15,15 +15,11 @@ export async function renderModal(list, id, watched, queue) {
     overview,
     id: film_id,
   } = movieDetails;
-  // const genreList = await getGenres();
-  // console.log('genres', genres);
-  //////трохи скоригувала отримання жанрів, бо не працювало
-  // const finalGenres = [];
+
   const finalGenres = genres.map(genre => {
-    console.log('single genre', genre);
     return genre.name;
   });
-  // console.log('final genres', finalGenres);
+
   // для отримання даних про фільм додаю іх в data-атрибути
   const modalEl = document.querySelector('.movie-modal__main');
   modalEl.setAttribute('data-poster', poster_path);
@@ -37,8 +33,7 @@ export async function renderModal(list, id, watched, queue) {
   // для того, щоб відобразити правильний текст на кнопці
   const isInQueue = queue.some(film => film.id === id);
   const isInWatched = watched.some(film => film.id === id);
-  console.log('is in watched and in queue', isInWatched, isInQueue);
-  console.log('rendering', watched, queue);
+
   //////////////////////////////////////////////////////////////
   // const isInQueue = foundInQueue;
   // const isInWatched = foundInWatched;

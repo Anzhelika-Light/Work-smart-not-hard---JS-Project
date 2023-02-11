@@ -19,7 +19,9 @@ async function defaultLibrary() {
     const IMG_PATH = 'https://image.tmdb.org/t/p/original';
     movieListEl.innerHTML = '';
     const films = await fetchPopularFilms(page);
+
     // console.log(films.results);
+
 
     const markup = `<h3 class='library-gallery-recomend'>RECOMMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
     <div><p class='library-gallery__default__title'>${films.results[1].title}</p>
@@ -35,7 +37,11 @@ async function defaultLibrary() {
     <div><p class='library-gallery__default__title'>${films.results[3].title}</p>
     <p class='library-gallery__default-overview'>${films.results[3].overview}</p></div>
     </div>`;
+
     // console.log(markup);
+
+
+
     movieListEl.innerHTML = markup;
   } catch (error) {
     console.log(error);
@@ -64,14 +70,13 @@ function onWatchedBtnClick() {
     .join('');
   movieListEl.innerHTML = moviesCards;
   setTimeout(spinnerStop, 500);
-  // console.log(movieWatched);
 }
 
 function onQueueBtnClick() {
   spinnerStart();
 
   const movieQueue = gettingItem('movieQueue');
-  // console.log(movieQueue);
+
   if (movieQueue.length === 0) {
     movieListEl.innerHTML =
       "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
@@ -88,8 +93,6 @@ function onQueueBtnClick() {
   movieListEl.innerHTML = moviesCards;
 
   setTimeout(spinnerStop, 500);
-
-  // console.log(movieQueue);
 }
 
 watchedBtnEl.addEventListener('click', onWatchedBtnClick);

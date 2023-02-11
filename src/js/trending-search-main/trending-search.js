@@ -6,7 +6,10 @@ import ultimatePagination from 'ultimate-pagination';
 import { userQueryForPagination } from '../movie-search/search-by-keyword';
 import { userYearForPagination } from '../movie-search/search-by-year.js';
 import { userGenreForPagination } from '../movie-search/search-by-genre.js';
-import { userAdvancedSearchForPagination,  makeAdvancedSearch } from '../movie-search/advanced-search.js';
+import {
+  userAdvancedSearchForPagination,
+  makeAdvancedSearch,
+} from '../movie-search/advanced-search.js';
 import { spinnerStart, spinnerStop } from '../loader';
 import { refs } from '../refs';
 import { searchRefs, tmdbAPI, scrollToTop } from '../movie-search/search-refs';
@@ -44,7 +47,7 @@ async function createMarkup(data) {
       .map(item => {
         let genres = '';
         const genresNamesToRender = getGenreDeciphered(item, genreNames);
-        // console.log(genresNamesToRender);
+
         if (genresNamesToRender.length > 2) {
           genres = `<a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[0]}</a>, <a class='find-by-genre-js trending-gallery__genre-name'>${genresNamesToRender[1]}</a>, Other | `;
         } else if (genresNamesToRender.length === 2) {
@@ -95,7 +98,6 @@ async function renderPopularFilms(page) {
     cardList.innerHTML = '';
     spinnerStart();
     const films = await fetchPopularFilms(page);
-    console.log('прийшов обєкт таких трендингових фільмів', films);
 
     const markup = await createMarkup(films.results);
 
@@ -154,10 +156,6 @@ async function onLoadAnotherPage(e) {
       scrollToTop();
       spinnerStart();
       const { data } = response;
-      console.log(
-        'за ПОШУКОВИМ словом користувача прийшов такий обэкт фільмів',
-        data
-      );
 
       searchRefs.galleryEl.innerHTML = makeHMTLString(data);
       renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
@@ -168,7 +166,7 @@ async function onLoadAnotherPage(e) {
       scrollToTop();
       spinnerStart();
       const { data } = response;
-      console.log('за запитом по РОКУ прийшов такий обєкт', data);
+
       searchRefs.galleryEl.innerHTML = makeHMTLString(data);
       renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
       return;
@@ -178,8 +176,7 @@ async function onLoadAnotherPage(e) {
       scrollToTop();
       spinnerStart();
       const { data } = response;
-      console.log(response);
-      console.log('за запитом по жанру прийшов такий обєкт за ЖАНРОМ?', data);
+
       searchRefs.galleryEl.innerHTML = makeHMTLString(data);
       renderPaginationInterface(tmdbAPI.page, paginationSettings.totalPages);
       return;
