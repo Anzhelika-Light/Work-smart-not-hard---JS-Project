@@ -11,8 +11,8 @@ const movieListEl = document.querySelector('.movie-list');
 // --дефолт інфа в бібліотеці
 
 async function defaultLibrary() {
-  minPage = Math.ceil(1);
-  maxPage = Math.floor(100);
+  let minPage = Math.ceil(1);
+  let maxPage = Math.floor(100);
   let page = Math.floor(Math.random() * (maxPage - minPage + 1) + minPage);
 
   try {
@@ -21,7 +21,6 @@ async function defaultLibrary() {
     const films = await fetchPopularFilms(page);
 
     // console.log(films.results);
-
 
     const markup = `<h3 class='library-gallery-recomend'>RECOMMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
     <div><p class='library-gallery__default__title'>${films.results[1].title}</p>
@@ -39,8 +38,6 @@ async function defaultLibrary() {
     </div>`;
 
     // console.log(markup);
-
-
 
     movieListEl.innerHTML = markup;
   } catch (error) {
