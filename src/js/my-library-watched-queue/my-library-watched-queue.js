@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import { renderMoviesLibrary } from './renderMoviesLibrary';
 import { userDataQueue, userDataWatched } from './data-template-local-storage';
+import { spinnerStart, spinnerStop } from '../loader';
 
 const watchedBtnEl = document.querySelector('.js-library-btn--watched');
 const queueBtnEl = document.querySelector('.js-library-btn--queue');
@@ -12,6 +13,8 @@ watchedBtnEl.style.borderColor = '#ff6b01';
 
 // при натисканні на Watched
 function onWatchedBtnClick() {
+  spinnerStart();
+
   watchedBtnEl.style.background = '#ff6b01';
   watchedBtnEl.style.borderColor = '#ff6b01';
   const movieWatched = gettingItem('movieWatched');
@@ -26,10 +29,12 @@ function onWatchedBtnClick() {
     })
     .join('');
   movieListEl.innerHTML = moviesCards;
+  setTimeout(spinnerStop, 500);
   // console.log(movieWatched);
 }
 
 function onQueueBtnClick() {
+  spinnerStart();
   watchedBtnEl.style.background = 'transparent';
   watchedBtnEl.style.borderColor = '#ffffff';
   const movieQueue = gettingItem('movieQueue');
@@ -46,6 +51,9 @@ function onQueueBtnClick() {
     })
     .join('');
   movieListEl.innerHTML = moviesCards;
+
+  setTimeout(spinnerStop, 500);
+
   // console.log(movieQueue);
 }
 
