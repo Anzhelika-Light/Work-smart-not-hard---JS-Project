@@ -9,8 +9,7 @@
   bottom: 5px;
   right: calc(50vw - 24px);
 
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 250ms $cubic, box-shadow 250ms $cubic;
 
   cursor: pointer;
   .library-header & {
@@ -28,8 +27,7 @@
   vertical-align: middle;
   transition: background-color 0.25s;
   top: -2px;
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    left 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 250ms $cubic, left 250ms $cubic;
 }
 
 .dark-toggle-switch:before,
@@ -86,8 +84,7 @@
   text-transform: uppercase;
   text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
   text-align: center;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    text-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms $cubic, text-shadow 250ms $cubic;
 }
 
 .darkmode--activated .dark-toggle-label {
@@ -179,7 +176,7 @@ body.darkmode--activated,
 
 #day-night-icon {
   fill: $primary-white-color;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms $cubic;
 }
 
 .darkmode--activated #day-night-icon {
@@ -191,6 +188,28 @@ body.darkmode--activated,
   color: $additional-text-color-2;
 }
 
+.darkmode--activated .library-gallery__default {
+  background-color: $main-accent-color;
+  border: 1px solid $primary-white-color;
+}
+
+.darkmode--activated .movie-modal {
+  background-color: $additional-text-color-2;
+  text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
+  border: 1px solid $main-accent-color;
+}
+
+.darkmode--activated .movie-modal__item-first {
+  color: $main-accent-color;
+  text-shadow: 0.2px 0.2px 0.2px $primary-black-color;
+}
+
+.darkmode--activated .trending-gallery__item:hover,
+.darkmode--activated .trending-gallery__item:focus {
+  box-shadow: 0 1px 1px $main-accent-color, 0 4px 4px $active-btn-color,
+    1px 4px 6px $main-accent-color;
+}
+
 //dark mode switch transitions
 body,
 main,
@@ -198,22 +217,29 @@ footer,
 .pagination__btn,
 .pagination__btn--prev,
 .pagination__btn--next {
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms $cubic;
+}
+
+.library-gallery__default {
+  transition: background-color 250ms $cubic, border 250ms $cubic;
+}
+
+.movie-modal__item-first {
+  transition: color 250ms $cubic, text-shadow 250ms $cubic;
 }
 
 .pagination__btn--prev,
 .pagination__btn--next,
 .pagination__btn--ellipsis {
-  transition: background-image 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-image 250ms $cubic, background-color 250ms $cubic;
 }
 
 .footer__text,
 .footer__text-link,
 .trending-gallery__title {
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms $cubic;
 }
 
 .footer {
-  transition: border-top 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-top 250ms $cubic;
 }
