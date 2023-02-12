@@ -52,7 +52,6 @@ export function onWatchedBtnClick() {
   spinnerStart();
 
   const movieWatched = gettingItem('movieWatched');
-  console.log(movieWatched);
   if (movieWatched === undefined) {
     movieListEl.innerHTML =
       "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
@@ -114,7 +113,6 @@ queueBtnEl.addEventListener('click', onQueueBtnClick);
 function gettingItem(key) {
   try {
     const serializedState = localStorage.getItem(key);
-    console.log(serializedState);
     if (serializedState === null) return undefined;
     return JSON.parse(serializedState);
     // return serializedState === null ? undefined : JSON.parse(serializedState);

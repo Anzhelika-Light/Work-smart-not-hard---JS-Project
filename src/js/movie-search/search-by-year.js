@@ -14,7 +14,6 @@ import { userSearchObj } from './search-by-keyword';
 //find movies by year
 searchRefs.galleryEl.addEventListener('click', findMoviesByYear);
 // export let userYearForPagination = '';
-console.log('search by year');
 
 function findMoviesByYear(event) {
   //if not find-by-genre-js link - return

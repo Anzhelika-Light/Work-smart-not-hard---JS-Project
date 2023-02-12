@@ -154,9 +154,6 @@ btnLogin.addEventListener('click', loginEmailPassword);
 
 onAuthStateChanged(auth, async user => {
   if (user) {
-    console.log('u are online');
-    console.log(user.uid);
-
     btnLogOut.classList.remove('hide'); //
     form.classList.add('hide'); //
     profile.classList.remove('hide'); //
@@ -168,9 +165,7 @@ onAuthStateChanged(auth, async user => {
       profileName.textContent = rez.userLogin;
     } catch {}
   } else {
-    console.log('u are NOT online');
     currentUID = '';
-    console.log('-' + currentUID);
 
     profileName.textContent = '';
     btnLogOut.classList.add('hide'); //

@@ -22,9 +22,7 @@ import { userSearchObj } from './search-by-keyword';
 //find movies by genre
 searchRefs.galleryEl.addEventListener('click', findMoviesByGenre);
 let genreID;
-console.log(searchRefs.galleryEl);
 function findMoviesByGenre(event) {
-  console.log('click');
   if (tooglePagination.isFilmsByAdvancedSearchShown) {
     searchRefs.advancedSearchEl.reset();
   }
@@ -49,7 +47,6 @@ function findMoviesByGenre(event) {
   genreID = TmdbAPI.genreIDs[genre.toLowerCase()];
 
   deletePaginationInterface();
-  console.log(userSearchObj.userGenreForPagination);
   userSearchObj.userGenreForPagination = genreID;
   tmdbAPI.page = 1;
 

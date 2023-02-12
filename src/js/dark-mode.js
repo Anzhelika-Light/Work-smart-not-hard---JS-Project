@@ -2,8 +2,6 @@ const darkToggleEl = document.querySelector('#dark-toggle');
 const darkToggleWindowEl = document.querySelector('.dark-toggle-window');
 const darkTogleLableEl = document.querySelector('.dark-toggle-label');
 
-console.log('darkmode hello', darkToggleEl);
-
 darkToggleWindowEl.addEventListener('click', onDarkToggleElClick);
 
 if (localStorage.getItem('isDarkModeOn') === 'true') {
@@ -12,8 +10,6 @@ if (localStorage.getItem('isDarkModeOn') === 'true') {
 }
 
 function onDarkToggleElClick() {
-  console.log('darkmode click');
-
   turnDarkModeOn();
   //change local storage
   if (localStorage.getItem('isDarkModeOn') === 'true') {

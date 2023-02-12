@@ -134,10 +134,7 @@ export default class TmdbAPI {
 
   #createGenresObj() {
     //if TmdbAPI.genres already has data - do not fetch again
-    console.log('length', Object.keys(TmdbAPI.genres).length);
     if (Object.keys(TmdbAPI.genres).length !== 0) return;
-
-    console.log('after return');
 
     this.#fetchGenreMoviesList().then(response => {
       const genrArr = response.data.genres;

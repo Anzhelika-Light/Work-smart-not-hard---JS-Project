@@ -104,15 +104,26 @@
   margin-bottom: 10px;
 }
 
+.team-list__tasks {
+list-style:circle;
+display:flex;
+flex-direction: column;
+row-gap: 8px;
+text-align: start;
+padding-right: 15px;
+padding-left: 35px;
+margin-bottom: 13px;
+flex-grow: 1;
+}
+
+
 .team-list__text {
+ 
   color: $additional-text-color-1;
   font-size: 14px;
   line-height: 1.18;
-  text-align: center;
   letter-spacing: 0.03em;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-bottom: 13px;
+
 }
 
 .team-list__position {
