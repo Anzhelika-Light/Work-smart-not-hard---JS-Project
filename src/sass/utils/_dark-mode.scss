@@ -9,7 +9,7 @@
   bottom: 5px;
   left: calc(50vw - 30.5px);
 
-  transition: background-color 250ms $cubic, box-shadow 250ms $cubic;
+  transition: background-color $cubic, box-shadow  $cubic;
 
   cursor: pointer;
   .library-header & {
@@ -27,7 +27,7 @@
   vertical-align: middle;
   transition: background-color 0.25s;
   top: -2px;
-  transition: background-color 250ms $cubic, left 250ms $cubic;
+  transition: background-color  $cubic, left  $cubic;
 }
 
 .dark-toggle-switch:before,
@@ -84,7 +84,7 @@
   text-transform: uppercase;
   text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
   text-align: center;
-  transition: color 250ms $cubic, text-shadow 250ms $cubic;
+  transition: color $cubic, text-shadow  $cubic;
 }
 
 .darkmode--activated .dark-toggle-label {
@@ -176,7 +176,7 @@ body.darkmode--activated,
 
 #day-night-icon {
   fill: $primary-white-color;
-  transition: fill 250ms $cubic;
+  transition: fill  $cubic;
 }
 
 .darkmode--activated #day-night-icon {
@@ -222,35 +222,35 @@ main,
 .pagination__btn,
 .pagination__btn--prev,
 .pagination__btn--next {
-  transition: background-color 250ms $cubic;
+  transition: background-color  $cubic;
 }
 
 .footer {
-  transition: border-top 250ms $cubic, background-color 250ms $cubic;
+  transition: border-top  $cubic, background-color $cubic;
 }
 
 .no-movies {
-  transition: background-color 250ms $cubic, color 250ms $cubic,
-    text-shadow 250ms $cubic;
+  transition: background-color  $cubic, color $cubic,
+    text-shadow  $cubic;
 }
 
 .library-gallery__default {
-  transition: background-color 250ms $cubic, border 250ms $cubic;
+  transition: background-color  $cubic, border  $cubic;
 }
 
 .movie-modal__item-first {
-  transition: color 250ms $cubic, text-shadow 250ms $cubic;
+  transition: color $cubic, text-shadow  $cubic;
 }
 
 .pagination__btn--prev,
 .pagination__btn--next,
 .pagination__btn--ellipsis {
-  transition: background-image 250ms $cubic, background-color 250ms $cubic;
+  transition: background-image  $cubic, background-color  $cubic;
 }
 
 .footer__text,
 .footer__text-link,
 .trending-gallery__title {
-  transition: color 250ms $cubic;
+  transition: color $cubic;
 }
 
