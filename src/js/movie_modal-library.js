@@ -111,6 +111,7 @@ async function handleWatched(e) {
       const saved = JSON.parse(localStorage.getItem('movieWatched'));
       // e.target.addEventListener('click', removeFromWatched);
       // e.target.removeEventListener('click', addToWatched);
+      onWatchedBtnClick();
       Notiflix.Notify.success('Added to watched!');
     }
   } else if (e.target.innerText === 'REMOVE FROM WATCHED') {
@@ -143,6 +144,7 @@ async function handleQueued(e) {
       e.target.innerText = 'Remove from queue';
       // e.target.addEventListener('click', removeFromWatched);
       // e.target.removeEventListener('click', addToWatched);
+      onQueueBtnClick();
       Notiflix.Notify.success('Added to queue!');
     }
   } else if (e.target.innerText === 'REMOVE FROM QUEUE') {
