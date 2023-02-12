@@ -9,6 +9,7 @@ import Notiflix from 'notiflix';
 import { getDatabase, ref, set, child, get, push, update } from "firebase/database"
 
 import { spinnerStart, spinnerStop } from './loader';
+//import { onQueueBtnClick, onWatchedBtnClick } from './my-library-watched-queue/my-library-watched-queue.js';
 //data-template-local-storage.js////////////////////////////
 //import { userDataWatched, userDataQueue } from "./my-library-watched-queue/data-template-local-storage.js"
 
@@ -232,12 +233,12 @@ const logout = async () => {
 
   }
 
-  /* spinnerStart();                           ///////////
-   setTimeout(() => {
-     spinnerStop();
-     document.location.reload();
-   }, 1500);
- */
+  spinnerStart();                           ///////////
+  setTimeout(() => {
+    spinnerStop();
+
+  }, 1500);
+
 }
 btnLogOut.addEventListener("click", logout);
 

@@ -60,11 +60,16 @@ export async function onWatchedBtnClick() {
   watchedBtnEl.style.background = '#ff6b01';
   watchedBtnEl.style.borderColor = '#ff6b01';
   if (auth.currentUser === null) {
-    movieListEl.innerHTML = "";
+    movieListEl.innerHTML = "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";;
     return;
   }
   const movieWatched = await readAllUserData(auth.currentUser.uid);
+  if (movieWatched.userDataWatch === undefined) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
 
+    return;
+  }
   console.log(movieWatched);
   if (Object.keys(movieWatched).length === 1) {
     movieListEl.innerHTML =
@@ -91,12 +96,16 @@ export async function onQueueBtnClick() {
   watchedBtnEl.style.borderColor = '#ffffff';
 
   if (auth.currentUser === null) {
-    movieListEl.innerHTML = "";
+    movieListEl.innerHTML = "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";;
     return;
   }
   const movieQueue = await readAllUserData(auth.currentUser.uid);
   console.log(movieQueue);
-
+  if (movieQueue.userDataQueue === undefined) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+    return;
+  }
   if (Object.keys(movieQueue).length === 1) {
     movieListEl.innerHTML =
       "<p>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";

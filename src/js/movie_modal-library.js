@@ -186,7 +186,7 @@ setTimeout(() => {
   updateVar();
 }, 2500)
 
-allCardsSection.addEventListener('click', showModal);
+sectionLibrary.addEventListener('click', showModal);
 
 async function updateMoviesList() {
 
@@ -213,7 +213,7 @@ export async function showModal(e) {
     modal.classList.remove('hidden-movie-modal');
     overflow.classList.remove('hidden-movie-modal');
     overflow.classList.add('overflow-height');
-    allCardsSection.removeEventListener('click', showModal);
+    sectionLibrary.removeEventListener('click', showModal);
     document.addEventListener('keydown', closeModalOnEsc);
     closeBtn.addEventListener('click', closeModal);
     overflow.addEventListener('click', closeModalOverflow);
@@ -254,7 +254,7 @@ function closeModal() {
   modal.classList.add('hidden-movie-modal');
   overflow.classList.add('hidden-movie-modal');
   overflow.classList.remove('overflow-height');
-  allCardsSection.addEventListener('click', showModal);
+  sectionLibrary.addEventListener('click', showModal);
   document.removeEventListener('keydown', closeModal);
   closeBtn.removeEventListener('click', closeModal);
   overflow.removeEventListener('click', closeModalOverflow);
@@ -302,7 +302,6 @@ async function handleWatched(e) {
       if (auth.currentUser === null) {
         localStorage.setItem('movieWatched', JSON.stringify(watched));
         e.target.innerText = 'Remove from watched';
-        // onWatchedBtnClick();
         const saved = JSON.parse(localStorage.getItem('movieWatched'));
       }
       else {
@@ -312,7 +311,7 @@ async function handleWatched(e) {
         const saved = w.userDataWatch || [];
       }
 
-
+      onWatchedBtnClick();
       Notiflix.Notify.success('Added to watched!');
     }
   } else if (e.target.innerText === 'REMOVE FROM WATCHED') {
@@ -324,7 +323,7 @@ async function handleWatched(e) {
       await writeUserDataWatch(auth.currentUser.uid, watched);
     }
     e.target.innerText = 'Add to watched';
-    // onWatchedBtnClick();
+    onWatchedBtnClick();
     Notiflix.Notify.success('Removed from watched!');
   }
 }
@@ -350,7 +349,7 @@ async function handleQueued(e) {
         await writeUserDataQueue(auth.currentUser.uid, queue);
       }
       e.target.innerText = 'Remove from queue';
-      // onQueueBtnClick();
+      onQueueBtnClick();
       Notiflix.Notify.success('Added to queue!');
     }
   } else if (e.target.innerText === 'REMOVE FROM QUEUE') {
@@ -363,7 +362,7 @@ async function handleQueued(e) {
     }
 
     e.target.innerText = 'Add to queue';
-    //onQueueBtnClick();
+    onQueueBtnClick();
     Notiflix.Notify.success('Removed from queue!');
   }
 }
