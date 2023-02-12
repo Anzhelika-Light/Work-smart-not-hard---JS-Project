@@ -19,12 +19,12 @@ export default class TmdbAPI {
     FLATRATE: 'flatrate',
   };
   static sort_by_types = {
-    POPULARITY_ASC: 'popularity.asc',
-    POPULARITY_DESC: 'popularity.desc',
-    PRIMARY_RELEASE_DATE_ASC: 'primary_release_date.asc',
-    PRIMARY_RELEASE_DATE_DESC: 'primary_release_date.desc',
-    VOTE_AVERAGE_ASC: 'vote_average.asc',
-    VOTE_AVERAGE_DESC: 'vote_average.desc',
+    POPULARITY_ASC: 'popularity ▲',
+    POPULARITY_DESC: 'popularity ▼',
+    PRIMARY_RELEASE_DATE_ASC: 'primary_release_date ▲',
+    PRIMARY_RELEASE_DATE_DESC: 'primary_release_date ▼',
+    VOTE_AVERAGE_ASC: 'vote_average ▲',
+    VOTE_AVERAGE_DESC: 'vote_average ▼',
   };
   static BASE_URL = 'https://api.themoviedb.org/3';
   static IMG_BASE_URL = 'https://image.tmdb.org/t/p';
