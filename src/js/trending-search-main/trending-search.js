@@ -63,7 +63,7 @@ async function createMarkup(data) {
           genres = genresNamesToRender;
         }
         return `<li class="trending-gallery__item" data-id="${item.id}">
-                  <a href="#" class="trending-gallery__link">
+                  
                     <div>
                         <img src="${imageBaseURL}${item.poster_path}"
                             class="trending-gallery__image" data-id="${item.id}"
@@ -85,7 +85,7 @@ async function createMarkup(data) {
                               )}</span>
                               </p>
                     </div>
-                  </a>
+                  
                 </li>`;
       })
       .join('');
