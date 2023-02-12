@@ -1,4 +1,4 @@
-.dark-toggle {
+.dark-toggle-window {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +48,7 @@
   transition: left 0.25s;
 }
 
-.dark-toggle:hover .dark-toggle-switch:before {
+.dark-toggle-window:hover .dark-toggle-switch:before {
   background: linear-gradient(to bottom, #fff 0%, #fff 100%);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
@@ -210,14 +210,28 @@ body.darkmode--activated,
     1px 4px 6px $main-accent-color;
 }
 
+.darkmode--activated .no-movies {
+  background-color: $main-accent-color;
+  color: $primary-white-color;
+  text-shadow: 1px 1px 1px $additional-text-color-1;
+}
+
 //dark mode switch transitions
 body,
 main,
-footer,
 .pagination__btn,
 .pagination__btn--prev,
 .pagination__btn--next {
   transition: background-color 250ms $cubic;
+}
+
+.footer {
+  transition: border-top 250ms $cubic, background-color 250ms $cubic;
+}
+
+.no-movies {
+  transition: background-color 250ms $cubic, color 250ms $cubic,
+    text-shadow 250ms $cubic;
 }
 
 .library-gallery__default {
@@ -238,8 +252,4 @@ footer,
 .footer__text-link,
 .trending-gallery__title {
   transition: color 250ms $cubic;
-}
-
-.footer {
-  transition: border-top 250ms $cubic;
 }
