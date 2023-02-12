@@ -20,6 +20,8 @@ function onDarkToggleElClick() {
 
 function turnDarkModeOn() {
   document.querySelector('body').classList.toggle('darkmode--activated');
-  darkTogleLableEl.textContent =
-    darkTogleLableEl.textContent === 'Day' ? 'Night' : 'Day';
+  setTimeout(() => {
+    darkTogleLableEl.textContent =
+      darkTogleLableEl.textContent === 'Day' ? 'Night' : 'Day';
+  }, 250);
 }
