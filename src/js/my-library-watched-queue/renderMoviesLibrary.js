@@ -23,6 +23,27 @@ export function renderMoviesLibrary(movie) {
     releaseDate = `-`;
   }
 
+  // перевірка на кількість жанрів
+
+  const genresArr = genre_ids.split(',');
+  let genres = [];
+  // const genresNamesToRender = getGenreDeciphered(item, genreNames);
+  if (genresArr.length > 2) {
+    genres.push(genresArr[0]);
+    genres.push(genresArr[1]);
+    genres.push('Other');
+    console.log('genres:', genres);
+  } else if (genresArr.length === 2) {
+    genres.push(genresArr[0]);
+    genres.push(genresArr[1]);
+    console.log('genres:', genres);
+  } else if (genresArr.length === 1) {
+    genres.push(genresArr[0]);
+    console.log('genres:', genres);
+  }
+
+  // /перевірка на кількість жанрів
+
   const voteAverageToNumber = Number(vote_average);
   const voteAverageFixed = voteAverageToNumber.toFixed(1);
   // const genres = genre_ids.map(el => el.id);
@@ -33,7 +54,9 @@ export function renderMoviesLibrary(movie) {
     <img src="${poster}" alt="The poster of ${title} film" class="library-gallery__image" data-id='${id}'/>
     <div class="trending-gallery__wrapper">
     	<h3 class='trending-gallery__title' data-id='${id}'><span class="title-modal-open">${title}</span></h3>
-    	<p class='trending-gallery__info'>${genre_ids} | <span class='movie-year'>${releaseDate}</span> <span class='movie-rating'>${voteAverageFixed}</span></p>
+    	<p class='trending-gallery__info'>${genres.join(
+        ', '
+      )} | <span class='movie-year'>${releaseDate}</span> <span class='movie-rating'>${voteAverageFixed}</span></p>
     </div>
     
   </li>
