@@ -35,7 +35,7 @@ searchRefs.advancedSearchEl.addEventListener(
 function showAdvancedSearch(event) {
   // console.dir(event.target);/
   if (!event.target.classList.value.includes('show-advanced-search-js')) return;
-  toggleAdvancedSearch();
+  setTimeout(() => toggleAdvancedSearch(), 100);
   if (areOptionsGenerated) return;
   generateSelectOptions(searchRefs.advancedSearchEl);
 }
