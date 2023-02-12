@@ -6,6 +6,9 @@ import { onTrailerBtnClick } from './trailer';
 import { all, AxiosHeaders } from 'axios';
 import { fetchMovie } from './fetch_movie_details';
 import TmdbAPI from './TMDB_API';
+import { onWatchedBtnClick } from './my-library-watched-queue/my-library-watched-queue';
+import { onQueueBtnClick } from './my-library-watched-queue/my-library-watched-queue';
+
 const {
   allCardsSection,
   modal,
@@ -120,6 +123,8 @@ async function handleWatched(e) {
     watched = watched.filter(film => film.id !== movie.id);
     localStorage.setItem('movieWatched', JSON.stringify(watched));
     e.target.innerText = 'Add to watched';
+    onWatchedBtnClick();
+
     // e.target.removeEventListener('click', removeFromWatched);
     // e.target.addEventListener('click', addToWatched);
     Notiflix.Notify.success('Removed from watched!');
@@ -153,6 +158,7 @@ async function handleQueued(e) {
     queue = queue.filter(film => film.id !== movie.id);
     localStorage.setItem('movieQueue', JSON.stringify(queue));
     e.target.innerText = 'Add to queue';
+    onQueueBtnClick();
     // e.target.removeEventListener('click', removeFromWatched);
     // e.target.addEventListener('click', addToWatched);
     Notiflix.Notify.success('Removed from queue!');
