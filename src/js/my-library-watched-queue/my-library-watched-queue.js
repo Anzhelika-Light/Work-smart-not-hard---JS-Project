@@ -48,7 +48,7 @@ defaultLibrary();
 // --/дефолт інфа в бібліотеці
 
 // при натисканні на Watched
-function onWatchedBtnClick() {
+export function onWatchedBtnClick() {
   spinnerStart();
 
   const movieWatched = gettingItem('movieWatched');
@@ -77,7 +77,7 @@ function onWatchedBtnClick() {
   setTimeout(spinnerStop, 500);
 }
 
-function onQueueBtnClick() {
+export function onQueueBtnClick() {
   spinnerStart();
 
   const movieQueue = gettingItem('movieQueue');
