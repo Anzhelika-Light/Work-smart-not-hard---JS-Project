@@ -149,6 +149,9 @@ function onChange() {
 }
 
 async function onLoadAnotherPage(e) {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
   try {
     deletePaginationInterface();
     const clickedBtn = e.target;
