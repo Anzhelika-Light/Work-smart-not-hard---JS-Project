@@ -14,7 +14,10 @@ export async function renderModal(list, id, watched, queue) {
     popularity,
     overview,
     id: film_id,
+    homepage: homepageLink,
   } = movieDetails;
+
+  console.log('homepageLink', homepageLink);
 
   const finalGenres = genres.map(genre => {
     return genre.name;
@@ -85,13 +88,20 @@ export async function renderModal(list, id, watched, queue) {
         </p>
       </div>`
     : '';
+  const homepageBtn = homepageLink
+    ? `<a href='${homepageLink}' class="homepage-link-button" target="_blank" ref="link to film' homepage">
+        To movie homepage
+      </a>`
+    : '';
   const photoMarkup = poster_path
     ? `<div class="movie-modal__img">
-      <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" class="movie-modal__img-poster"/>
+      <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" class="movie-modal__img-poster"/>${homepageBtn}
     </div>`
     : `<div class="movie-modal__img">
-      <img src="${emptyPhoto}" alt="photo coming soon" />
+      <img src="${emptyPhoto}" alt="photo coming soon" />${homepageBtn}
     </div>`;
+
+  // console.log('homepageBtn', homepageBtn);
   //фукнція повертає рядок розмітки, а не масив (ті дані нерелевантні, і я їх прибрала)
   return `${photoMarkup}
     <div class="movie-modal__about">
