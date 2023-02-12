@@ -169,11 +169,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  background-color: transparent;
-  transition: background-color $cubic;
+    background-color: transparent;
+    transition: background-color $cubic;
     border-radius: 20px;
-     }
-         
+  }
 
   &__buttons {
     display: flex;
@@ -221,13 +220,46 @@
   }
 }
 
-
 .interactive-button:hover,
 .interactive-button:focus {
   background-color: $main-accent-color;
   color: $primary-white-color;
   border: 1px solid transparent;
+}
 
+.movie-modal__img {
+  position: relative;
+}
+
+.homepage-link-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 13px 8px;
+  font-size: 12px;
+  text-align: center;
+  line-height: calc(16 / 12);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: $main-accent-color;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: $primary-white-color;
+
+  @mixin tablet {
+    width: 152px;
+  }
+
+  @mixin desktop {
+    width: 148px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-shadow: 1px 1px 1px $primary-black-color;
+    box-shadow: 0 1px 1px #fffaf7, 0 2px 3px #ff6b08, 1px 3px 4px #ff6b01;
+  }
 }
 
 .overflow {
@@ -263,9 +295,7 @@
   border-radius: 5px;
 }
 
-
 .movie-modal__close-btn:hover,
 .movie-modal__close-btn:focus {
   background-color: $main-accent-color;
- 
 }
