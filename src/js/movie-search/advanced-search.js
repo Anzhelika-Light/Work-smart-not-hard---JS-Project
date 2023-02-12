@@ -117,6 +117,10 @@ export function makeAdvancedSearch(optionsObj) {
     .catch(console.error);
 }
 
+function clearAdvancedSearchForm() {
+  searchRefs.advancedSearchEl.reset();
+}
+
 //callback function for event listener on button submit - when the advanced search form is submitted
 function onAdvancedSearchElSubmit(event) {
   event.preventDefault();
@@ -151,7 +155,10 @@ function onAdvancedSearchElSubmit(event) {
   let searchYear = searchRefs.advancedSearchEl.year.value;
 
   if (!checkYear(searchYear)) {
-    searchYear = new Date().getFullYear();
+    // searchYear = new Date().getFullYear();
+    Notify.failure('The year chosen is ineligible!');
+    clearAdvancedSearchForm();
+    return;
   }
 
   optionsObj.primary_release_year = searchYear;
@@ -163,6 +170,7 @@ function onAdvancedSearchElSubmit(event) {
     optionsObj.without_genres !== undefined
   ) {
     Notify.failure("You can't choose and exclude the same genre!");
+    clearAdvancedSearchForm();
     return;
   }
 
@@ -179,10 +187,12 @@ function onAdvancedSearchElSubmit(event) {
 
   if (isTheSameSettings) {
     Notify.info('Please,make changes in search params and try again');
+    clearAdvancedSearchForm();
     renderPopularFilms(1);
     return;
   }
   deletePaginationInterface();
+  clearAdvancedSearchForm();
   makeAdvancedSearch(optionsObj);
 }
 
@@ -196,8 +206,6 @@ function checkYear(searchYear) {
   ) {
     return true;
   }
-
-  Notify.failure('Enter the year correctly!');
   return false;
 }
 
