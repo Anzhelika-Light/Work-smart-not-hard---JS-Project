@@ -1,6 +1,6 @@
 import fetchPopularFilms from './fetch-movies';
 import getImages from './fetch-images-url';
-import getGenres from './fetch-genres';
+// import getGenres from './fetch-genres';
 
 import ultimatePagination from 'ultimate-pagination';
 import { userSearchObj } from '../movie-search/search-by-keyword';
@@ -16,6 +16,8 @@ import { spinnerStart, spinnerStop } from '../loader';
 import { refs } from '../refs';
 import { searchRefs, tmdbAPI, scrollToTop } from '../movie-search/search-refs';
 import makeHMTLString from '../templates/film_gallery_template';
+import { TmdbAPI } from '../movie-search/search-refs';
+// console.log('genre names my', TmdbAPI.genres);
 
 export const tooglePagination = {
   isTrendingFilmsShown: true,
@@ -43,7 +45,8 @@ const cardList = document.querySelector('.trending-gallery');
 async function createMarkup(data) {
   try {
     const imageBaseURL = await getImages();
-    const genreNames = await getGenres();
+    // const genreNames = await getGenres();
+    const genreNames = TmdbAPI.genres;
 
     const markup = data
       .map(item => {
