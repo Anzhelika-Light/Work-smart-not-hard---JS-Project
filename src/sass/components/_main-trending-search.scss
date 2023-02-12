@@ -94,6 +94,7 @@
 }
 
 .trending-gallery__item {
+  transition: box-shadow $cubic, transform $cubic;
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 32px) / 2);
   }
@@ -101,6 +102,16 @@
   @media screen and (min-width: 1280px) {
     flex-basis: calc((100% - 2 * 16px) / 3);
   }
+}
+
+// .trending-gallery__link {
+// }
+
+.trending-gallery__item:hover,
+.trending-gallery__item:focus {
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%), 0px 4px 4px rgb(0 0 0 / 6%),
+    1px 4px 6px rgb(0 0 0 / 16%);
+  transform: scale(1.03);
 }
 
 .trending-gallery__image {

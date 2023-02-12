@@ -40,6 +40,10 @@ export default class TmdbAPI {
 
   constructor(page = 1) {
     this.page = page;
+    // this.#createGenresObj();
+  }
+
+  fetchGenres() {
     this.#createGenresObj();
   }
 
@@ -130,7 +134,10 @@ export default class TmdbAPI {
 
   #createGenresObj() {
     //if TmdbAPI.genres already has data - do not fetch again
+    console.log('length', Object.keys(TmdbAPI.genres).length);
     if (Object.keys(TmdbAPI.genres).length !== 0) return;
+
+    console.log('after return');
 
     this.#fetchGenreMoviesList().then(response => {
       const genrArr = response.data.genres;
@@ -143,6 +150,12 @@ export default class TmdbAPI {
   }
 
   static getGenresString(genre_ids) {
+    if (TmdbAPI.genres[genre_ids[0]] === undefined) {
+      TmdbAPI.genres[genre_ids[0]] = '';
+    }
+    if (TmdbAPI.genres[genre_ids[1]] === undefined) {
+      TmdbAPI.genres[genre_ids[1]] = '';
+    }
     switch (genre_ids.length) {
       case 0:
         return '';
