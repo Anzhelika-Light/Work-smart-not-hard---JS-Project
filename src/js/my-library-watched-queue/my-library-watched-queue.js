@@ -53,6 +53,14 @@ function onWatchedBtnClick() {
   spinnerStart();
 
   const movieWatched = gettingItem('movieWatched');
+  console.log(movieWatched);
+  if (movieWatched === undefined) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
+    setTimeout(spinnerStop, 500);
+
+    return;
+  }
   if (movieWatched.length === 0) {
     movieListEl.innerHTML =
       "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
@@ -60,6 +68,7 @@ function onWatchedBtnClick() {
 
     return;
   }
+
   const moviesCards = movieWatched
     .map(movie => {
       return renderMoviesLibrary(movie);
@@ -74,6 +83,13 @@ function onQueueBtnClick() {
 
   const movieQueue = gettingItem('movieQueue');
 
+  if (movieQueue === undefined) {
+    movieListEl.innerHTML =
+      "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
+    setTimeout(spinnerStop, 500);
+
+    return;
+  }
   if (movieQueue.length === 0) {
     movieListEl.innerHTML =
       "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
@@ -99,8 +115,10 @@ queueBtnEl.addEventListener('click', onQueueBtnClick);
 function gettingItem(key) {
   try {
     const serializedState = localStorage.getItem(key);
+    console.log(serializedState);
     if (serializedState === null) return undefined;
     return JSON.parse(serializedState);
+    // return serializedState === null ? undefined : JSON.parse(serializedState);
   } catch (error) {
     console.log('Everyone makes mistakes, this is yours:', error.message);
   }
