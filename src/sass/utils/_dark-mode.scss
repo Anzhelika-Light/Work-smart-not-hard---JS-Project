@@ -1,4 +1,4 @@
-.dark-toggle {
+.dark-toggle-window {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,6 +8,8 @@
   position: absolute;
   bottom: 5px;
   right: calc(50vw - 24px);
+
+  transition: background 250ms $cubic, box-shadow 250ms $cubic;
 
   cursor: pointer;
   .library-header & {
@@ -25,6 +27,7 @@
   vertical-align: middle;
   transition: background-color 0.25s;
   top: -2px;
+  transition: background 250ms $cubic, left 250ms $cubic;
 }
 
 .dark-toggle-switch:before,
@@ -45,7 +48,7 @@
   transition: left 0.25s;
 }
 
-.dark-toggle:hover .dark-toggle-switch:before {
+.dark-toggle-window:hover .dark-toggle-switch:before {
   background: linear-gradient(to bottom, #fff 0%, #fff 100%);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
@@ -81,7 +84,9 @@
   text-transform: uppercase;
   text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
   text-align: center;
+  transition: color 250ms $cubic, text-shadow 250ms $cubic;
 }
+
 .darkmode--activated .dark-toggle-label {
   color: $main-accent-color;
   text-shadow: 0.1px 0.1px 0.1px white;
@@ -171,6 +176,7 @@ body.darkmode--activated,
 
 #day-night-icon {
   fill: $primary-white-color;
+  transition: fill 250ms $cubic;
 }
 
 .darkmode--activated #day-night-icon {
@@ -180,4 +186,70 @@ body.darkmode--activated,
 .darkmode--activated .footer__text,
 .darkmode--activated .footer__text-link {
   color: $additional-text-color-2;
+}
+
+.darkmode--activated .library-gallery__default {
+  background-color: $main-accent-color;
+  border: 1px solid $primary-white-color;
+}
+
+.darkmode--activated .movie-modal {
+  background-color: $additional-text-color-2;
+  text-shadow: 0.1px 0.1px 0.1px $main-accent-color;
+  border: 1px solid $main-accent-color;
+}
+
+.darkmode--activated .movie-modal__item-first {
+  color: $main-accent-color;
+  text-shadow: 0.2px 0.2px 0.2px $primary-black-color;
+}
+
+.darkmode--activated .trending-gallery__item:hover,
+.darkmode--activated .trending-gallery__item:focus {
+  box-shadow: 0 1px 1px $main-accent-color, 0 4px 4px $active-btn-color,
+    1px 4px 6px $main-accent-color;
+}
+
+.darkmode--activated .no-movies {
+  background-color: $main-accent-color;
+  color: $primary-white-color;
+  text-shadow: 1px 1px 1px $additional-text-color-1;
+}
+
+//dark mode switch transitions
+body,
+main,
+.pagination__btn,
+.pagination__btn--prev,
+.pagination__btn--next {
+  transition: background-color 250ms $cubic;
+}
+
+.footer {
+  transition: border-top 250ms $cubic, background-color 250ms $cubic;
+}
+
+.no-movies {
+  transition: background-color 250ms $cubic, color 250ms $cubic,
+    text-shadow 250ms $cubic;
+}
+
+.library-gallery__default {
+  transition: background-color 250ms $cubic, border 250ms $cubic;
+}
+
+.movie-modal__item-first {
+  transition: color 250ms $cubic, text-shadow 250ms $cubic;
+}
+
+.pagination__btn--prev,
+.pagination__btn--next,
+.pagination__btn--ellipsis {
+  transition: background-image 250ms $cubic, background-color 250ms $cubic;
+}
+
+.footer__text,
+.footer__text-link,
+.trending-gallery__title {
+  transition: color 250ms $cubic;
 }
