@@ -138,9 +138,9 @@ function onAdvancedSearchElSubmit(event) {
       ],
   };
 
-  const isTheSameSettings = Object.keys(optionsObj).reduce((acc, rec) => {
-    return acc && optionsObj[rec] === userAdvancedSearchForPagination[rec];
-  }, true);
+  // const isTheSameSettings = Object.keys(optionsObj).reduce((acc, rec) => {
+  //   return acc && optionsObj[rec] === userAdvancedSearchForPagination[rec];
+  // }, true);
 
   //check if nothing chosen
   if (!isOptionsObjHasValues(optionsObj)) {
@@ -185,12 +185,12 @@ function onAdvancedSearchElSubmit(event) {
 
   userAdvancedSearchForPagination.page = optionsObj.page;
 
-  if (isTheSameSettings) {
-    Notify.info('Please,make changes in search params and try again');
-    clearAdvancedSearchForm();
-    renderPopularFilms(1);
-    return;
-  }
+  // if (isTheSameSettings) {
+  //   Notify.info('Please,make changes in search params and try again');
+  //   clearAdvancedSearchForm();
+  //   renderPopularFilms(1);
+  //   return;
+  // }
   deletePaginationInterface();
   clearAdvancedSearchForm();
   makeAdvancedSearch(optionsObj);
