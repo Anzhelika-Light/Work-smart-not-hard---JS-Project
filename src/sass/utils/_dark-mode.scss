@@ -7,13 +7,18 @@
 
   position: absolute;
   bottom: 5px;
-  left: calc(50vw - 30.5px);
+  left: calc(50vw - 24px);
 
-  transition: background-color 250ms $cubic, box-shadow 250ms $cubic;
+  transition: background-color 250ms $cubic, box-shadow 250ms $cubic,
+    left 250ms $cubic;
 
   cursor: pointer;
   .library-header & {
     bottom: 5px;
+  }
+
+  .darkmode--activated & {
+    left: calc(50vw - 30.5px);
   }
 }
 
@@ -253,4 +258,3 @@ main,
 .trending-gallery__title {
   transition: color 250ms $cubic;
 }
-
