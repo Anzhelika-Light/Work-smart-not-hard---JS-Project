@@ -95,6 +95,9 @@
 
 .trending-gallery__item {
   transition: box-shadow $cubic, transform $cubic;
+  border-radius: 5px;
+
+  // overflow: hidden;
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 32px) / 2);
   }
@@ -103,6 +106,9 @@
     flex-basis: calc((100% - 2 * 16px) / 3);
   }
 }
+
+
+
 
 // .trending-gallery__link {
 // }
@@ -117,7 +123,8 @@
 .trending-gallery__image {
   width: 280px;
   height: 402px;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 
   cursor: pointer;
   @media screen and (min-width: 320px) {
@@ -137,17 +144,17 @@
 }
 
 .trending-gallery__wrapper {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
+
 
   @media screen and (min-width: 768px) {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px;
+    
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding: 12px;
+    
   }
 }
 

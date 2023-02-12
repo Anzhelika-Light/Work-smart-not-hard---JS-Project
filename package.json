@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://Anzhelika-Light.github.io/Work-smart-not-hard---JS-Project",
   "scripts": {
-    "start": "parcel src/*.html -p 7878",
+    "start": "parcel src/*.html -p 5555",
     "build": "parcel build src/*.html --public-url /Work-smart-not-hard---JS-Project/"
   },
   "repository": {
