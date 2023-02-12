@@ -68,13 +68,12 @@ async function createMarkup(data) {
              />
 
       <div class="trending-gallery__wrapper">
-      <h3 class="trending-gallery__title" ><span class="title-modal-open" data-id="${
-        item.id
-      }">${item.title}</span></h3>
+      <h3 class="trending-gallery__title" ><span class="title-modal-open" data-id="${item.id
+          }">${item.title}</span></h3>
       <p class="trending-gallery__info">${genres}<span class="find-by-year-js">${item.release_date.slice(
-          0,
-          4
-        )}</span></p>
+            0,
+            4
+          )}</span></p>
       </div>
       </li>`;
       })
@@ -111,7 +110,7 @@ async function renderPopularFilms(page) {
   } finally {
     setTimeout(() => {
       spinnerStop();
-    }, 1000);
+    }, 3000);
   }
 }
 
@@ -197,7 +196,7 @@ async function onLoadAnotherPage(e) {
   } catch (error) {
     console.log(error);
   } finally {
-    setTimeout(spinnerStop, 1000);
+    setTimeout(spinnerStop, 3000);
   }
 }
 

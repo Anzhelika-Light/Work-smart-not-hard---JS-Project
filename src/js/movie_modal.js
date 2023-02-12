@@ -149,6 +149,7 @@ import { all, AxiosHeaders } from 'axios';
 import { fetchMovie } from './fetch_movie_details';
 import TmdbAPI from './TMDB_API';
 import { async } from '@firebase/util';
+import { spinnerStart, spinnerStop } from './loader.js';
 
 
 
@@ -158,8 +159,8 @@ let queue;
 let watched;
 async function updateVar() {
   if (auth.currentUser === null) {
-    queue = JSON.parse(localStorage.getItem('movieQueue')) || [];
-    watched = JSON.parse(localStorage.getItem('movieWatched')) || [];
+    queue = [];
+    watched = [];
   }
   else {
     const q = await readAllUserData(auth.currentUser.uid);
@@ -173,7 +174,7 @@ async function updateVar() {
 
 setTimeout(() => {
   updateVar();
-}, 3000)
+}, 2500)
 allCardsSection.addEventListener('click', showModal);
 
 async function updateMoviesList() {
@@ -221,8 +222,15 @@ export async function showModal(e) {
     const watchTrailerBtn = document.querySelector(
       '.movie-modal__btn-watch-trailer'
     );
-    watchedBtn.addEventListener('click', handleWatched);
-    queueBtn.addEventListener('click', handleQueued);
+    if (auth.currentUser !== null) {
+      watchedBtn.addEventListener('click', handleWatched);
+      queueBtn.addEventListener('click', handleQueued);
+
+    }
+    else {
+      watchedBtn.setAttribute("disabled", "disabled");
+      queueBtn.setAttribute("disabled", "disabled");
+    }
     watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
   }
 }
@@ -261,7 +269,7 @@ async function createModal(id) {
 
 
 }
-// Далі і до кінця йдуть два обробники: watched i queue, які самі вирішують, додавати чи видаляти в результаті перевірки
+
 async function handleWatched(e) {
   const modalEl = document.querySelector('.movie-modal__main');
 
@@ -321,24 +329,6 @@ async function handleQueued(e) {
 
 
   const isInQueued = queue.some(film => film.id === movie.id);
-
-  /*if (e.target.innerText === 'ADD TO QUEUE') {
-      if (!isInQueued) {
-        queue.push(movie);
-        localStorage.setItem('movieQueue', JSON.stringify(queue));
-        e.target.innerText = 'Remove from queue';
-        // e.target.addEventListener('click', removeFromWatched);
-        // e.target.removeEventListener('click', addToWatched);
-        Notiflix.Notify.success('Added to queue!');
-      }
-    } else if (e.target.innerText === 'REMOVE FROM QUEUE') {
-      queue = queue.filter(film => film.id !== movie.id);
-      localStorage.setItem('movieQueue', JSON.stringify(queue));
-      e.target.innerText = 'Add to queue';
-      // e.target.removeEventListener('click', removeFromWatched);
-      // e.target.addEventListener('click', addToWatched);
-      Notiflix.Notify.success('Removed from queue!');
-    } */
   if (e.target.innerText === 'ADD TO QUEUE') {
     if (!isInQueued) {
       queue.push(movie);
@@ -347,8 +337,7 @@ async function handleQueued(e) {
         await writeUserDataQueue(auth.currentUser.uid, queue);
       }
       e.target.innerText = 'Remove from queue';
-      // e.target.addEventListener('click', removeFromWatched);
-      // e.target.removeEventListener('click', addToWatched);
+
       Notiflix.Notify.success('Added to queue!');
     }
   } else if (e.target.innerText === 'REMOVE FROM QUEUE') {
@@ -361,8 +350,7 @@ async function handleQueued(e) {
     }
 
     e.target.innerText = 'Add to queue';
-    // e.target.removeEventListener('click', removeFromWatched);
-    // e.target.addEventListener('click', addToWatched);
+
     Notiflix.Notify.success('Removed from queue!');
   }
 }

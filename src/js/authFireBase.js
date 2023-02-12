@@ -8,7 +8,7 @@ import Notiflix from 'notiflix';
 
 import { getDatabase, ref, set, child, get, push, update } from "firebase/database"
 
-
+import { spinnerStart, spinnerStop } from './loader';
 //data-template-local-storage.js////////////////////////////
 //import { userDataWatched, userDataQueue } from "./my-library-watched-queue/data-template-local-storage.js"
 
@@ -126,11 +126,12 @@ const loginEmailPassword = async (event) => {
   catch (error) {
     showLoginEror(error);
   }
+
+
+  spinnerStart();
   setTimeout(() => {
-    window.location.reload();
-  }, 1000)
-
-
+    document.location.reload();
+  }, 1000);
 };
 function showLoginEror(error) {
   if (error.code === AuthErrorCodes.INVALID_PASSWORD) {
@@ -163,7 +164,12 @@ const createAccount = async (event) => {
       Notiflix.Notify.failure(error.message);
       console.log(error.message)
     }
+
   }
+  spinnerStart();
+  setTimeout(() => {
+    document.location.reload();
+  }, 1000);
 }
 btnSign.addEventListener("click", createAccount);
 btnLogin.addEventListener("click", loginEmailPassword);
@@ -183,7 +189,6 @@ onAuthStateChanged(auth, async user => {
     profile.classList.remove("hide");//
     currentUID = user.uid;
     useEl.innerHTML = svg2;
-
     try {
       const rez = await readAllUserData(currentUID);
       profileName.textContent = rez.userLogin;
@@ -191,6 +196,8 @@ onAuthStateChanged(auth, async user => {
     catch {
 
     }
+
+
   }
   else {
     console.log("___________");
@@ -224,10 +231,12 @@ const logout = async () => {
   catch {
 
   }
-  setTimeout(() => {
-    document.location.reload();
-  }, 1000)
 
+  spinnerStart();
+  setTimeout(() => {
+    spinnerStop();
+    document.location.reload();
+  }, 1500);
 
 }
 btnLogOut.addEventListener("click", logout);

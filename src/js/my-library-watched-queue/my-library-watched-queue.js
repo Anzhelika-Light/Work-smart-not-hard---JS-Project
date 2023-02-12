@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 import { renderMoviesLibrary } from './renderMoviesLibrary';
-import { userDataQueue, userDataWatched } from './data-template-local-storage';
+//import { userDataQueue, userDataWatched } from './data-template-local-storage';
 import { spinnerStart, spinnerStop } from '../loader';
 import fetchPopularFilms from '../trending-search-main/fetch-movies';
 import { readAllUserData, currentUID, auth } from "../authFireBase.js";
