@@ -7,13 +7,17 @@
 
   position: absolute;
   bottom: 5px;
-  left: calc(50vw - 30.5px);
+  left: calc(50vw - 24px);
 
-  transition: background-color $cubic, box-shadow  $cubic;
+  transition: background-color  $cubic, box-shadow  $cubic, left  $cubic;
 
   cursor: pointer;
   .library-header & {
     bottom: 5px;
+  }
+
+  .darkmode--activated & {
+    left: calc(50vw - 30.5px);
   }
 }
 
@@ -253,4 +257,3 @@ main,
 .trending-gallery__title {
   transition: color $cubic;
 }
-
