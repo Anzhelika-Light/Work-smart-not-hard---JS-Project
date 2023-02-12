@@ -2,6 +2,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -625,6 +626,9 @@ button {
     height: 574px;
   }
 }
+.library-gallery__image:hover {
+  cursor: pointer;
+}
 
 .library-gallery__default {
   width: 100%;
@@ -643,6 +647,10 @@ button {
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.library-gallery__default-poster:hover {
+  cursor: pointer;
 }
 
 .library-gallery__default__title {
@@ -686,7 +694,6 @@ button {
 .footer__text {
   text-align: center;
   color: #545454;
-  font-family: "Roboto";
   font-size: 14px;
   line-height: 1.14;
 }
@@ -790,9 +797,18 @@ button {
     width: 850px;
   }
 }
+.modal::-webkit-scrollbar {
+  width: 0.5em;
+}
+.modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.modal::-webkit-scrollbar-thumb {
+  background-color: #ff6b01;
+  border-radius: 5px;
+}
 
 .modal__title {
-  font-family: "Roboto";
   font-weight: 700;
   font-size: 23px;
   line-height: 1.5;
@@ -835,7 +851,6 @@ button {
 }
 
 .team-list__title {
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 16px;
   line-height: 1.18;

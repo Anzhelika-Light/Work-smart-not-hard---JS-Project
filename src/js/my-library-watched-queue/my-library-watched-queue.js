@@ -22,21 +22,20 @@ async function defaultLibrary() {
 
     // console.log(films.results);
 
-    const markup = `<h3 class='library-gallery-recomend'>RECOMMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[1].poster_path}>
+    const markup = `<h3 class='library-gallery-recomend'>RECOMMENDATIONS</h3><div class='library-gallery__default'><img class='library-gallery__default-poster' data-id='${films.results[1].id}' src=${IMG_PATH}${films.results[1].poster_path}>
     <div><p class='library-gallery__default__title'>${films.results[1].title}</p>
     <p class='library-gallery__default-overview'>${films.results[1].overview}</p></div>
     </div>
     
-    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[2].poster_path}>
+    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[2].poster_path} data-id='${films.results[2].id}'>
     <div><p class='library-gallery__default__title'>${films.results[2].title}</p>
     <p class='library-gallery__default-overview'>${films.results[2].overview}</p></div>
     </div>
     
-    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[3].poster_path}>
+    <div class='library-gallery__default'><img class='library-gallery__default-poster' src=${IMG_PATH}${films.results[3].poster_path} data-id='${films.results[3].id}'>
     <div><p class='library-gallery__default__title'>${films.results[3].title}</p>
     <p class='library-gallery__default-overview'>${films.results[3].overview}</p></div>
     </div>`;
-
     // console.log(markup);
 
     movieListEl.innerHTML = markup;

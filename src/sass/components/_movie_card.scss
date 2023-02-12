@@ -102,6 +102,10 @@
     width: 394px;
     height: 574px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .library-gallery__default {
@@ -120,6 +124,10 @@
   height: 150px;
   border-radius: 5px;
   object-fit: cover;
+}
+
+.library-gallery__default-poster:hover {
+  cursor: pointer;
 }
 
 .library-gallery__default__title {

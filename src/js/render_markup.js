@@ -1,4 +1,4 @@
-import emptyPhoto from '../images/empty-photo/empty-poster.jpg';
+import emptyPhoto from '../images/empty-photo/desktop-empty-poster.jpg';
 
 export function renderSearchResult(movies) {
   const allMovies = movies.map(

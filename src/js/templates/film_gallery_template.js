@@ -1,5 +1,5 @@
 import TmdbAPI from '../TMDB_API';
-import emptyphoto from '../../images/empty-photo/empty-poster.jpg';
+import emptyphoto from '../../images/empty-photo/desktop-empty-poster.jpg';
 
 //converts string with genre names to HTML string with tags
 function getGenresHTMLString(str) {
