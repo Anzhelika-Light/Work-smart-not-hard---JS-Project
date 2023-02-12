@@ -60,25 +60,30 @@ async function createMarkup(data) {
           genres = genresNamesToRender;
         }
         return `<li class="trending-gallery__item" data-id="${item.id}">
-      <img src="${imageBaseURL}${item.poster_path}"
+                  <a href="#" class="trending-gallery__link">
+                    <div>
+                        <img src="${imageBaseURL}${item.poster_path}"
+                            class="trending-gallery__image" data-id="${item.id}"
+                            alt="The poster of ${
+                              item.title
+                            } film " onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80';"
+                            />
 
-
-            class="trending-gallery__image" data-id="${item.id}"
-
-            alt="The poster of ${item.title} film "
-            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80';"
-             />
-
-      <div class="trending-gallery__wrapper">
-      <h3 class="trending-gallery__title" ><span class="title-modal-open" data-id="${
-        item.id
-      }">${item.title}</span></h3>
-      <p class="trending-gallery__info">${genres}<span class="find-by-year-js">${item.release_date.slice(
-          0,
-          4
-        )}</span></p>
-      </div>
-      </li>`;
+                    </div>            
+                    <div class="trending-gallery__wrapper">
+                        <h3 class="trending-gallery__title" ><span class="title-modal-open" data-id="${
+                          item.id
+                        }">${item.title}</span>
+                        </h3>
+                              <p class="trending-gallery__info">${genres}
+                              <span class="find-by-year-js">${item.release_date.slice(
+                                0,
+                                4
+                              )}</span>
+                              </p>
+                    </div>
+                  </a>
+                </li>`;
       })
       .join('');
     return markup;
