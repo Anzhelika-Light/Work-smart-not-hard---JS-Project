@@ -29,6 +29,7 @@ searchRefs.searchForm.addEventListener('submit', onSearchInputElChange);
 async function onSearchInputElChange(event) {
   event.preventDefault();
   deletePaginationInterface();
+  searchRefs.advancedSearchChosenWindowEl.classList.add('visually-hidden');
   const query = searchRefs.searchInputEl.value;
   userSearchObj.userQueryForPagination = query;
 

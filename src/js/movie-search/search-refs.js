@@ -12,6 +12,10 @@ const searchRefs = {
   showAdvancedSearchEl: document.querySelector('.show-advanced-search-js'),
   hideAdvancedSearchEl: document.querySelector('.hide-advanced-search-js'),
   advancedSearchEl: document.querySelector('.search--advanced-js '),
+  advancedSearchChosenWindowEl: document.querySelector(
+    '.advanced-search__chosen-window'
+  ),
+  advancedSearchChosenEl: document.querySelector('.advanced-search__chosen'),
 };
 
 //scroll to the top of the page
