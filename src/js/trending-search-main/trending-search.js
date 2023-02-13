@@ -121,7 +121,7 @@ async function renderPopularFilms(page) {
   } finally {
     setTimeout(() => {
       spinnerStop();
-    }, 500);
+    }, 2000);
   }
 }
 
