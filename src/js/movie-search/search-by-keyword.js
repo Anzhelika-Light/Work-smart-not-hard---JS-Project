@@ -50,6 +50,10 @@ async function onSearchInputElChange(event) {
       return;
     }
     scrollToTop();
+
+    //showing search parameters window
+    searchRefs.advancedSearchChosenWindowEl.classList.remove('visually-hidden');
+    searchRefs.advancedSearchChosenEl.innerHTML = `<div class='advanced-search__chosen-option'><span class='advanced-search__search-key'>search word: </span>${query}</div>`;
     //inserting images into gallery
     searchRefs.galleryEl.innerHTML = makeHMTLString(data);
     tooglePagination.isTrendingFilmsShown = false;

@@ -125,22 +125,37 @@
 
 //advanced search chosen window
 .advanced-search__chosen-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin-top: 20px;
+
+  background-color: transparent;
+  color: $primary-white-color;
+}
+
+.advanced-search__chosen-window > div {
+  width: 280px;
   padding: 10px;
 
   border: 1px solid $main-accent-color;
   border-radius: 5px;
-  background-color: transparent;
-  color: $primary-white-color;
+
+  @include tablet {
+    width: 400px;
+  }
 }
+
 .advanced-search__chosen-title {
   margin-bottom: 10px;
   text-align: center;
 }
 // .advanced-search__chosen {
 // }
-// .advanced-search__chosen-option {
-// }
+.advanced-search__chosen-option {
+  text-align: center;
+}
 .advanced-search__search-key {
   font-weight: 900;
   color: $main-accent-color;
