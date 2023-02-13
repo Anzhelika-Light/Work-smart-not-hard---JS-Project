@@ -248,7 +248,6 @@ export async function showModal(e) {
     if (auth.currentUser !== null) {
       watchedBtn.addEventListener('click', handleWatched);
       queueBtn.addEventListener('click', handleQueued);
-
     }
     else {
       /* watchedBtn.classList.add('hide');
