@@ -164,16 +164,16 @@ function onAdvancedSearchElSubmit(event) {
   optionsObj.primary_release_year = searchYear;
 
   let isTheSameSettings = true;
-  console.log('optionsObj', optionsObj);
-  console.log(
-    'userAdvancedSearchForPagination',
-    userAdvancedSearchForPagination
-  );
+  // console.log('optionsObj', optionsObj);
   // console.log(
-  //   'isEqual',
-  //   optionsObj[primary_release_year] ===
-  //     userAdvancedSearchForPagination[primary_release_year]
+  //   'userAdvancedSearchForPagination',
+  //   userAdvancedSearchForPagination
   // );
+  // // console.log(
+  // //   'isEqual',
+  // //   optionsObj[primary_release_year] ===
+  // //     userAdvancedSearchForPagination[primary_release_year]
+  // // );
   Object.keys(optionsObj).forEach(key => {
     console.log(
       'options',
