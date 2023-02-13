@@ -138,9 +138,9 @@ function onAdvancedSearchElSubmit(event) {
       ],
   };
 
-  const isTheSameSettings = Object.keys(optionsObj).reduce((acc, rec) => {
-    return acc && optionsObj[rec] === userAdvancedSearchForPagination[rec];
-  }, true);
+  // const isTheSameSettings = Object.keys(optionsObj).reduce((acc, rec) => {
+  //   return acc && optionsObj[rec] === userAdvancedSearchForPagination[rec];
+  // }, true);
 
   //check if nothing chosen
   if (!isOptionsObjHasValues(optionsObj)) {
@@ -163,6 +163,27 @@ function onAdvancedSearchElSubmit(event) {
 
   optionsObj.primary_release_year = searchYear;
 
+  let isTheSameSettings = true;
+  // console.log('optionsObj', optionsObj);
+  // console.log(
+  //   'userAdvancedSearchForPagination',
+  //   userAdvancedSearchForPagination
+  // );
+  // // console.log(
+  // //   'isEqual',
+  // //   optionsObj[primary_release_year] ===
+  // //     userAdvancedSearchForPagination[primary_release_year]
+  // // );
+  Object.keys(optionsObj).forEach(key => {
+    console.log(
+      'options',
+      optionsObj[key],
+      userAdvancedSearchForPagination[key]
+    );
+    if (optionsObj[key] !== userAdvancedSearchForPagination[key])
+      isTheSameSettings = false;
+  });
+
   //checking if included and excluded genre are not equal
   if (
     optionsObj.with_genres === optionsObj.without_genres &&
@@ -171,6 +192,13 @@ function onAdvancedSearchElSubmit(event) {
   ) {
     Notify.failure("You can't choose and exclude the same genre!");
     clearAdvancedSearchForm();
+    return;
+  }
+
+  if (isTheSameSettings) {
+    Notify.warning('Please,make changes in search params and try again');
+    clearAdvancedSearchForm();
+    // renderPopularFilms(1);
     return;
   }
 
@@ -185,14 +213,9 @@ function onAdvancedSearchElSubmit(event) {
 
   userAdvancedSearchForPagination.page = optionsObj.page;
 
-  if (isTheSameSettings) {
-    Notify.info('Please,make changes in search params and try again');
-    clearAdvancedSearchForm();
-    renderPopularFilms(1);
-    return;
-  }
   deletePaginationInterface();
   clearAdvancedSearchForm();
+  Notify.info('Searching');
   makeAdvancedSearch(optionsObj);
 }
 
