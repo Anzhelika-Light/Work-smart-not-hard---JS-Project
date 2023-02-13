@@ -43,6 +43,14 @@ function findMoviesByYear(event) {
       }
 
       scrollToTop();
+
+      //form search params window
+      console.log('hello');
+      searchRefs.advancedSearchChosenWindowEl.classList.remove(
+        'visually-hidden'
+      );
+      searchRefs.advancedSearchChosenEl.innerHTML = `<div class='advanced-search__chosen-option'><span class='advanced-search__search-key'>primary release year: </span>${year}</div>`;
+
       //inserting images into gallery
       searchRefs.galleryEl.innerHTML = makeHMTLString(data);
       tooglePagination.isTrendingFilmsShown = false;

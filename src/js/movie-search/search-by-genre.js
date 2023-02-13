@@ -59,6 +59,15 @@ function findMoviesByGenre(event) {
         Notify.failure('Search result not successful.');
       }
       scrollToTop();
+
+      //form search params window
+      console.log('hello');
+      searchRefs.advancedSearchChosenWindowEl.classList.remove(
+        'visually-hidden'
+      );
+      searchRefs.advancedSearchChosenEl.innerHTML = `<div class='advanced-search__chosen-option'><span class='advanced-search__search-key'>genre: </span>${genre.toLowerCase()}</div>`;
+
+      //form img gallery
       searchRefs.galleryEl.innerHTML = makeHMTLStringWithGenre(data, genre);
       tooglePagination.isTrendingFilmsShown = false;
       tooglePagination.isFilmsByQueryShown = false;
