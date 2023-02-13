@@ -251,8 +251,8 @@ export async function showModal(e) {
 
     }
     else {
-      /* watchedBtn.classList.add('hide');
-       queueBtn.classList.add('hide');*/
+      watchedBtn.classList.add('hide');
+      queueBtn.classList.add('hide');
       /* watchedBtn.setAttribute("disabled", "disabled");
        queueBtn.setAttribute("disabled", "disabled");*/
       document.querySelector(".movie-modal__add-btns").innerHTML = `<p class ="add-features">Log in and you will have the opportunity to create your own movies library</p>`;
@@ -288,6 +288,7 @@ async function createModal(id) {
     innerModal.innerHTML = rendered;
   }
   else {
+    await updateVar();
     const currentList = await updateMoviesList();
     const rendered = await renderModal(currentList, id, watched, queue);
     innerModal.innerHTML = rendered;

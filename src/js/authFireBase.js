@@ -231,6 +231,11 @@ const logout = async () => {
   }
   catch {
 
+    spinnerStart();                           ///////////
+    setTimeout(() => {
+      spinnerStop();
+
+    }, 1500);
   }
   try {
     onWatchedBtnClick(auth, readAllUserData);
@@ -240,11 +245,7 @@ const logout = async () => {
   }
 
 
-  spinnerStart();                           ///////////
-  setTimeout(() => {
-    spinnerStop();
 
-  }, 1500);
 
 }
 btnLogOut.addEventListener("click", logout);
