@@ -50,10 +50,7 @@ function findMoviesByYear(event) {
       tooglePagination.isFilmsByGenreShown = false;
       tooglePagination.isFilmsByAdvancedSearchShown = false;
       tooglePagination.isFilmsByYearShown = true;
-      console.log(
-        'обэкт що прийшов із сервера за результатом запиту за РОКОМ',
-        data
-      );
+
       if (data.total_pages > 500) {
         paginationSettings.totalPages = 500;
       } else {

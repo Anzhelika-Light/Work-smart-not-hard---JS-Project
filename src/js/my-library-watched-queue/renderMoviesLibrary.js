@@ -32,14 +32,14 @@ export function renderMoviesLibrary(movie) {
     genres.push(genresArr[0]);
     genres.push(genresArr[1]);
     genres.push('Other');
-    console.log('genres:', genres);
+    // console.log('genres:', genres);
   } else if (genresArr.length === 2) {
     genres.push(genresArr[0]);
     genres.push(genresArr[1]);
-    console.log('genres:', genres);
+    // console.log('genres:', genres);
   } else if (genresArr.length === 1) {
     genres.push(genresArr[0]);
-    console.log('genres:', genres);
+    // console.log('genres:', genres);
   }
 
   // /перевірка на кількість жанрів

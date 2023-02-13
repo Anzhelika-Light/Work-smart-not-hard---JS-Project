@@ -17,7 +17,7 @@ export async function renderModal(list, id, watched, queue) {
     homepage: homepageLink,
   } = movieDetails;
 
-  console.log('homepageLink', homepageLink);
+  // console.log('homepageLink', homepageLink);
 
   const finalGenres = genres.map(genre => {
     return genre.name;
