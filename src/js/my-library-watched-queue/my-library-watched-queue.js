@@ -71,7 +71,7 @@ export async function onWatchedBtnClick() {
 
     return;
   }
-  console.log(movieWatched);
+  // console.log(movieWatched);
   if (Object.keys(movieWatched).length === 1) {
     movieListEl.innerHTML =
       "<p>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
@@ -100,7 +100,7 @@ export async function onQueueBtnClick() {
     return;
   }
   const movieQueue = await readAllUserData(auth.currentUser.uid);
-  console.log(movieQueue);
+  // console.log(movieQueue);
   if (movieQueue.userDataQueue === undefined) {
     movieListEl.innerHTML =
       "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
