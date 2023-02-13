@@ -270,3 +270,20 @@ border: 1px solid black;
 .darkmode--activated .team-list__text {
   color: $primary-black-color;
 }
+
+
+.darkmode--activated .form-login {
+  background-color: #c0c0c0;
+}
+
+.darkmode--activated .register-input {
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.darkmode--activated .btn-login,
+.darkmode--activated .btn-sign {
+  background-color: $additional-text-color-1;
+  color: white;
+  
+}
