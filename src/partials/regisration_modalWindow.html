@@ -16,23 +16,34 @@
       <p class="form-login__authorized">You are not authorized</p>
       <div class="form-login__item form-login__margin">
         <label class="login-lbl" for="user_login">Email</label>
-        <input
-          class="login"
-          type="email"
-          name="login"
-          id="user_login"
-          placeholder="Login"
-        />
+        <span class="login-wrapper">
+          <input
+            class="register-input login"
+            type="email"
+            name="login"
+            id="user_login"
+            placeholder="Login"
+            required
+          />
+          <svg class="icon-email" width="20" height="20">
+            <use href="./images/sprite.svg#icon-email"></use>
+          </svg>
+        </span>
       </div>
       <div class="form-login__item">
         <label class="password-lbl" for="user_password">Password</label>
-        <input
-          id="user_password"
-          class="password"
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
+        <span class="login-wrapper">
+          <input
+            id="user_password"
+            class="register-input password"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <svg class="icon-key" width="20" height="20">
+            <use href="./images/sprite.svg#icon-key"></use>
+          </svg>
+        </span>
       </div>
       <div class="form-login__item form-login__item--row">
         <button class="btn-login form-login__submit" type="submit">

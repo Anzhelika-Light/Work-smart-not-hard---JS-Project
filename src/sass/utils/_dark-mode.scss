@@ -257,3 +257,16 @@ main,
 .trending-gallery__title {
   transition: color $cubic;
 }
+
+
+.darkmode--activated .modal {
+  background-color: rgb(180, 180, 180);
+}
+
+.darkmode--activated .team-list__item {
+background-color: #c0c0c0;
+border: 1px solid black;
+}
+.darkmode--activated .team-list__text {
+  color: $primary-black-color;
+}

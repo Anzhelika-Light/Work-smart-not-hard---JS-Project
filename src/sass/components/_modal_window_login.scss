@@ -153,6 +153,8 @@ $mainTransitionDuration: 250ms;
     border: 2px solid rgba(128, 128, 128, 0.409);
     border-radius: 5px;
     height: 36px;
+    width:100%;
+    padding-left: 40px;
 }
 
 .login:focus,
@@ -245,6 +247,7 @@ transition: background-color $cubic, border-color $cubic, color $cubic;
                  }
 }
 
+
 .add-features {
     width: 100px;
     height: 43px;
@@ -258,3 +261,19 @@ transition: background-color $cubic, border-color $cubic, color $cubic;
         font-size: 18px;
     }
 }
+
+.login-wrapper {
+    display: block;
+    position: relative;
+}
+
+.icon-email, .icon-key {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+}
+.register-input:focus .icon-email,
+.register-input:focus .icon-key {
+    stroke: $main-accent-color;
+}
+
