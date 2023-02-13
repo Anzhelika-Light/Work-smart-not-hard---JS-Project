@@ -34,7 +34,11 @@
     </div>
 
     <form class="search">
-      <button type="button" class="search__btn search__btn--advanced">
+      <button
+        type="button"
+        class="search__btn search__btn--advanced"
+        aria-label="advanced=search-btn"
+      >
         <svg
           width="12"
           height="12"
@@ -63,7 +67,11 @@
         required
         placeholder="Movie search"
       />
-      <button type="submit" class="search__btn search__btn--simple">
+      <button
+        type="submit"
+        class="search__btn search__btn--simple"
+        aria-label="button for search by keyword"
+      >
         <svg width="12" height="12" class="search__icon">
           <use href="./images/sprite.svg#search"></use>
         </svg>
