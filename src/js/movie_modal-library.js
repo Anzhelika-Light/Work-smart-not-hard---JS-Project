@@ -272,6 +272,7 @@ async function createModal(id) {
     innerModal.innerHTML = rendered;
   }
   else {
+    await updateVar();
     const currentList = await updateMoviesList();
     const rendered = await renderModal(currentList, id, watched, queue);
     innerModal.innerHTML = rendered;
