@@ -36,10 +36,11 @@ const studentCards = basicLightbox.create(
           <li class="task"><p class="team-list__text">Pagination for all search types</p></li>
           <li class="task"><p class="team-list__text">Sprite</p></li>
           </ul>
-           
-            <a href="https://github.com/MarynaShavlak" target="_blank" class="github"></a>
+                     
           </div>
+          
         </div>
+        <a href="https://github.com/MarynaShavlak" target="_blank" class="github"></a>
       </li>
       <li class="team-list__item">
         <img
@@ -57,8 +58,9 @@ const studentCards = basicLightbox.create(
           <li class="task"><p class="team-list__text">Recommendations</p></li>
           </ul>
 
-          <a href="https://github.com/SvitlanaHonchar" target="_blank" class="github"></a>
+          
         </div>
+        <a href="https://github.com/SvitlanaHonchar" target="_blank" class="github"></a>
       </li>
       <li class="team-list__item">
         <img
@@ -80,9 +82,10 @@ const studentCards = basicLightbox.create(
           <li class="task"><p class="team-list__text">Adaptive poster images</p></li>
           </ul>
             
-            <a href="https://github.com/ArtemKrylov" target="_blank"  class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/ArtemKrylov" target="_blank"  class="github"></a>
       </li>
       <li class="team-list__item">
         <img
@@ -100,9 +103,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/SvitlanaPia" target="_blank" class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/SvitlanaPia" target="_blank" class="github"></a>
       </li>
       
         <li class="team-list__item">
@@ -121,9 +125,10 @@ const studentCards = basicLightbox.create(
           <li class="task"><p class="team-list__text">Add movie to "Watched"</p></li>
           <li class="task"><p class="team-list__text">Add movie to "Queue"</p></li>
           </ul>
-                        <a href="https://github.com/AnnaKilchytska" target="_blank" class="github"></a>
+                        
           </div>
         </div>
+        <a href="https://github.com/AnnaKilchytska" target="_blank" class="github"></a>
       </li>
 <li class="team-list__item">
         <img
@@ -141,9 +146,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/GranatUser" target="_blank" class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/GranatUser" target="_blank" class="github"></a>
       </li>
 
       <li class="team-list__item">
@@ -162,9 +168,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/ErikaTatchyn" target="_blank" class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/ErikaTatchyn" target="_blank" class="github"></a>
       </li>
       
       
@@ -184,9 +191,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/UlianaShyma" target="_blank" class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/UlianaShyma" target="_blank" class="github"></a>
       </li>
       <li class="team-list__item">
         <img
@@ -204,9 +212,11 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/natalia-no-war" target="_blank" class="github"> </a>
+            
           </div>
-        </div></li>
+        </div>
+        <a href="https://github.com/natalia-no-war" target="_blank" class="github"> </a>
+        </li>
       <li class="team-list__item">
         <img
           src="${kulyk}"
@@ -223,9 +233,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
             
-            <a href="https://github.com/vadym-kulyk" target="_blank" class="github"> </a>
+            
           </div>
         </div>
+        <a href="https://github.com/vadym-kulyk" target="_blank" class="github"> </a>
       </li>
       
       <li class="team-list__item">
@@ -244,9 +255,10 @@ const studentCards = basicLightbox.create(
           
           </ul>
            
-            <a href="https://github.com/Anzhelika-Light" target="_blank" class="github"></a>
+            
           </div>
         </div>
+        <a href="https://github.com/Anzhelika-Light" target="_blank" class="github"></a>
       </li>
       
       

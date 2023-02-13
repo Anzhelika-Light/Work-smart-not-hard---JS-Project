@@ -69,10 +69,30 @@
 .nav__logo {
   display: flex;
   align-items: center;
+  transform: scale(1);
+  transition: transform $cubic;
+  &:hover,
+  &:focus {
+    color: $main-accent-color;
+      transform: scale(1.3);
+      & .nav__logo-img {
+        // transform: rotate(-50%);
+        stroke: $main-accent-color;
+      }
+      
+
+
+
+  }
+  
 }
 
 .nav__logo-img {
   stroke: $primary-white-color;
+  transition: stroke $cubic;
+  // &:hover,&:focus {
+  //   stroke: $main-accent-color;
+  // }
 }
 
 .nav__logo-text {
@@ -81,6 +101,12 @@
   font-size: 30px;
   line-height: 1.17;
   color: $primary-white-color;
+  transition: color $cubic;
+    &:hover,
+    &:focus {
+      color: $main-accent-color;
+      
+    }
 
   @media screen and (max-width: 767px) {
     display: none;
