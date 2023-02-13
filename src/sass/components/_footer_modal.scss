@@ -86,11 +86,13 @@
 .team-list__item {
   background-color: $primary-white-color;
   box-shadow: 6px 4px 16px 0px rgba(201, 201, 201, 1);
-  border-radius: 0px 0px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
   max-width: 200px;
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
+  overflow: hidden;
+  
 }
 
 .team-list__wrapper {
