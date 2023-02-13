@@ -1,10 +1,9 @@
-
 import Notiflix from 'notiflix';
 import { renderMoviesLibrary } from './renderMoviesLibrary';
 //import { userDataQueue, userDataWatched } from './data-template-local-storage';
 import { spinnerStart, spinnerStop } from '../loader';
 import fetchPopularFilms from '../trending-search-main/fetch-movies';
-import { readAllUserData, currentUID, auth } from "../authFireBase.js";
+import { readAllUserData, currentUID, auth } from '../authFireBase.js';
 import { async } from '@firebase/util';
 
 const watchedBtnEl = document.querySelector('.js-library-btn--watched');
@@ -14,8 +13,10 @@ const movieListEl = document.querySelector('.movie-list');
 // --дефолт інфа в бібліотеці
 
 async function defaultLibrary() {
-  minPage = Math.ceil(1);
-  maxPage = Math.floor(100);
+  // minPage = Math.ceil(1);
+  // maxPage = Math.floor(100);
+  const minPage = 1;
+  const maxPage = 100;
   let page = Math.floor(Math.random() * (maxPage - minPage + 1) + minPage);
   try {
     const IMG_PATH = 'https://image.tmdb.org/t/p/original';
@@ -49,7 +50,6 @@ async function defaultLibrary() {
 defaultLibrary();
 // --/дефолт інфа в бібліотеці
 
-
 // при натисканні на Watched
 export async function onWatchedBtnClick() {
   spinnerStart();
@@ -60,7 +60,8 @@ export async function onWatchedBtnClick() {
   watchedBtnEl.style.background = '#ff6b01';
   watchedBtnEl.style.borderColor = '#ff6b01';
   if (auth.currentUser === null) {
-    movieListEl.innerHTML = "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";;
+    movieListEl.innerHTML =
+      "<p class='no-movies'>It seems you haven't watched any movie. You should try, it's fun🎭</p>";
     return;
   }
   const movieWatched = await readAllUserData(auth.currentUser.uid);
@@ -82,8 +83,6 @@ export async function onWatchedBtnClick() {
     })
     .join('');
   movieListEl.innerHTML = moviesCards;
-
-
 }
 
 export async function onQueueBtnClick() {
@@ -96,7 +95,8 @@ export async function onQueueBtnClick() {
   watchedBtnEl.style.borderColor = '#ffffff';
 
   if (auth.currentUser === null) {
-    movieListEl.innerHTML = "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";;
+    movieListEl.innerHTML =
+      "<p class='no-movies'>The queue is empty. Add all Harry Potter movies - you won't regret this✨</p>";
     return;
   }
   const movieQueue = await readAllUserData(auth.currentUser.uid);
@@ -118,33 +118,12 @@ export async function onQueueBtnClick() {
     })
     .join('');
   movieListEl.innerHTML = moviesCards;
-
-
-
 }
 
 watchedBtnEl.addEventListener('click', onWatchedBtnClick);
 queueBtnEl.addEventListener('click', onQueueBtnClick);
 
-
 // localStorage functions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*import Notiflix from 'notiflix';
 import { renderMoviesLibrary } from './renderMoviesLibrary';
