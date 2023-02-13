@@ -254,6 +254,7 @@ export async function showModal(e) {
        queueBtn.classList.add('hide');*/
       watchedBtn.setAttribute("disabled", "disabled");
       queueBtn.setAttribute("disabled", "disabled");
+      Notiflix.Notify.info("Log in and you will have the opportunity to create your own movies library");
       //document.querySelector(".movie-modal__add-btns").innerHTML = `<p class ="add-features">Log in and you will have the opportunity to create your own movies library</p>`;
     }
     watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
