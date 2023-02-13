@@ -243,3 +243,16 @@ $mainTransitionDuration: 250ms;
                      font-size: 36px;
                  }
 }
+
+.add-features{
+    width: 100px;
+    height: 43px;
+    font-size: 12px;
+    color: #b3b3b3;
+    text-align: center;
+        @media screen and (min-width: 768px) {
+            width: 100%;
+                height: auto;
+                font-size: 18px;
+            }
+}

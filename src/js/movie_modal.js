@@ -170,6 +170,7 @@ import { async } from '@firebase/util';
 import { spinnerStart, spinnerStop } from './loader.js';
 
 
+
 const { allCardsSection, modal, overflow, closeBtn, innerModal, body, sectionLibrary } = refs;
 // Наступні два рядки - додавання даних в об'єкти з local storage для коректного відображення кнопок і роботи
 let queue;
@@ -250,8 +251,11 @@ export async function showModal(e) {
 
     }
     else {
-      watchedBtn.classList.add('hide');
-      queueBtn.classList.add('hide');
+      /* watchedBtn.classList.add('hide');
+       queueBtn.classList.add('hide');*/
+      /* watchedBtn.setAttribute("disabled", "disabled");
+       queueBtn.setAttribute("disabled", "disabled");*/
+      document.querySelector(".movie-modal__add-btns").innerHTML = `<p class ="add-features">Log in and you will have the opportunity to create your own movies library</p>`;
     }
     watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
   }
