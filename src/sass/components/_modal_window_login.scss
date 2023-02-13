@@ -247,6 +247,21 @@ transition: background-color $cubic, border-color $cubic, color $cubic;
                  }
 }
 
+
+.add-features {
+    width: 100px;
+    height: 43px;
+    font-size: 12px;
+    color: #b3b3b3;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+        width: 100%;
+        height: auto;
+        font-size: 18px;
+    }
+}
+
 .login-wrapper {
     display: block;
     position: relative;
@@ -261,3 +276,4 @@ transition: background-color $cubic, border-color $cubic, color $cubic;
 .register-input:focus .icon-key {
     stroke: $main-accent-color;
 }
+
