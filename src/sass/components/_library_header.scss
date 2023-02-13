@@ -98,10 +98,27 @@
 .library-nav__logo {
   display: flex;
   align-items: center;
+  transform: scale(1);
+  transition: transform $cubic;
+  &:hover,
+  &:focus {
+    color: $main-accent-color;
+      transform: scale(1.05);
+      & .library-nav__logo-img {
+        transform: rotate(3.1416rad);
+        stroke: $main-accent-color;
+      }
+      
+& .library-nav__logo-text {
+color: $main-accent-color;
+}
+  }
 }
 
 .library-nav__logo-img {
   stroke: $primary-white-color;
+  transform: rotate(0deg);
+  transition: stroke $cubic, transform $cubic;
 }
 
 .library-nav__logo-text {
@@ -110,6 +127,7 @@
   font-size: 30px;
   line-height: 1.17;
   color: $primary-white-color;
+  transition: color $cubic;
 
   @media screen and (max-width: 767px) {
     display: none;

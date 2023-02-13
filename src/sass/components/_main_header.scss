@@ -74,26 +74,26 @@
   &:hover,
   &:focus {
     color: $main-accent-color;
-      transform: scale(1.3);
+      transform: scale(1.05);
       & .nav__logo-img {
-        // transform: rotate(-50%);
+        transform: rotate(3.1416rad);
         stroke: $main-accent-color;
       }
       
-
-
-
+& .nav__logo-text {
+color: $main-accent-color;
+}
   }
   
 }
 
 .nav__logo-img {
   stroke: $primary-white-color;
-  transition: stroke $cubic;
-  // &:hover,&:focus {
-  //   stroke: $main-accent-color;
-  // }
+  transform: rotate(0deg);
+  transition: stroke $cubic, transform $cubic;
+ 
 }
+
 
 .nav__logo-text {
   margin-left: 8px;
@@ -102,12 +102,7 @@
   line-height: 1.17;
   color: $primary-white-color;
   transition: color $cubic;
-    &:hover,
-    &:focus {
-      color: $main-accent-color;
-      
-    }
-
+   
   @media screen and (max-width: 767px) {
     display: none;
   }
