@@ -175,11 +175,11 @@ function onAdvancedSearchElSubmit(event) {
   // //     userAdvancedSearchForPagination[primary_release_year]
   // // );
   Object.keys(optionsObj).forEach(key => {
-    console.log(
-      'options',
-      optionsObj[key],
-      userAdvancedSearchForPagination[key]
-    );
+    // console.log(
+    //   'options',
+    //   optionsObj[key],
+    //   userAdvancedSearchForPagination[key]
+    // );
     if (optionsObj[key] !== userAdvancedSearchForPagination[key])
       isTheSameSettings = false;
   });
