@@ -94,6 +94,27 @@ function generateSelectOptions(form) {
   areOptionsGenerated = true;
 }
 
+function chosenAdvSearchParamsString(optionsObj) {
+  return Object.keys(optionsObj).reduce((acc, key) => {
+    if (!optionsObj[key] || optionsObj[key] === '' || key === 'page')
+      return acc;
+    if (key === 'with_genres' || key === 'without_genres') {
+      return (
+        acc +
+        `<div class='advanced-search__chosen-option'><span class='advanced-search__search-key'>${key
+          .split('_')
+          .join(' ')}: </span>${TmdbAPI.genres[optionsObj[key]]}</div>`
+      );
+    }
+    return (
+      acc +
+      `<div class='advanced-search__chosen-option'><span class='advanced-search__search-key'>${key
+        .split('_')
+        .join(' ')}: </span>${optionsObj[key]}</div>`
+    );
+  }, '');
+}
+
 export function makeAdvancedSearch(optionsObj) {
   tmdbAPI
     .fetchAdvancedMovieSearch(optionsObj)
@@ -119,6 +140,16 @@ export function makeAdvancedSearch(optionsObj) {
 
 function clearAdvancedSearchForm() {
   searchRefs.advancedSearchEl.reset();
+}
+
+function changeAdvSearchWindow(obj) {
+  // console.log('optionObj', optionsObj);
+  // console.log('chosen params', chosenAdvSearchParamsString(optionsObj));
+  // console.log('optionObj', optionsObj);
+  searchRefs.advancedSearchChosenWindowEl.classList.remove('visually-hidden');
+  searchRefs.advancedSearchChosenEl.innerHTML = `${chosenAdvSearchParamsString(
+    obj
+  )}`;
 }
 
 //callback function for event listener on button submit - when the advanced search form is submitted
@@ -216,6 +247,7 @@ function onAdvancedSearchElSubmit(event) {
   deletePaginationInterface();
   clearAdvancedSearchForm();
   Notify.info('Searching');
+  changeAdvSearchWindow(userAdvancedSearchForPagination);
   makeAdvancedSearch(optionsObj);
 }
 
