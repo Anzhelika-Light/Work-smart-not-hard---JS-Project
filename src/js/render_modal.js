@@ -1,6 +1,7 @@
 import emptyPhoto from '../images/empty-photo/empty-poster.jpg';
 import { fetchMovie } from './fetch_movie_details';
 import getGenres from './trending-search-main/fetch-genres';
+import { auth } from './authFireBase.js'
 export async function renderModal(list, id, watched, queue) {
   const movieDetails = await fetchMovie(id);
 
@@ -34,8 +35,17 @@ export async function renderModal(list, id, watched, queue) {
   ///////////////////////////////////////////////////////////
   // також скоригувала наступні два рядки коду: отримання інфи, чи є даний фільм в бібліотеці,
   // для того, щоб відобразити правильний текст на кнопці
-  const isInQueue = queue.some(film => film.id === id);
-  const isInWatched = watched.some(film => film.id === id);
+  let isInQueue;
+  let isInWatched;
+  if (auth.currentUser === null) {
+    isInQueue = false;
+    isInWatched = false;
+  }
+  else {
+    isInQueue = queue.some(film => film.id === id);
+    isInWatched = watched.some(film => film.id === id);
+  }
+
 
   //////////////////////////////////////////////////////////////
   // const isInQueue = foundInQueue;
@@ -56,8 +66,8 @@ export async function renderModal(list, id, watched, queue) {
           <div class="movie-modal__item-first">Vote/Votes</div>
           <div class="movie-modal__item-votes">
             <span class="movie-modal__item-bg movie-modal__item--accent">${vote_average.toFixed(
-              1
-            )}</span> /
+        1
+      )}</span> /
             <span class="movie-modal__item-bg movie-modal__item--grey">${vote_count}</span>
           </div>
         </li>`

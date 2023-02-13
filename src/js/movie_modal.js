@@ -248,14 +248,14 @@ export async function showModal(e) {
     if (auth.currentUser !== null) {
       watchedBtn.addEventListener('click', handleWatched);
       queueBtn.addEventListener('click', handleQueued);
-
     }
     else {
-      watchedBtn.classList.add('hide');
-      queueBtn.classList.add('hide');
-      /* watchedBtn.setAttribute("disabled", "disabled");
-       queueBtn.setAttribute("disabled", "disabled");*/
-      document.querySelector(".movie-modal__add-btns").innerHTML = `<p class ="add-features">Log in and you will have the opportunity to create your own movies library</p>`;
+      /* watchedBtn.classList.add('hide');
+       queueBtn.classList.add('hide');*/
+      watchedBtn.setAttribute("disabled", "disabled");
+      queueBtn.setAttribute("disabled", "disabled");
+      Notiflix.Notify.info("Log in and you will have the opportunity to create your own movies library");
+      //document.querySelector(".movie-modal__add-btns").innerHTML = `<p class ="add-features">Log in and you will have the opportunity to create your own movies library</p>`;
     }
     watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
   }
