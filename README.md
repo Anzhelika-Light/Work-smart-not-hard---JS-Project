@@ -33,4 +33,4 @@ JavaScript проєкт "Filmoteka"
 
 ## Presentation
 
-- [Презенація проекту](https://www.canva.com/design/DAFaRx-25Hc/T7veuXW-nSjhchXr3s8Ubg/view?utm_content=DAFaRx-25Hc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton#1)
+- [Презентація проекту](https://www.canva.com/design/DAFaRx-25Hc/T7veuXW-nSjhchXr3s8Ubg/view?utm_content=DAFaRx-25Hc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton#1)
