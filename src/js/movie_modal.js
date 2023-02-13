@@ -250,8 +250,8 @@ export async function showModal(e) {
 
     }
     else {
-      watchedBtn.setAttribute("disabled", "disabled");
-      queueBtn.setAttribute("disabled", "disabled");
+      watchedBtn.classList.add('hide');
+      queueBtn.classList.add('hide');
     }
     watchTrailerBtn.addEventListener('click', onTrailerBtnClick);
   }

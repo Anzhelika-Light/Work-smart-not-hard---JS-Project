@@ -9,7 +9,7 @@ import Notiflix from 'notiflix';
 import { getDatabase, ref, set, child, get, push, update } from "firebase/database"
 
 import { spinnerStart, spinnerStop } from './loader';
-//import { onQueueBtnClick, onWatchedBtnClick } from './my-library-watched-queue/my-library-watched-queue.js';
+import { onWatchedBtnClick } from './my-library-watched-queue/queueWatchAuthFunc.js'
 //data-template-local-storage.js////////////////////////////
 //import { userDataWatched, userDataQueue } from "./my-library-watched-queue/data-template-local-storage.js"
 
@@ -35,7 +35,7 @@ const useEl = document.querySelector("[data-switch]");
 const watchedBtnEl2 = document.querySelector('.js-library-btn--watched');
 const queueBtnEl2 = document.querySelector('.js-library-btn--queue');
 
-console.log(useEl);
+
 //Element
 const btnLogOut = document.querySelector(".btn-log-out");
 const btnSign = document.querySelector(".btn-sign");
@@ -116,6 +116,7 @@ export async function readAllUserData(userId) {
 
 }
 const loginEmailPassword = async (event) => {
+
   event.preventDefault();
   const loginEmail = login.value;
   const loginPassword = password.value;
@@ -123,6 +124,12 @@ const loginEmailPassword = async (event) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     Notiflix.Notify.success("Enter");
+    try {
+      onWatchedBtnClick(auth, readAllUserData);
+    }
+    catch {
+
+    }
   }
   catch (error) {
     showLoginEror(error);
@@ -179,11 +186,7 @@ const movieListEl2 = document.querySelector('.movie-list');
 
 onAuthStateChanged(auth, async user => {
   if (user) {
-    console.log("___________");
-    console.log("u are online");
-    console.log(user.uid);
-    //console.log(auth.currentUser.uid)
-    console.log("___________")
+
 
     btnLogOut.classList.remove("hide");//
     form.classList.add("hide");//
@@ -201,11 +204,8 @@ onAuthStateChanged(auth, async user => {
 
   }
   else {
-    console.log("___________");
-    console.log("u are NOT online");
+
     currentUID = "";
-    console.log("-" + currentUID);
-    console.log("___________");
     profileName.textContent = "";
 
     btnLogOut.classList.add("hide");//
@@ -232,6 +232,13 @@ const logout = async () => {
   catch {
 
   }
+  try {
+    onWatchedBtnClick(auth, readAllUserData);
+  }
+  catch {
+
+  }
+
 
   spinnerStart();                           ///////////
   setTimeout(() => {
