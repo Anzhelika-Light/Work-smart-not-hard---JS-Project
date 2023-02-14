@@ -251,7 +251,7 @@ const studentCards = basicLightbox.create(
           <div class="team-list__text-wrapper">
           <ul class="team-list__tasks">
           <li class="task"><p class="team-list__text">Movie modal window</p></li>
-          <li class="task"><p class="team-list__text">"GoIT Students" modal window</p></li>
+          
           
           </ul>
            
